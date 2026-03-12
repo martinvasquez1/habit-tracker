@@ -1,0 +1,31 @@
+export const colors = {
+  red: "bg-myRed",
+  orange: "bg-myOrange",
+  yellow: "bg-myYellow",
+  green: "bg-myGreen",
+  mint: "bg-myMint",
+  cyan: "bg-myCyan",
+  blue: "bg-myBlue",
+  indigo: "bg-myIndigo",
+  purple: "bg-myPurple",
+  pink: "bg-myPink",
+  brown: "bg-myBrown",
+  gray: "bg-myGray",
+  null: "",
+};
+
+export const colorsWithHover = {
+  red: "bg-myRed hover:bg-myRed/75",
+  orange: "bg-myOrange hover:bg-myOrange/75",
+  yellow: "bg-myYellow hover:bg-myYellow/75",
+  green: "bg-myGreen hover:bg-myGreen/75",
+  mint: "bg-myMint hover:bg-myMint/75",
+  cyan: "bg-myCyan hover:bg-myCyan/75",
+  blue: "bg-myBlue hover:bg-myBlue/75",
+  indigo: "bg-myIndigo hover:bg-myIndigo/75",
+  purple: "bg-myPurple hover:bg-myPurple/75",
+  pink: "bg-myPink hover:bg-myPink/75",
+  brown: "bg-myBrown hover:bg-myBrown/75",
+  gray: "bg-myGray hover:bg-myGray/75",
+  null: "",
+};

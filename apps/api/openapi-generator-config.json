@@ -1,0 +1,11 @@
+{
+  "additionalProperties": {
+    "supportsES6": "true",
+    "useSingleRequestParameter": "true",
+    "enumPropertyNaming": "UPPERCASE",
+    "withSeparateModelsAndApi": "true",
+    "apiPackage": "apis",
+    "modelPackage": "models",
+    "apiNameSuffix": ""
+  }
+}

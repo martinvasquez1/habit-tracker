@@ -1,0 +1,44 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm run lint
+
+  tests:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: 'development'
+      JWT_SECRET: '123'
+      CREATE_ADMIN_PASSWORD: 123
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm run test
+      - run: npm run test:e2e
+
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: 'production'
+      JWT_SECRET: '123'
+      CREATE_ADMIN_PASSWORD: 123
+    needs: [lint, tests]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm run build

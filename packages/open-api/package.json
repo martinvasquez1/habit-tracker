@@ -1,0 +1,21 @@
+{
+  "name": "@repo/open-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sdk:preprocessing": "ts-node ./src/open-api-preprocessing.ts",
+    "sdk:clean": "ts-node src/sdk-clean.ts",
+    "sdk:generate": "npm run sdk:preprocessing && npm run sdk:clean && npx openapi-generator-cli generate"
+  },
+  "exports": {
+    "./sdk": {
+      "default": "./sdk/index.js"
+    }
+  },
+  "devDependencies": {
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1"
+  }
+}

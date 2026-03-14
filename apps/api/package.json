@@ -18,10 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json --detectOpenHandles --verbose",
-    "generate:openapi": "GENERATE_OPENAPI=true npm run start",
-    "sdk:preprocessing": "ts-node ./openapi-preprocessing.ts",
-    "sdk:clean": "ts-node sdk-clean.ts",
-    "sdk:generate": "npm run generate:openapi && npm run sdk:preprocessing && npm run sdk:clean && npx openapi-generator-cli generate"
+    "generate:openapi": "GENERATE_OPENAPI=true npm run start"
   },
   "dependencies": {
     "@casl/ability": "^6.7.3",

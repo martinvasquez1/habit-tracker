@@ -4,11 +4,11 @@
   "generator-cli": {
     "version": "7.20.0",
     "generators": {
-      "ts-axios-sdk": {
+      "typescript-axios-sdk": {
         "generatorName": "typescript-axios",
-        "inputSpec": "./openapi.sdk.json",
-        "output": "#{cwd}/../habit-tracker-web/src/sdk",
-        "config": "./openapi-generator-config.json"
+        "inputSpec": "./open-api.sdk.json",
+        "output": "./sdk",
+        "config": "./open-api-generator-config.json"
       }
     }
   }

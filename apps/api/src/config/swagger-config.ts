@@ -15,7 +15,8 @@ async function generateAndExit(document: OpenAPIObject, app: INestApplication) {
     if (!fileName) {
       console.log("env: no filename for swagger.")
     }  else {
-      writeFileSync(fileName, JSON.stringify(document, null, 2));
+      // Bad
+      writeFileSync(`./../../../packages/open-api/${fileName}`, JSON.stringify(document, null, 2));
     }
 
     await app.close();

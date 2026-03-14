@@ -46,6 +46,14 @@ export class LogsController {
     return this.logsService.create(habitId, createLogDto);
   }
 
+  /**
+  * Retrieves logs for a specific habit.
+  *
+  * @remarks
+  * Optionally filters logs using a date range.  
+  * The `startDate` and `endDate` query parameters must be **strings representing
+  * the user's local date** in `YYYY-MM-DD` format.
+  */
   @Get()
   @UseGuards(PolicyGuard)
   @CheckPolicies(ReadLogPolicy)

@@ -57,6 +57,13 @@ export class HabitsController {
     return this.habitsService.findAll(userId);
   }
 
+  /**
+  * Retrieves all habits along with their logs for a specific date range.
+  *
+  * @remarks
+  * The date query parameters must be provided as **strings in the user's local date**
+  * using the `YYYY-MM-DD` format (ISO local date without time).
+  */
   @Get('/logs')
   @ApiOperation({ operationId: 'getHabitsWithLogs' })
   findAllWithLogs(
@@ -75,6 +82,13 @@ export class HabitsController {
     );
   }
 
+  /**
+  * Retrieves statistics for a specific habit.
+  *
+  * @remarks
+  * The `currentDate` query parameter must be a **string representing the user's
+  * local date** in `YYYY-MM-DD` format.
+  */
   @Get(':id/stats')
   @UseGuards(PolicyGuard)
   @CheckPolicies(ReadHabitPolicy)

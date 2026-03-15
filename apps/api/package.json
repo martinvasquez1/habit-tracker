@@ -18,7 +18,11 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json --detectOpenHandles --verbose",
-    "generate:openapi": "GENERATE_OPENAPI=true npm run start"
+    "generate:openapi": "GENERATE_OPENAPI=true npm run start",
+    "typeorm": "npm run build && npx typeorm -d dist/database/data-source.js",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert"
   },
   "dependencies": {
     "@casl/ability": "^6.7.3",

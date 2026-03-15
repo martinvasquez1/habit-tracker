@@ -11,8 +11,7 @@ DB_URL="your_url"
 JWT_SECRET="shhh..."
 ORIGIN="your_allowed_origin"
 CREATE_ADMIN_PASSWORD=123
-SDK_OUTPUT_PATH=""
-OPENAPI_FILE="openapi.json"
+OPENAPI_FILE_PATH="./open-api.json"
 ```
 
 Testcontainers

@@ -4,12 +4,6 @@ This project provides an SDK generated from the API specification created with S
 
 The SDK is automatically generated from the specification using the `typescript-axios` generator. It provides typed API clients for interacting with the backend service.
 
-To generate it:
-
-```bash
-npm run sdk:generate
-```
-
 ## Methods
 
 This project uses the NestJS Swagger plugin to reduce the amount of boilerplate code required to define API documentation.
@@ -41,7 +35,3 @@ getUser(...)
 ## Preprocessing
 
 The generator uses a modified OpenAPI file in which all original tags are removed, and a single tag called Api is added. This ensures the generator creates a single class.
-
-## env
-
-Environment variables were defined for the OpenAPI file name and output SDK directory, but currently openapitools.json has hardcoded values

@@ -4,7 +4,7 @@ import * as fs from "fs";
 const inputPath = process.env.OPENAPI_FILE;
 
 if (!inputPath) {
-  console.error("Usage: ts-node openapi-preprocessing.ts");
+  console.error("Usage: ts-node open-api-preprocessing.ts");
   process.exit(1);
 }
 

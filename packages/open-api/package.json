@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "sdk:preprocessing": "ts-node ./src/open-api-preprocessing.ts",
+    "open-api:preprocessing": "ts-node ./src/open-api-preprocessing.ts",
     "sdk:clean": "ts-node src/sdk-clean.ts",
-    "sdk:generate": "npm run sdk:preprocessing && npm run sdk:clean && npx openapi-generator-cli generate"
+    "sdk:generate": "npm run open-api:preprocessing && npm run sdk:clean && npx openapi-generator-cli generate"
   },
   "exports": {
     "./sdk": {

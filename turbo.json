@@ -2,6 +2,15 @@
   "$schema": "https://turborepo.dev/schema.json",
   "ui": "tui",
   "tasks": {
+    "generate:openapi": {
+      "inputs": ["src/**"],
+      "outputs": ["../../packages/open-api/open-api.json"]
+    },
+    "sdk:generate": {
+      "dependsOn": ["^generate:openapi"],
+      "inputs": ["open-api.json"],
+      "outputs": ["sdk/**"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],

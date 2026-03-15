@@ -6,7 +6,7 @@ import {
   useUpdateHabit,
   useUpdateHabitForm,
 } from "../api/update-habit";
-import { Habit } from "@/sdk";
+import { Habit } from "@repo/open-api";
 
 type UpdateItemProps = {
   habitId: number;

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { ApiGetHabitsWithLogsRequest } from "@/sdk";
+import { ApiGetHabitsWithLogsRequest } from "@repo/open-api";
 import { api } from "@/lib/new-api-client"
 
 async function getHabitsWithLogs(parameters: ApiGetHabitsWithLogsRequest) {

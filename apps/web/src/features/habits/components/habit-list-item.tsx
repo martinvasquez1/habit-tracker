@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { cva } from "class-variance-authority";
 
 import { colors } from "@/styles/main";
-import { Habit } from "@/sdk";
+import { Habit } from "@repo/open-api";
 
 import HabitItemDropdown from "./habit-item-dropdown";
 

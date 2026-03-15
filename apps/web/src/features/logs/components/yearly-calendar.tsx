@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import CalendarDay from "@/features/logs/components/calendar-day";
-import { Habit, Log, LogStatusEnum } from "@/sdk";
+import { Habit, Log, LogStatusEnum } from "@repo/open-api";
 import { fillMissingLogs } from "@/utils/fill-missing-logs";
 import IconWrapper from "@/components/icon-wrapper";
 import { Button } from "@/components/ui/button";

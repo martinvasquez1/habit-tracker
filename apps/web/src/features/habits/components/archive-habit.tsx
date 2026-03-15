@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import ResponsiveDialog from "@/components/ui/responsive-dialog";
-import { Habit } from "@/sdk";
+import { Habit } from "@repo/open-api";
 import { useUpdateHabit } from "../api/update-habit";
 
 type ArchiveItemProps = {

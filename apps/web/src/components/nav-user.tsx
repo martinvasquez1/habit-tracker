@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Skeleton } from "./ui/skeleton";
 
-import { User } from "@/sdk";
+import { User } from "@repo/open-api";
 import { useUser } from "@/features/users/api/get-user";
 
 interface UserSectionProps {

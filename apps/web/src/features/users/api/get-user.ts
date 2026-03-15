@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { api } from "@/lib/new-api-client";
-import { ApiGetUserRequest } from "@/sdk";
+import { ApiGetUserRequest } from "@repo/open-api";
 
 async function getUser(parameters: ApiGetUserRequest) {
   const res = await api.getUser(parameters);

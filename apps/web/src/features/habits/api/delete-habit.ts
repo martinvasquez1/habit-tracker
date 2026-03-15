@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/new-api-client";
-import { ApiDeleteHabitRequest } from "@/sdk";
+import { ApiDeleteHabitRequest } from "@repo/open-api";
 
 async function deleteHabit(data: ApiDeleteHabitRequest) {
   const res = await api.deleteHabit(data);

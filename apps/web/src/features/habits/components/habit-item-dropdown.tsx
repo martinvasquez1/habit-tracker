@@ -13,7 +13,7 @@ import ArchiveHabit from "./archive-habit";
 import DeleteHabit from "./delete-habit";
 
 import { useState } from "react";
-import { Habit } from "@/sdk";
+import { Habit } from "@repo/open-api";
 
 type HabitItemDropdwonProps = {
   habitId: number;

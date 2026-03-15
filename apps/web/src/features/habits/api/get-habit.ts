@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { api } from "@/lib/new-api-client";
-import { ApiGetHabitRequest } from "@/sdk";
+import { ApiGetHabitRequest } from "@repo/open-api";
 
 async function getHabit(parameters: ApiGetHabitRequest) {
   const res = await api.getHabit(parameters);

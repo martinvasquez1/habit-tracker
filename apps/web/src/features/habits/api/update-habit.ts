@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { api } from "@/lib/new-api-client";
-import { ApiUpdateHabitRequest, Habit, HabitColorEnum } from "@/sdk";
+import { ApiUpdateHabitRequest, Habit, HabitColorEnum } from "@repo/open-api";
 
 const updateHabitSchema = z.object({
   name: z.string().min(1).max(36),

@@ -2,7 +2,7 @@ import { TableCell } from "@/components/ui/table";
 import CalendarDay from "./calendar-day";
 
 import { fillMissingLogs } from "@/utils/fill-missing-logs";
-import { Habit } from "@/sdk";
+import { Habit } from "@repo/open-api";
 
 type WeekDaysProps = {
   habit: Habit;

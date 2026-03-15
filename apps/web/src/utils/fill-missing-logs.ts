@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 import { generateDateArray } from "./generate-date-array";
-import { Log, LogStatusEnum } from "@/sdk";
+import { Log, LogStatusEnum } from "@repo/open-api";
 
 function generateRandomNumericId(): number {
   const uuid = uuidv4();

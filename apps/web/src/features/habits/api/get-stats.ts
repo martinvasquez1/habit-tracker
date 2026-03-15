@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/new-api-client";
-import { ApiGetHabitStatsRequest } from "@/sdk";
+import { ApiGetHabitStatsRequest } from "@repo/open-api";
 
 async function getStats(parameters: ApiGetHabitStatsRequest) {
   const res = await api.getHabitStats(parameters);

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { api } from "@/lib/new-api-client";
-import { ApiDeleteLogRequest } from "@/sdk";
+import { ApiDeleteLogRequest } from "@repo/open-api";
 
 export async function deleteLog(data: ApiDeleteLogRequest) {
   const res = await api.deleteLog(data);

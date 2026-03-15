@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import UpdateLogDialog from "./update-log-dialog";
 
-import { Log, LogStatusEnum } from "@/sdk";
+import { Log, LogStatusEnum } from "@repo/open-api";
 import { colors } from "@/styles/main";
 import { colorsWithHover } from "@/styles/main";
 

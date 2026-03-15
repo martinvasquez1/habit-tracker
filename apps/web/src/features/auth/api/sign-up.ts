@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 
-import { SignUpDto } from "@/sdk";
+import { SignUpDto } from "@repo/open-api";
 import { api } from "@/lib/new-api-client"
 
 async function signUp(data:SignUpDto) {

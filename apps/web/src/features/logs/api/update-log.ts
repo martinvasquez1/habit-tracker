@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { api } from "@/lib/new-api-client";
-import { LogStatusEnum, ApiUpdateLogRequest, Log } from "@/sdk";
+import { LogStatusEnum, ApiUpdateLogRequest, Log } from "@repo/open-api";
 
 const updateLogSchema = z.object({
   note: z.string().max(300),

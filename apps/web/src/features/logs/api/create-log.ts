@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/new-api-client";
-import { ApiCreateLogRequest } from "@/sdk";
+import { ApiCreateLogRequest } from "@repo/open-api";
 
 async function createLog(data: ApiCreateLogRequest) {
   const res = await api.createLog(data);

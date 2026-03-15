@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { MutationConfig } from "@/lib/react-query";
 import { api } from "@/lib/new-api-client";
 
-import { CreateHabitDto, HabitColorEnum } from "@/sdk";
+import { CreateHabitDto, HabitColorEnum } from "@repo/open-api";
 
 const createHabitSchema = z.object({
   name: z.string().min(1).max(36),

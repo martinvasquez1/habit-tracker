@@ -3,13 +3,18 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "open-api:preprocessing": "ts-node ./src/open-api-preprocessing.ts",
     "sdk:clean": "ts-node src/sdk-clean.ts",
     "sdk:generate": "npm run open-api:preprocessing && npm run sdk:clean && npx openapi-generator-cli generate"
   },
+  "main": "./dist/sdk/index.js",
+  "types": "./dist/sdk/index.d.ts",
+  "files": ["./dist/**"],
   "exports": {
-    "./sdk": {
-      "default": "./sdk/index.js"
+    ".": {
+      "import": "./dist/sdk/index.js",
+      "require": "./dist/sdk/index.js"
     }
   },
   "devDependencies": {

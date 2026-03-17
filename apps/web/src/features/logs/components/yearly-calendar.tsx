@@ -47,7 +47,7 @@ export default function YearlyCalendar({ habit, logs }: YearlyCalendarProps) {
   const firstDayIndex = daysOfWeek.indexOf(firstDayName);
 
   return (
-    <div className="bg-card px-4 py-4 border-[1px] border-border rounded-lg">
+    <div className="bg-card px-4 py-4 border border-border rounded-lg">
       <div className="flex justify-between">
         <h2 className="text-xl font-semibold mb-4">{currentYear}</h2>
         <div className="flex gap-2">
@@ -76,7 +76,7 @@ export default function YearlyCalendar({ habit, logs }: YearlyCalendarProps) {
           </div>
         ))}
       </div>
-      <div className="grid grid-flow-col grid-rows-[repeat(18,minmax(0,1fr))] sm:grid-rows-[repeat(14,minmax(0,1fr))] md:grid-rows-7 gap-[0.18rem] w-full ">
+      <div className="grid grid-flow-col grid-rows-18 sm:grid-rows-14 md:grid-rows-7 gap-[0.18rem] w-full ">
         {Array(firstDayIndex)
           .fill(null)
           .map((_, index) => (

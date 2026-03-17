@@ -80,7 +80,7 @@ export function WeeklyCalendar({}) {
 
   return (
     <div>
-      <div className="overflow-hidden rounded-lg border-[1px] border-border hidden sm:block">
+      <div className="overflow-hidden rounded-lg border border-border hidden sm:block">
         {/* {formatDateRange(monday, sunday)} */}
         <Table className="">
           <TableHeader className="">
@@ -112,7 +112,7 @@ export function WeeklyCalendar({}) {
           </TableBody>
         </Table>
       </div>
-      <div className="bg-card p-4 flex flex-col sm:hidden border-[1px] border-border rounded-lg space-y-6">
+      <div className="bg-card p-4 flex flex-col sm:hidden border border-border rounded-lg space-y-6">
         {data?.map((habit) => (
           <div key={habit.id} className="flex flex-col gap-4">
             <div className="flex justify-between">

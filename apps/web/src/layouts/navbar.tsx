@@ -19,8 +19,8 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-card h-[4.5rem] flex items-center border-[1px]">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 w-full">
+    <nav className="bg-card h-18 flex items-center border">
+      <div className="max-w-(--breakpoint-xl) flex flex-wrap items-center justify-between mx-auto p-4 w-full">
         <span className="flex items-center space-x-3 rtl:space-x-reverse">
           <Logo />
         </span>

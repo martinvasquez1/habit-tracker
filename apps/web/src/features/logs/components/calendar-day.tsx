@@ -28,7 +28,7 @@ const calendarDayStyles = cva("aspect-square shadow-none", {
     },
     size: {
       default: "",
-      grow: "w-full h-full p-0 m-0 md:border-[1px]",
+      grow: "w-full h-full p-0 m-0 md:border",
     },
   },
   defaultVariants: {

@@ -6,7 +6,7 @@ const infoCardStyles = cva(
     variants: {
       variant: {
         default: "",
-        solid: "bg-card rounded-lg border-[1px] border-border",
+        solid: "bg-card rounded-lg border border-border",
       },
     },
     defaultVariants: {

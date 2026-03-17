@@ -28,7 +28,7 @@ export default function StatsCards({ data }: StatsCardsProps) {
         return (
           <div
             key={c.name}
-            className="flex-1 border-[1px] border-border rounded-md p-4 bg-card"
+            className="flex-1 border border-border rounded-md p-4 bg-card"
           >
             <div className="flex justify-between items-baseline gap-4">
               <div className="font-semibold text-lg pb-2">{c.name}</div>

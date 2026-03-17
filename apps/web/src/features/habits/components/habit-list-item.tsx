@@ -23,7 +23,7 @@ export default function HabitListItem({ data }: HabitListItemProps) {
   const color = data.color;
 
   return (
-    <div className="flex justify-between bg-card p-2 px-4 border-[1px] border-border rounded-lg">
+    <div className="flex justify-between bg-card p-2 px-4 border border-border rounded-lg">
       <div className="flex gap-4 items-center">
         <div className="flex justify-center items-center w-3">
           <div className={bulletStyles({ color })}></div>

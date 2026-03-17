@@ -1,14 +1,10 @@
-import { LuLoaderCircle } from "react-icons/lu";
-import IconWrapper from "../icon-wrapper";
+import { cn } from "@/lib/utils"
+import { Loader2Icon } from "lucide-react"
 
-export default function Spinner() {
+function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
   return (
-    <div className="flex justify-center py-20 md:py-14">
-      <IconWrapper
-        icon={<LuLoaderCircle />}
-        size="md"
-      />
-      <span className="sr-only">Loading</span>
-    </div>
-  );
+    <Loader2Icon role="status" aria-label="Loading" className={cn("size-4 animate-spin", className)} {...props} />
+  )
 }
+
+export { Spinner }

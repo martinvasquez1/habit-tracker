@@ -11,7 +11,7 @@ import {
 import IconWrapper from "@/components/icon-wrapper";
 import WeekDays from "@/features/logs/components/week-days";
 import DayNames from "./day-names";
-import Spinner from "./ui/spinner";
+import { Spinner } from "./ui/spinner";
 import { TbFlameFilled } from "react-icons/tb";
 
 import { useHabitsWithLogs } from "../features/habits/api/get-habits-with-logs";

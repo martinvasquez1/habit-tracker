@@ -3,7 +3,7 @@ import { useState } from "react";
 import IconWrapper from "@/components/icon-wrapper";
 import InfoCard from "@/components/info-card";
 import { Button } from "@/components/ui/button";
-import Spinner from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 
 import { LuArchive } from "react-icons/lu";
 import { LuStar } from "react-icons/lu";

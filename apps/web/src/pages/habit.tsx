@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 
-import Spinner from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import Error from "@/components/error";
 
 import YearlyCalendar from "@/features/logs/components/yearly-calendar";

@@ -2,6 +2,7 @@
 
 import { BrowserRouter, Route, Routes } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 import LandingLayout from "./layouts/landing-layout.js";
 import Landing from "./pages/landing.js";
@@ -22,23 +23,25 @@ export default function Router() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<LandingLayout />}>
-            <Route index element={<Landing />} />
-            <Route path="about" element={<About />} />
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="sign-in" element={<SignIn />} />
-          </Route>
-
-          <Route path="/" element={<AuthRoutes />}>
-            <Route element={<AppLayout />}>
-              <Route path="home" element={<Home />} />
-              <Route path="habits" element={<Habits />} />
-              <Route path="habits/:habitId" element={<Habit />} />
-              <Route path="*" element={<NotFound />} />
+        <TooltipProvider>
+          <Routes>
+            <Route path="/" element={<LandingLayout />}>
+              <Route index element={<Landing />} />
+              <Route path="about" element={<About />} />
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="sign-in" element={<SignIn />} />
             </Route>
-          </Route>
-        </Routes>
+
+            <Route path="/" element={<AuthRoutes />}>
+              <Route element={<AppLayout />}>
+                <Route path="home" element={<Home />} />
+                <Route path="habits" element={<Habits />} />
+                <Route path="habits/:habitId" element={<Habit />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </Route>
+          </Routes>
+        </TooltipProvider>
       </QueryClientProvider>
     </BrowserRouter>
   );

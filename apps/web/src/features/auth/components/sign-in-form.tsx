@@ -1,23 +1,23 @@
 import { Link } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -30,7 +30,7 @@ const formSchema = z.object({
     .min(3, { message: "Password must be at least 3 characters long" }),
 });
 
-export function SignInForm({}: React.ComponentPropsWithoutRef<"div">) {
+export function SignInForm({ }: React.ComponentPropsWithoutRef<"div">) {
   const signInMutation = useSignIn();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,7 +47,7 @@ export function SignInForm({}: React.ComponentPropsWithoutRef<"div">) {
 
   return (
     <div className="flex flex-col min-h-[50vh] h-full w-full items-center justify-center px-4">
-      <Card className="mx-auto max-w-sm shadow-none">
+      <Card className="w-full mx-auto max-w-sm shadow-none">
         <CardHeader>
           <CardTitle className="text-2xl">Sign in</CardTitle>
           <CardDescription>
@@ -55,70 +55,75 @@ export function SignInForm({}: React.ComponentPropsWithoutRef<"div">) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-              <FormField
-                control={form.control}
+          <form onSubmit={form.handleSubmit(onSubmit)} id="form-sign-in">
+            <FieldGroup >
+              <Controller
                 name="email"
-                render={({ field }) => (
-                  <FormItem className="grid gap-2">
-                    <FormLabel htmlFor="email">Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        id="email"
-                        placeholder="johndoe@mail.com"
-                        type="email"
-                        autoComplete="email"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
                 control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem className="grid gap-2">
-                    <div className="flex justify-between items-center">
-                      <FormLabel htmlFor="password">Password</FormLabel>
-                    </div>
-                    <FormControl>
-                      <Input
-                        id="password"
-                        type="password"
-                        placeholder="******"
-                        autoComplete="current-password"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="title">Email</FieldLabel>
+                    <Input
+                      {...field}
+                      id="title"
+                      type="email"
+                      aria-invalid={fieldState.invalid}
+                      placeholder="email@something.com"
+                      autoComplete="off"
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
                 )}
               />
-              {signInMutation.isError && (
-                <div className="text-[0.8rem] font-medium text-destructive">
-                  {(signInMutation.error as any)?.response?.data?.message ||
-                    "An error occurred"}
-                </div>
-              )}
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={signInMutation.isPending}
-              >
-                {signInMutation.isPending ? "Signing in..." : "Sign in"}
-              </Button>
-            </form>
-          </Form>
-          <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link to="/sign-up" className="underline">
-              Sign up
-            </Link>
-          </div>
+              <Controller
+                name="password"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="password">Password</FieldLabel>
+                    <Input
+                      {...field}
+                      id="password"
+                      aria-invalid={fieldState.invalid}
+                      type="password"
+                      placeholder="******"
+                      autoComplete="off"
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+          </form>
         </CardContent>
+        <CardFooter>
+          <div className="flex flex-col gap-0 w-full">
+            {signInMutation.isError && (
+              <div className="text-[0.8rem] font-medium text-destructive pb-3">
+                {(signInMutation.error as any)?.response?.data?.message ||
+                  "An error occurred"}
+              </div>
+            )}
+            <Button
+              type="submit"
+              form="form-sign-in"
+              className="w-full"
+              disabled={signInMutation.isPending}
+            >
+              {signInMutation.isPending ? "Signing in..." : "Sign in"}
+            </Button>
+            <div className="mt-4 text-sm">
+              Don&apos;t have an account?{" "}
+              <Link to="/sign-up" className="underline">
+                Sign up
+              </Link>
+            </div>
+          </div>
+        </CardFooter>
       </Card>
     </div>
   );

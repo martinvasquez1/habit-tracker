@@ -1,29 +1,23 @@
-import { UseFormReturn } from "react-hook-form";
+import { Controller, UseFormReturn } from "react-hook-form";
 import { UseMutationResult } from "@tanstack/react-query";
 
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+  Field,
+  FieldContent,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { colors } from "@/styles/main";
 import { Button } from "@/components/ui/button";
 
+import { colors } from "@/styles/main";
+
 interface HabitFormProps {
-  form: UseFormReturn<any>; // Use the specific type for form values
-  onSubmit: (values: any) => void; // Use the specific type for form values
-  mutation: UseMutationResult<any, unknown, any>; // Adjust the types based on your mutation
+  form: UseFormReturn<any>;
+  onSubmit: (values: any) => void;
+  mutation: UseMutationResult<any, unknown, any>;
   submitText: string;
 }
 
@@ -34,85 +28,95 @@ export const HabitForm: React.FC<HabitFormProps> = ({
   submitText,
 }) => {
   return (
-    <div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Meditating" type="text" {...field} />
-                </FormControl>
+    <form onSubmit={form.handleSubmit(onSubmit)} id="habit-form">
+      <FieldGroup>
+        <Controller
+          name="name"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor="name">Name</FieldLabel>
+              <Input
+                {...field}
+                id="name"
+                type="text"
+                placeholder="Meditate"
+                autoComplete="off"
+                aria-invalid={fieldState.invalid}
+              />
+              {fieldState.invalid && (
+                <FieldError errors={[fieldState.error]} />
+              )}
+            </Field>
+          )}
+        />
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <Controller
+          name="description"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor="description">Description</FieldLabel>
+              <Input
+                {...field}
+                id="description"
+                type="text"
+                placeholder="I'll meditate every day for 5 minutes."
+                autoComplete="off"
+                aria-invalid={fieldState.invalid}
+              />
+              {fieldState.invalid && (
+                <FieldError errors={[fieldState.error]} />
+              )}
+            </Field>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="I'll meditate every day for 5 minutes."
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="color"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Color</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+        <Controller
+          name="color"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field orientation="responsive" data-invalid={fieldState.invalid}>
+              <FieldContent>
+                <FieldLabel htmlFor="habit-color">Color</FieldLabel>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              </FieldContent>
+              <Select
+                name={field.name}
+                value={field.value}
+                onValueChange={field.onChange}
+              >
+                <SelectTrigger
+                  id="habit-color"
+                  aria-invalid={fieldState.invalid}
                 >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a color" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {Object.entries(colors).map(([name, className]) => (
-                      <SelectItem key={name} value={name}>
-                        <div className="flex items-center">
-                          <div
-                            className={`w-2 h-2 rounded-full ${className} mr-2`}
-                          />
-                          <span className="capitalize">{name}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button
-            type="submit"
-            className="w-full md:mb-0 mb-4"
-            disabled={mutation.isPending}
-          >
-            {submitText}
-          </Button>
-        </form>
-      </Form>
-    </div>
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent position="item-aligned">
+                  {Object.entries(colors).map(([name, className]) => (
+                    <SelectItem key={name} value={name}>
+                      <div className="flex items-center">
+                        <div
+                          className={`w-2 h-2 rounded-full ${className} mr-2`}
+                        />
+                        <span className="capitalize">{name}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </Field>
+          )}
+        />
+      </FieldGroup>
+      <Button
+        type="submit"
+        form="habit-form"
+        className="w-full md:mb-0 mb-4"
+        disabled={mutation.isPending}
+      >
+        {submitText}{mutation.isPending && ' ...'}
+      </Button>
+    </form>
   );
 };

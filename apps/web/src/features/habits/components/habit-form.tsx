@@ -21,6 +21,7 @@ interface HabitFormProps {
   submitText: string;
 }
 
+/* Generic form to create and update habit */
 export const HabitForm: React.FC<HabitFormProps> = ({
   form,
   onSubmit,
@@ -112,7 +113,7 @@ export const HabitForm: React.FC<HabitFormProps> = ({
       <Button
         type="submit"
         form="habit-form"
-        className="w-full md:mb-0 mb-4"
+        className="w-full md:mb-0 mt-6"
         disabled={mutation.isPending}
       >
         {submitText}{mutation.isPending && ' ...'}

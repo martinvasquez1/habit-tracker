@@ -37,10 +37,9 @@ export default function ArchiveHabit({
       isDone={updateHabitMutation.isSuccess}
     >
       <form onSubmit={onSubmit} className="grid gap-4 mb-4 md:mb-0">
-        <div className="flex flex-col gap-2 md:flex-row">
+        <div className="flex flex-col gap-2 md:flex-row md:*:flex-1">
           <Button
             type="button"
-            className="w-full"
             variant="secondary"
             onClick={() => setIsOpen(false)}
             disabled={updateHabitMutation.isPending}
@@ -49,7 +48,6 @@ export default function ArchiveHabit({
           </Button>
           <Button
             type="submit"
-            className="w-full"
             disabled={updateHabitMutation.isPending}
           >
             {archiveAction}

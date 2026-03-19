@@ -29,10 +29,9 @@ export default function DeleteHabit({
       isDone={deleteHabitMutation.isSuccess}
     >
       <form onSubmit={onSubmit} className="grid gap-4 mb-4 md:mb-0">
-        <div className="flex flex-col gap-2 md:flex-row">
+        <div className="flex flex-col gap-2 md:flex-row md:*:flex-1">
           <Button
             type="button"
-            className="w-full"
             variant="secondary"
             onClick={() => setIsOpen(false)}
             disabled={deleteHabitMutation.isPending}
@@ -41,7 +40,6 @@ export default function DeleteHabit({
           </Button>
           <Button
             type="submit"
-            className="w-full"
             variant="destructive"
             disabled={deleteHabitMutation.isPending}
           >

@@ -159,7 +159,7 @@ export function WeeklyCalendar({ }) {
                     <IconWrapper
                       size="sm"
                       icon={<TbFlameFilled />}
-                      className="text-gray-300"
+                      className={habit.streak > 0 ? "text-orange-500" : "text-gray-300"}
                     />
                     <span>{habit.streak}</span>
                   </div>

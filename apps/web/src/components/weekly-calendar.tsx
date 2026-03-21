@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   Table,
@@ -13,6 +13,7 @@ import WeekDays from "@/features/logs/components/week-days";
 import DayNames from "./day-names";
 import { Spinner } from "./ui/spinner";
 import { TbFlameFilled } from "react-icons/tb";
+import confetti from "canvas-confetti"
 
 import { useHabitsWithLogs } from "../features/habits/api/get-habits-with-logs";
 import InfoCard from "./info-card";
@@ -42,7 +43,61 @@ function PaddingRow({ cellCount }: { cellCount: number }) {
   );
 }
 
-export function WeeklyCalendar({}) {
+function ConfettiFireworks({ shouldFire }: { shouldFire: boolean }) {
+  const hasFiredRef = useRef(false)
+
+  useEffect(() => {
+    if (!shouldFire || hasFiredRef.current) return
+
+    hasFiredRef.current = true
+
+    const duration = 4 * 1000
+    const animationEnd = Date.now() + duration
+    const defaults = {
+      startVelocity: 30,
+      spread: 360,
+      ticks: 60,
+      zIndex: 0,
+    }
+
+    const randomInRange = (min: number, max: number) =>
+      Math.random() * (max - min) + min
+
+    const interval = window.setInterval(() => {
+      const timeLeft = animationEnd - Date.now()
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval)
+      }
+
+      const particleCount = 50 * (timeLeft / duration)
+
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: {
+          x: randomInRange(0.1, 0.3),
+          y: Math.random() - 0.2,
+        },
+      })
+
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: {
+          x: randomInRange(0.7, 0.9),
+          y: Math.random() - 0.2,
+        },
+      })
+    }, 250)
+
+    return () => clearInterval(interval)
+  }, [shouldFire])
+
+  return null
+}
+
+export function WeeklyCalendar({ }) {
   const [weekShift] = useState(0);
 
   const date = new Date();
@@ -68,7 +123,7 @@ export function WeeklyCalendar({}) {
   if (isLoading) return <Spinner />;
   if (isError) return "Error!";
 
-  const noHabits = data?.length === 0;
+  const noHabits = data?.length === 0 || !data;
   if (noHabits) {
     return (
       <InfoCard
@@ -77,6 +132,9 @@ export function WeeklyCalendar({}) {
       />
     );
   }
+
+  const allCompletedToday = data.filter((h) => !h.isArchived)
+    .every((habit) => habit.logs.some((log) => log.date == todayStr && log.status === "completed"))
 
   return (
     <div>
@@ -137,36 +195,7 @@ export function WeeklyCalendar({}) {
           </div>
         ))}
       </div>
+      <ConfettiFireworks shouldFire={allCompletedToday} />
     </div>
   );
 }
-
-/*
-
-function formatDateRange(startDate: Date, endDate: Date) {
-  const options = { weekday: "short", month: "short", day: "numeric" };
-
-  const start = startDate.toLocaleDateString("en-US", options);
-  const end = endDate.toLocaleDateString("en-US", options);
-
-  return `${start} - ${end}`;
-}
-
-<div className="flex gap-2">
-  <Button
-    variant="outline"
-    size="icon"
-    onClick={() => setWeekShift((prev) => prev - 1)}
-  >
-    <IconWrapper icon={<LuChevronLeft />} />
-  </Button>
-  <Button
-    variant="outline"
-    size="icon"
-    onClick={() => setWeekShift((prev) => prev + 1)}
-  >
-    <IconWrapper icon={<LuChevronRight />} />
-  </Button>
-</div>
-
-*/

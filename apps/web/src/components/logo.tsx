@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router";
+
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -13,7 +15,7 @@ export function Logo({ to = "/", size = "md", ...props }) {
     <Link to={to} className="flex gap-1 items-end w-full pr-8" {...props}>
       <img src={Ant} alt="Logo" className={size === "sm" ? "w-10" : "w-14"} />
       <span
-        className={`${size === "sm" ? "mb-0" : "mb-1"} text-2xl font-semibold `}
+        className={`${size === "sm" ? "mb-0" : "mb-1"} text-2xl font-semibold mt-2`}
       >
         Ant
       </span>
@@ -22,7 +24,8 @@ export function Logo({ to = "/", size = "md", ...props }) {
 }
 
 export function SidebarLogo() {
-  const { open: isOpen, isMobile, setOpenMobile } = useSidebar();
+  const { open: isOpen, isMobile, toggleSidebar } = useSidebar();
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
 
   return (
     <SidebarMenu>
@@ -30,23 +33,34 @@ export function SidebarLogo() {
         <div className="flex justify-between items-center">
           <SidebarMenuButton
             tooltip="Open Sidebar"
-            className={`${
-              (isOpen || isMobile) &&
+            size="lg"
+            className={`${(isOpen || isMobile) &&
               " hover:bg-transparent active:bg-transparent"
-            }`}
+              }`}
             asChild
           >
-            {isOpen || isMobile ? (
-              <div className="h-full flex justify-between gap-2">
+            {isOpen ? (
+              <Logo
+                to="/home"
+                size="sm"
+                isLogoHovered={false}
+                onMouseEnter={() => setIsLogoHovered(true)}
+                onMouseLeave={() => setIsLogoHovered(false)}
+              />
+            ) : (
+              isLogoHovered ?
+                <SidebarTrigger className="p-4"
+                  onMouseEnter={() => setIsLogoHovered(true)}
+                  onMouseLeave={() => setIsLogoHovered(false)}
+                /> :
                 <Logo
                   to="/home"
                   size="sm"
-                  onClick={() => setOpenMobile(false)}
+                  isLogoHovered={isLogoHovered}
+                  onClick={() => toggleSidebar()}
+                  onMouseEnter={() => setIsLogoHovered(true)}
+                  onMouseLeave={() => setIsLogoHovered(false)}
                 />
-                <SidebarTrigger className="p-4" />
-              </div>
-            ) : (
-              <SidebarTrigger />
             )}
           </SidebarMenuButton>
         </div>

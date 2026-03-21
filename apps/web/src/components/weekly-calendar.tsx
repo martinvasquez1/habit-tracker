@@ -184,7 +184,7 @@ export function WeeklyCalendar({ }) {
                 <span>{habit.streak}</span>
               </div>
             </div>
-            <div className="flex justify-between gap-4 min-[500px]:gap-6">
+            <div className="flex w-full justify-between gap-2 *:flex-1">
               <WeekDays
                 habit={habit}
                 startDate={monday}

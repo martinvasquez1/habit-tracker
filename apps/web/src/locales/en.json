@@ -1,6 +1,7 @@
 {
   "common": {
     "habit": "Habit",
+    "cancel": "Cancel",
     "days": [
       "Mon",
       "Tue",
@@ -55,10 +56,9 @@
       }
     },
     "delete": {
-      "delete_habit": "Delete Habit",
-      "delete_confirm": "Are you sure you want to delete this habit? This action cannot be undone.",
-      "cancel": "Cancel",
-      "delete_action": "Delete"
+      "title": "Delete Habit",
+      "body": "Are you sure you want to delete this habit? This action cannot be undone.",
+      "button": "Delete"
     }
   }
 }

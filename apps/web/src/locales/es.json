@@ -1,6 +1,7 @@
 {
   "common": {
     "habit": "Hábito",
+    "cancel": "Cancelar",
     "days": [
       "Lun",
       "Mar",
@@ -55,10 +56,9 @@
       }
     },
     "delete": {
-      "delete_habit": "Eliminar Hábito",
-      "delete_confirm": "¿Estás seguro de que quieres eliminar este hábito? Esta acción no se puede deshacer.",
-      "cancel": "Cancelar",
-      "delete_action": "Eliminar"
+      "title": "Eliminar Hábito",
+      "body": "¿Estás seguro de que quieres eliminar este hábito? Esta acción no se puede deshacer.",
+      "button": "Eliminar"
     }
   }
 }

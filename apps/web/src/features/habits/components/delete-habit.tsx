@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { Button } from "@/components/ui/button";
 import ResponsiveDialog from "@/components/ui/responsive-dialog";
 import { useDeleteHabit } from "../api/delete-habit";
@@ -13,6 +15,7 @@ export default function DeleteHabit({
   isOpen,
   setIsOpen,
 }: DeleteItemProps) {
+  const { t } = useTranslation();
   const deleteHabitMutation = useDeleteHabit();
 
   function onSubmit(e: React.FormEvent) {
@@ -22,8 +25,8 @@ export default function DeleteHabit({
 
   return (
     <ResponsiveDialog
-      title="Delete Habit"
-      description="Are you sure you want to delete this habit? This action cannot be undone."
+      title={t('habits.delete.title')}
+      description={t('habits.delete.body')}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       isDone={deleteHabitMutation.isSuccess}
@@ -36,14 +39,14 @@ export default function DeleteHabit({
             onClick={() => setIsOpen(false)}
             disabled={deleteHabitMutation.isPending}
           >
-            Cancel
+            {t('common.cancel')}
           </Button>
           <Button
             type="submit"
             variant="destructive"
             disabled={deleteHabitMutation.isPending}
           >
-            Delete
+            {t('habits.delete.button')}
           </Button>
         </div>
       </form>

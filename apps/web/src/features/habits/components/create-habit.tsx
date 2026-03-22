@@ -1,7 +1,4 @@
-import { Button } from "@/components/ui/button";
-import IconWrapper from "@/components/icon-wrapper";
-import ResponsiveDialog from "@/components/ui/responsive-dialog";
-import { HabitForm } from "./habit-form";
+import { useTranslation } from "react-i18next";
 
 import {
   useCreateHabit,
@@ -9,9 +6,16 @@ import {
   CreateHabitInput,
 } from "../api/create-habit";
 
+import { Button } from "@/components/ui/button";
+import IconWrapper from "@/components/icon-wrapper";
+import ResponsiveDialog from "@/components/ui/responsive-dialog";
+import { HabitForm } from "./habit-form";
+
 import { LuPlus } from "react-icons/lu";
 
 export default function CreateHabit({}) {
+  const { t } = useTranslation();  
+
   const form = useCreateHabitForm();
   const createHabitMutation = useCreateHabit({
     mutationConfig: {
@@ -33,7 +37,7 @@ export default function CreateHabit({}) {
       triggerButton={
         <Button>
           <IconWrapper icon={<LuPlus />} />
-          New habit
+          {t('habits.new_habit_button')}
         </Button>
       }
     >

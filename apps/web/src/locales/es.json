@@ -1,7 +1,15 @@
 {
   "common": {
     "habit": "Hábito",
-    "days": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
+    "days": [
+      "Lun",
+      "Mar",
+      "Mié",
+      "Jue",
+      "Vie",
+      "Sáb",
+      "Dom"
+    ]
   },
   "home": {
     "greeting": {
@@ -26,31 +34,31 @@
     "notifications": "Notificaciones",
     "logout": "Cerrar Sesión"
   },
-  "habits_page": {
+  "habits": {
     "title": "Hábitos",
-    "new_habit": "Nuevo Hábito",
+    "new_habit_button": "Nuevo Hábito",
+    "item_options": {
+      "update": "Actualizar",
+      "archive": "Archivar",
+      "unarchive": "Desarchivar",
+      "delete": "Eliminar"
+    },
     "empty_state": {
       "title": "¡Aún no hay hábitos!",
-      "body": "Crea hábitos para mejorar tu rutina"
+      "body": "Crea hábitos para mejorar tu rutina."
     },
     "archived": {
-      "title": "Hábitos Archivados",
-      "no_archived": "Tu archivo está vacío",
-      "unarchive": "Desarchivar Hábito",
-      "unarchive_confirm": "¿Estás seguro de que quieres realizar esta acción? Puedes deshacerla más tarde si es necesario.",
-      "cancel": "Cancelar",
-      "unarchive_action": "Desarchivar"
+      "title": "Hábitos archivados",
+      "empty_state": {
+        "title": "No hay hábitos archivados",
+        "body": "Tu archivo está vacío por ahora."
+      }
     },
     "delete": {
       "delete_habit": "Eliminar Hábito",
       "delete_confirm": "¿Estás seguro de que quieres eliminar este hábito? Esta acción no se puede deshacer.",
       "cancel": "Cancelar",
       "delete_action": "Eliminar"
-    },
-    "options": {
-      "update": "Actualizar",
-      "archive": "Archivar",
-      "delete": "Eliminar"
     }
   }
 }

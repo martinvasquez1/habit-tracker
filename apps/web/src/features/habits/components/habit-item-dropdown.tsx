@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Habit } from "@repo/open-api";
+
 import IconWrapper from "@/components/icon-wrapper";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,9 +16,6 @@ import UpdateHabit from "./update-habit";
 import ArchiveHabit from "./archive-habit";
 import DeleteHabit from "./delete-habit";
 
-import { useState } from "react";
-import { Habit } from "@repo/open-api";
-
 type HabitItemDropdwonProps = {
   habitId: number;
   habit: Habit;
@@ -24,6 +25,8 @@ export default function HabitItemDropdown({
   habitId,
   habit,
 }: HabitItemDropdwonProps) {
+  const { t } = useTranslation();  
+
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -38,13 +41,13 @@ export default function HabitItemDropdown({
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
           <DropdownMenuItem onClick={() => setIsUpdateOpen(true)}>
-            Update
+            {t('habits.item_options.update')}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setIsArchiveOpen(true)}>
-            {habit.isArchived ? "Unarchive" : "Archive"}
+            {habit.isArchived ? t('habits.item_options.unarchive') : t('habits.item_options.archive')}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setIsDeleteOpen(true)}>
-            Delete
+            {t('habits.item_options.delete')}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

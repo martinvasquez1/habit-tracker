@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import IconWrapper from "@/components/icon-wrapper";
 import InfoCard from "@/components/info-card";
@@ -13,6 +14,8 @@ import CreateHabit from "@/features/habits/components/create-habit";
 import HabitListItem from "@/features/habits/components/habit-list-item";
 
 export default function Habits() {
+  const { t } = useTranslation();  
+
   const page = 1;
   const [showUnarchived, setShowUnarchived] = useState(true);
   let { data, isLoading, isError } = useHabits(page);
@@ -29,7 +32,7 @@ export default function Habits() {
     <div>
       <div className="flex justify-between items-baseline">
         <h1 className="font-bold text-2xl mb-6">
-          {showUnarchived ? "Habits" : "Archived Habits"}
+          {showUnarchived ? t('habits.title') : t('habits.archived.title')}
         </h1>
         <div className="flex gap-4 items-baseline">
           <Button
@@ -47,15 +50,15 @@ export default function Habits() {
 
       {!isLoading && showUnarchived && noHabits && (
         <InfoCard
-          title="No Habits Yet!"
-          body="Create habits to improve your routine"
+          title={t('habits.empty_state.title')}
+          body={t('habits.empty_state.body')}
         />
       )}
 
       {!isLoading && !showUnarchived && noHabits && (
         <InfoCard
-          title="No Archived Habits"
-          body="Your archive is currently empty"
+          title={t('habits.archived.empty_state.title')}
+          body={t('habits.archived.empty_state.body')}
         />
       )}
 

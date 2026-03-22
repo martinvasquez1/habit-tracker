@@ -11,7 +11,7 @@
     },
     "empty_state": {
       "title": "¡Aún no hay hábitos!",
-      "message": "¡Tu tracker está esperando alguna acción!"
+      "body": "Crea uno para empezar a mejorar día a día."
     }
   },
   "sidebar": {
@@ -31,7 +31,7 @@
     "new_habit": "Nuevo Hábito",
     "empty_state": {
       "title": "¡Aún no hay hábitos!",
-      "message": "Crea hábitos para mejorar tu rutina"
+      "body": "Crea hábitos para mejorar tu rutina"
     },
     "archived": {
       "title": "Hábitos Archivados",

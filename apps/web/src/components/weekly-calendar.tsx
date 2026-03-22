@@ -18,6 +18,7 @@ import confetti from "canvas-confetti"
 import { useHabitsWithLogs } from "../features/habits/api/get-habits-with-logs";
 import InfoCard from "./info-card";
 import { formatYYYYMMDD } from "@/utils/format-yyyy-mm-dd";
+import { useTranslation } from "react-i18next";
 
 function getWeekMonday(date: Date): Date {
   const dayOfWeek = date.getDay();
@@ -98,6 +99,8 @@ function ConfettiFireworks({ shouldFire }: { shouldFire: boolean }) {
 }
 
 export function WeeklyCalendar({ }) {
+  const { t } = useTranslation();
+
   const [weekShift] = useState(0);
 
   const date = new Date();
@@ -127,8 +130,8 @@ export function WeeklyCalendar({ }) {
   if (noHabits) {
     return (
       <InfoCard
-        title="No Habits Yet!"
-        body="Your tracker is waiting for some action!"
+        title={t('home.empty_state.title')}
+        body={t('home.empty_state.body')}
       />
     );
   }
@@ -143,7 +146,7 @@ export function WeeklyCalendar({ }) {
         <Table className="">
           <TableHeader className="">
             <TableRow className="bg-[#fbfbfd] hover:bg-[#fbfbfb]">
-              <TableHead className="min-w-[100px] pl-4 py-3">Habit</TableHead>
+              <TableHead className="min-w-[100px] pl-4 py-3">{t('common.habit')}</TableHead>
               <DayNames startDate={monday} endDate={sunday} />
               <TableHead className="text-center"></TableHead>
             </TableRow>

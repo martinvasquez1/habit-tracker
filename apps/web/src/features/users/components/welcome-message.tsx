@@ -2,8 +2,11 @@ import { jwtDecode } from "jwt-decode";
 import { useUser } from "../api/get-user";
 
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslation } from "react-i18next";
 
 export default function WelcomeMessage() {
+  const { t } = useTranslation();
+
   const jwt = localStorage.getItem("jwt");
   if (!jwt) return "Error";
 
@@ -11,16 +14,14 @@ export default function WelcomeMessage() {
   const userId = decoded.id;
   const { data: user, isLoading } = useUser(userId);
 
-  const hour = new Date().getHours();
-  let greeting = "";
+  function getGreetingKey(hour: number) {
+    if (hour < 12) return 'home.greeting.morning';
+    if (hour < 18) return 'home.greeting.afternoon';
+    return 'home.greeting.evening';
+  };
 
-  if (hour < 12) {
-    greeting = "Good Morning";
-  } else if (hour < 18) {
-    greeting = "Good Afternoon";
-  } else {
-    greeting = "Good Evening";
-  }
+  const hour = new Date().getHours();
+  const greeting = t(getGreetingKey(hour));
 
   if (isLoading) return <Skeleton className="h-8 w-64 mb-6" />;
 

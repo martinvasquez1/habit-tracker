@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { type LucideIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Link } from "react-router";
 
@@ -28,35 +29,51 @@ export function NavMain({
     }[];
   }[];
 }) {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
   const { isMobile, setOpenMobile } = useSidebar();
 
   return (
     <SidebarGroup>
       <SidebarMenu className="space-y-1">
-        {items.map((item, index) => (
-          <SidebarMenuItem key={index}>
-            {item.isDisabled ? (
-              <button
-                className={cn(sidebarMenuButtonVariants({}), "pl-3")}
-                disabled
-              >
-                {item.icon && <item.icon />}
-                <span>{item.title}</span>
-              </button>
-            ) : (
-              <SidebarMenuButton tooltip={item.title} className="pl-3" asChild>
-                <Link
-                  to={item.url}
-                  onClick={() => isMobile && setOpenMobile(false)}
+
+        <SidebarMenuItem>
+          <SidebarMenuButton onClick={() => changeLanguage('en')}>🇬🇧 EN</SidebarMenuButton>
+        </SidebarMenuItem>
+        <SidebarMenuItem>
+          <SidebarMenuButton onClick={() => changeLanguage('es')}>🇪🇸 ES</SidebarMenuButton>
+        </SidebarMenuItem>
+
+        {
+          items.map((item, index) => (
+            <SidebarMenuItem key={index}>
+              {item.isDisabled ? (
+                <button
+                  className={cn(sidebarMenuButtonVariants({}), "pl-3")}
+                  disabled
                 >
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
-            )}
-          </SidebarMenuItem>
-        ))}
-      </SidebarMenu>
-    </SidebarGroup>
+                </button>
+              ) : (
+                <SidebarMenuButton tooltip={item.title} className="pl-3" asChild>
+                  <Link
+                    to={item.url}
+                    onClick={() => isMobile && setOpenMobile(false)}
+                  >
+                    {item.icon && <item.icon />}
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              )}
+            </SidebarMenuItem>
+          ))
+        }
+      </SidebarMenu >
+    </SidebarGroup >
   );
 }

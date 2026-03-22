@@ -1,6 +1,7 @@
 import { TableHead } from "./ui/table";
 import { generateDateArray } from "@/utils/generate-date-array";
 import { formatYYYYMMDD } from "@/utils/format-yyyy-mm-dd";
+import { useTranslation } from "react-i18next";
 
 interface DayNamesProps {
   startDate: Date;
@@ -8,7 +9,8 @@ interface DayNamesProps {
 }
 
 export default function DayNames({ startDate, endDate }: DayNamesProps) {
-  const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const { t } = useTranslation();
+  const dayNames = t('common.days', { returnObjects: true }) as string[];
 
   const days = generateDateArray(startDate, endDate);
   const today = formatYYYYMMDD(new Date());

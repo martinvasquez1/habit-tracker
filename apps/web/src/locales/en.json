@@ -11,7 +11,7 @@
     },
     "empty_state": {
       "title": "No Habits Yet!",
-      "message": "Your tracker is waiting for some action!"
+      "body": "Your tracker is waiting for some action!"
     }
   },
   "sidebar": {
@@ -31,7 +31,7 @@
     "new_habit": "New Habit",
     "empty_state": {
       "title": "No Habits Yet!",
-      "message": "Create habits to improve your routine"
+      "body": "Create habits to improve your routine"
     },
     "archived": {
       "title": "Archived Habits",

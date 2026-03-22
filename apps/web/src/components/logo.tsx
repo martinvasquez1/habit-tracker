@@ -43,7 +43,6 @@ export function SidebarLogo() {
               <Logo
                 to="/home"
                 size="sm"
-                isLogoHovered={false}
                 onMouseEnter={() => setIsLogoHovered(true)}
                 onMouseLeave={() => setIsLogoHovered(false)}
               />
@@ -56,7 +55,6 @@ export function SidebarLogo() {
                 <Logo
                   to="/home"
                   size="sm"
-                  isLogoHovered={isLogoHovered}
                   onClick={() => toggleSidebar()}
                   onMouseEnter={() => setIsLogoHovered(true)}
                   onMouseLeave={() => setIsLogoHovered(false)}

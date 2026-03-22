@@ -40,14 +40,6 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarMenu className="space-y-1">
-
-        <SidebarMenuItem>
-          <SidebarMenuButton onClick={() => changeLanguage('en')}>🇬🇧 EN</SidebarMenuButton>
-        </SidebarMenuItem>
-        <SidebarMenuItem>
-          <SidebarMenuButton onClick={() => changeLanguage('es')}>🇪🇸 ES</SidebarMenuButton>
-        </SidebarMenuItem>
-
         {
           items.map((item, index) => (
             <SidebarMenuItem key={index}>

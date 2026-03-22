@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Controller, UseFormReturn } from "react-hook-form";
 import { UseMutationResult } from "@tanstack/react-query";
 
@@ -28,6 +29,8 @@ export const HabitForm: React.FC<HabitFormProps> = ({
   mutation,
   submitText,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} id="habit-form">
       <FieldGroup>
@@ -36,12 +39,12 @@ export const HabitForm: React.FC<HabitFormProps> = ({
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="name">Name</FieldLabel>
+              <FieldLabel htmlFor="name">{t('habits.update.name')}</FieldLabel>
               <Input
                 {...field}
                 id="name"
                 type="text"
-                placeholder="Meditate"
+                placeholder={t('habits.update.name_placeholder')}
                 autoComplete="off"
                 aria-invalid={fieldState.invalid}
               />
@@ -57,12 +60,12 @@ export const HabitForm: React.FC<HabitFormProps> = ({
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="description">Description</FieldLabel>
+              <FieldLabel htmlFor="description">{t('habits.update.description')}</FieldLabel>
               <Input
                 {...field}
                 id="description"
                 type="text"
-                placeholder="I'll meditate every day for 5 minutes."
+                placeholder={t('habits.update.description_placeholder')}
                 autoComplete="off"
                 aria-invalid={fieldState.invalid}
               />
@@ -79,7 +82,7 @@ export const HabitForm: React.FC<HabitFormProps> = ({
           render={({ field, fieldState }) => (
             <Field orientation="responsive" data-invalid={fieldState.invalid}>
               <FieldContent>
-                <FieldLabel htmlFor="habit-color">Color</FieldLabel>
+                <FieldLabel htmlFor="habit-color">{t('habits.update.color')}</FieldLabel>
                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </FieldContent>
               <Select
@@ -100,7 +103,7 @@ export const HabitForm: React.FC<HabitFormProps> = ({
                         <div
                           className={`w-2 h-2 rounded-full ${className} mr-2`}
                         />
-                        <span className="capitalize">{name}</span>
+                        <span className="capitalize">{t(`common.colors.${name}`)}</span>
                       </div>
                     </SelectItem>
                   ))}

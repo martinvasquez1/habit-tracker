@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import ResponsiveDialog from "@/components/ui/responsive-dialog";
 import { HabitForm } from "./habit-form";
 
@@ -21,6 +23,7 @@ export default function UpdateHabit({
   isOpen,
   setIsOpen,
 }: UpdateItemProps) {
+  const { t } = useTranslation();
   const form = useUpdateHabitForm(habit);
   const updateHabitMutation = useUpdateHabit();
 
@@ -30,8 +33,8 @@ export default function UpdateHabit({
 
   return (
     <ResponsiveDialog
-      title="Update Habit"
-      description="Update habit information."
+      title={t('habits.update.title')}
+      description={t('habits.update.body')}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       isDone={updateHabitMutation.isSuccess}
@@ -40,7 +43,7 @@ export default function UpdateHabit({
         form={form}
         onSubmit={onSubmit}
         mutation={updateHabitMutation}
-        submitText={"Update"}
+        submitText={t('habits.update.button')}
       />
     </ResponsiveDialog>
   );

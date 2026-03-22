@@ -10,7 +10,21 @@
       "Fri",
       "Sat",
       "Sun"
-    ]
+    ],
+    "colors": {
+      "red": "Red",
+      "orange": "Orange",
+      "yellow": "Yellow",
+      "green": "Green",
+      "mint": "Mint",
+      "cyan": "Cyan",
+      "blue": "Blue",
+      "indigo": "Indigo",
+      "purple": "Purple",
+      "pink": "Pink",
+      "brown": "Brown",
+      "gray": "Gray"
+    }
   },
   "home": {
     "greeting": {
@@ -47,6 +61,16 @@
     "empty_state": {
       "title": "No Habits Yet!",
       "body": "Create habits to improve your routine."
+    },
+    "update": {
+      "title": "Update Habit",
+      "body": "Update habit information.",
+      "name": "Name",
+      "name_placeholder": "Meditate",
+      "description": "Description",
+      "description_placeholder": "I'll meditate every day for 5 minutes",
+      "color": "Color",
+      "button": "Update"
     },
     "archive": {
       "title": "Archive Habit",

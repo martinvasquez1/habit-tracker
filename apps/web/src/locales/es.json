@@ -10,7 +10,21 @@
       "Vie",
       "Sáb",
       "Dom"
-    ]
+    ],
+    "colors": {
+      "red": "Rojo",
+      "orange": "Naranja",
+      "yellow": "Amarillo",
+      "green": "Verde",
+      "mint": "Menta",
+      "cyan": "Cian",
+      "blue": "Azul",
+      "indigo": "Índigo",
+      "purple": "Morado",
+      "pink": "Rosa",
+      "brown": "Marrón",
+      "gray": "Gris"
+    }
   },
   "home": {
     "greeting": {
@@ -47,6 +61,16 @@
     "empty_state": {
       "title": "¡Aún no hay hábitos!",
       "body": "Crea hábitos para mejorar tu rutina."
+    },
+    "update": {
+      "title": "Actualizar hábito",
+      "body": "Actualiza la información del hábito.",
+      "name": "Nombre",
+      "name_placeholder": "Meditar",
+      "description": "Descripción",
+      "description_placeholder": "Meditaré todos los días durante 5 minutos",
+      "color": "Color",
+      "button": "Actualizar"
     },
     "archive": {
       "title": "Archivar hábito",

@@ -26,7 +26,7 @@ export default function Settings() {
 
             <Container>
                 <div className="flex justify-between gap-4">
-                    <Label htmlFor="language-select">Select Language</Label>
+                    <Label htmlFor="language-select">{t('settings.language')}</Label>
                     <Select
                         value={language}
                         onValueChange={handleChange}
@@ -35,8 +35,8 @@ export default function Settings() {
                             <SelectValue placeholder="Select language" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="en">English</SelectItem>
-                            <SelectItem value="es">Spanish</SelectItem>
+                            <SelectItem value="en">{t('settings.language_options.en')}</SelectItem>
+                            <SelectItem value="es">{t('settings.language_options.es')}</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>

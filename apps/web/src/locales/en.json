@@ -115,6 +115,11 @@
     "total_logs": "Total logs"
   },
   "settings": {
-    "title": "Settings"
+    "title": "Settings",
+    "language": "Language",
+    "language_options": {
+      "en": "English",
+      "es": "Spanish"
+    }
   }
 }

@@ -115,6 +115,11 @@
     "total_logs": "Total de registros"
   },
   "settings": {
-    "title": "Configuración"
+    "title": "Configuración",
+    "language": "Idioma",
+    "language_options": {
+      "en": "Inglés",
+      "es": "Español"
+    }
   }
 }

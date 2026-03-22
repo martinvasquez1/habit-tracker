@@ -113,5 +113,8 @@
     "current_streak": "Current streak",
     "longest_streak": "Longest streak",
     "total_logs": "Total logs"
+  },
+  "settings": {
+    "title": "Settings"
   }
 }

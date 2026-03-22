@@ -113,5 +113,8 @@
     "current_streak": "Racha actual",
     "longest_streak": "Racha más larga",
     "total_logs": "Total de registros"
+  },
+  "settings": {
+    "title": "Configuración"
   }
 }

@@ -1,0 +1,56 @@
+{
+  "common": {
+    "habit": "Habit",
+    "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  },
+  "home": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "empty_state": {
+      "title": "No Habits Yet!",
+      "message": "Your tracker is waiting for some action!"
+    }
+  },
+  "sidebar": {
+    "home": "Home",
+    "habits": "Habits",
+    "groups": "Groups",
+    "insights": "Insights",
+    "settings": "Settings",
+    "starter_plan": "Starter Plan",
+    "profile": "Profile",
+    "upgrade_to_premium": "Upgrade to Premium",
+    "notifications": "Notifications",
+    "logout": "Log Out"
+  },
+   "habits_page": {
+    "title": "Habits",
+    "new_habit": "New Habit",
+    "empty_state": {
+      "title": "No Habits Yet!",
+      "message": "Create habits to improve your routine"
+    },
+    "archived": {
+      "title": "Archived Habits",
+      "no_archived": "Your archive is currently empty",
+      "unarchive": "Unarchive Habit",
+      "unarchive_confirm": "Are you sure you want to proceed with this action? You can undo it later if needed.",
+      "cancel": "Cancel",
+      "unarchive_action": "Unarchive"
+    },
+    "delete": {
+      "delete_habit": "Delete Habit",
+      "delete_confirm": "Are you sure you want to delete this habit? This action cannot be undone.",
+      "cancel": "Cancel",
+      "delete_action": "Delete"
+    },
+    "options": {
+      "update": "Update",
+      "archive": "Archive",
+      "delete": "Delete"
+    }
+  }
+}

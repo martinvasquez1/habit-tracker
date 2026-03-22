@@ -1,0 +1,56 @@
+{
+  "common": {
+    "habit": "Hábito",
+    "days": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
+  },
+  "home": {
+    "greeting": {
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches"
+    },
+    "empty_state": {
+      "title": "¡Aún no hay hábitos!",
+      "message": "¡Tu tracker está esperando alguna acción!"
+    }
+  },
+  "sidebar": {
+    "home": "Inicio",
+    "habits": "Hábitos",
+    "groups": "Grupos",
+    "insights": "Estadísticas",
+    "settings": "Ajustes",
+    "starter_plan": "Plan Inicial",
+    "profile": "Perfil",
+    "upgrade_to_premium": "Actualizar a Premium",
+    "notifications": "Notificaciones",
+    "logout": "Cerrar Sesión"
+  },
+  "habits_page": {
+    "title": "Hábitos",
+    "new_habit": "Nuevo Hábito",
+    "empty_state": {
+      "title": "¡Aún no hay hábitos!",
+      "message": "Crea hábitos para mejorar tu rutina"
+    },
+    "archived": {
+      "title": "Hábitos Archivados",
+      "no_archived": "Tu archivo está vacío",
+      "unarchive": "Desarchivar Hábito",
+      "unarchive_confirm": "¿Estás seguro de que quieres realizar esta acción? Puedes deshacerla más tarde si es necesario.",
+      "cancel": "Cancelar",
+      "unarchive_action": "Desarchivar"
+    },
+    "delete": {
+      "delete_habit": "Eliminar Hábito",
+      "delete_confirm": "¿Estás seguro de que quieres eliminar este hábito? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "delete_action": "Eliminar"
+    },
+    "options": {
+      "update": "Actualizar",
+      "archive": "Archivar",
+      "delete": "Eliminar"
+    }
+  }
+}

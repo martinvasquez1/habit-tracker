@@ -14,39 +14,42 @@ import {
 
 import { SidebarLogo } from "@/components/logo";
 import { Home, Settings, Apple, Users, ChartColumn } from "lucide-react";
-
-const itemsMain = [
-  {
-    title: "Home",
-    url: "/home",
-    icon: Home,
-  },
-  {
-    title: "Habits",
-    url: "/habits",
-    icon: Apple,
-  },
-  {
-    title: "Groups",
-    url: "#",
-    icon: Users,
-    isDisabled: true,
-  },
-  {
-    title: "Insights",
-    url: "#",
-    icon: ChartColumn,
-    isDisabled: true,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-    isDisabled: true,
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { t } = useTranslation();
+
+  const itemsMain = [
+    {
+      title: t('sidebar.home'),
+      url: "/home",
+      icon: Home,
+    },
+    {
+      title: t('sidebar.habits'),
+      url: "/habits",
+      icon: Apple,
+    },
+    {
+      title: t('sidebar.groups'),
+      url: "#",
+      icon: Users,
+      isDisabled: true,
+    },
+    {
+      title: t('sidebar.insights'),
+      url: "#",
+      icon: ChartColumn,
+      isDisabled: true,
+    },
+    {
+      title: t('sidebar.settings'),
+      url: "#",
+      icon: Settings,
+      isDisabled: true,
+    },
+  ];
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>

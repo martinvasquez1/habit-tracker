@@ -31,15 +31,18 @@ import { Skeleton } from "./ui/skeleton";
 
 import { User } from "@repo/open-api";
 import { useUser } from "@/features/users/api/get-user";
+import { useTranslation } from "react-i18next";
 
 interface UserSectionProps {
   user?: User;
 }
 
 function UserSection({ user }: UserSectionProps) {
+  const { t } = useTranslation();
+
   const firstLetter = user?.username.charAt(0).toUpperCase();
 
-  const plan = "Starter Plan";
+  const plan = t('sidebar.starter_plan');
   const username = user?.username;
   const capitalizedUsername = username
     ? username.charAt(0).toUpperCase() + username.slice(1)
@@ -70,7 +73,9 @@ function UserSection({ user }: UserSectionProps) {
   );
 }
 
-export function NavUser({}) {
+export function NavUser({ }) {
+  const { t } = useTranslation();
+
   const { isMobile } = useSidebar();
   const navigate = useNavigate();
 
@@ -116,21 +121,21 @@ export function NavUser({}) {
             <DropdownMenuGroup>
               <DropdownMenuItem disabled>
                 <UserRound />
-                Profile
+                {t('sidebar.profile')}
               </DropdownMenuItem>
               <DropdownMenuItem disabled>
                 <Sparkles />
-                Upgrade to Premium
+                {t('sidebar.upgrade_to_premium')}
               </DropdownMenuItem>
               <DropdownMenuItem disabled>
                 <Bell />
-                Notifications
+                {t('sidebar.notifications')}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout}>
               <LogOut />
-              Log out
+              {t('sidebar.logout')}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
+import { Habit } from "@repo/open-api";
+
 import { Button } from "@/components/ui/button";
 import ResponsiveDialog from "@/components/ui/responsive-dialog";
-import { Habit } from "@repo/open-api";
 import { useUpdateHabit } from "../api/update-habit";
 
 type ArchiveItemProps = {
@@ -16,6 +18,7 @@ export default function ArchiveHabit({
   isOpen,
   setIsOpen,
 }: ArchiveItemProps) {
+  const { t } = useTranslation();
   const updateHabitMutation = useUpdateHabit();
 
   function onSubmit(e: React.FormEvent) {
@@ -26,12 +29,12 @@ export default function ArchiveHabit({
     updateHabitMutation.mutate({ id: String(habitId), updateHabitDto });
   }
 
-  const archiveAction = habit.isArchived ? "Unarchive" : "Archive";
+  const archiveKey = habit.isArchived ? 'unarchive' : 'archive';
 
   return (
     <ResponsiveDialog
-      title={`${archiveAction} Habit`}
-      description="Are you sure you want to proceed with this action? You can undo it later if needed."
+      title={t(`habits.${archiveKey}.title`)}
+      description={t(`habits.${archiveKey}.body`)}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       isDone={updateHabitMutation.isSuccess}
@@ -44,13 +47,13 @@ export default function ArchiveHabit({
             onClick={() => setIsOpen(false)}
             disabled={updateHabitMutation.isPending}
           >
-            Cancel
+            {t('common.cancel')}
           </Button>
           <Button
             type="submit"
             disabled={updateHabitMutation.isPending}
           >
-            {archiveAction}
+            {t(`habits.${archiveKey}.button`)}
           </Button>
         </div>
       </form>

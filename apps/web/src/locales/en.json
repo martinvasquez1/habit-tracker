@@ -48,17 +48,27 @@
       "title": "No Habits Yet!",
       "body": "Create habits to improve your routine."
     },
+    "archive": {
+      "title": "Archive Habit",
+      "body": "Are you sure you want to proceed with this action? You can undo it later if needed.",
+      "button": "Archive"
+    },
+    "unarchive": {
+      "title": "Unarchive Habit",
+      "body": "Are you sure you want to restore this habit from the archive?",
+      "button": "Unarchive"
+    },
+    "delete": {
+      "title": "Delete Habit",
+      "body": "Are you sure you want to delete this habit? This action cannot be undone.",
+      "button": "Delete"
+    },
     "archived": {
       "title": "Archived habits",
       "empty_state": {
         "title": "No Archived Habits",
         "body": "Your archive is currently empty."
       }
-    },
-    "delete": {
-      "title": "Delete Habit",
-      "body": "Are you sure you want to delete this habit? This action cannot be undone.",
-      "button": "Delete"
     }
   }
 }

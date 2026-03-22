@@ -1,27 +1,13 @@
 import { useState } from "react";
-
-import CalendarDay from "@/features/logs/components/calendar-day";
+import { useTranslation } from "react-i18next";
 import { Habit, Log, LogStatusEnum } from "@repo/open-api";
-import { fillMissingLogs } from "@/utils/fill-missing-logs";
+
 import IconWrapper from "@/components/icon-wrapper";
 import { Button } from "@/components/ui/button";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
-const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+import CalendarDay from "@/features/logs/components/calendar-day";
+import { fillMissingLogs } from "@/utils/fill-missing-logs";
 
 interface YearlyCalendarProps {
   habit: Habit;
@@ -29,22 +15,21 @@ interface YearlyCalendarProps {
 }
 
 export default function YearlyCalendar({ habit, logs }: YearlyCalendarProps) {
+  const { t } = useTranslation();
+  const months = t('common.months', { returnObjects: true }) as string[];
+
   const { color, id: habitId } = habit;
-
+  
   const [yearShift, setYearShift] = useState(0);
-
   let currentYear = new Date().getFullYear();
   currentYear += yearShift;
 
   const firstDay = new Date(currentYear, 0, 1);
   const lastDay = new Date(currentYear, 11, 31);
-
   const filledLogs = fillMissingLogs(logs, habitId, firstDay, lastDay);
 
-  const firstDayName = firstDay.toLocaleDateString("en-US", {
-    weekday: "short",
-  });
-  const firstDayIndex = daysOfWeek.indexOf(firstDayName);
+  // -1 so week starts at Monday
+  let firstDayIndex = firstDay.getDay() - 1; 
 
   return (
     <div className="bg-card px-4 py-4 border border-border rounded-lg">

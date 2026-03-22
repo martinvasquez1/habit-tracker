@@ -2,15 +2,6 @@
   "common": {
     "habit": "Habit",
     "cancel": "Cancel",
-    "days": [
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat",
-      "Sun"
-    ],
     "colors": {
       "red": "Red",
       "orange": "Orange",
@@ -24,7 +15,30 @@
       "pink": "Pink",
       "brown": "Brown",
       "gray": "Gray"
-    }
+    },
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "months": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ]
   },
   "home": {
     "greeting": {
@@ -94,5 +108,10 @@
         "body": "Your archive is currently empty."
       }
     }
+  },
+  "habit": {
+    "current_streak": "Current streak",
+    "longest_streak": "Longest streak",
+    "total_logs": "Total logs"
   }
 }

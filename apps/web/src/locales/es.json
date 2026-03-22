@@ -2,15 +2,6 @@
   "common": {
     "habit": "Hábito",
     "cancel": "Cancelar",
-    "days": [
-      "Lun",
-      "Mar",
-      "Mié",
-      "Jue",
-      "Vie",
-      "Sáb",
-      "Dom"
-    ],
     "colors": {
       "red": "Rojo",
       "orange": "Naranja",
@@ -24,7 +15,30 @@
       "pink": "Rosa",
       "brown": "Marrón",
       "gray": "Gris"
-    }
+    },
+    "days": [
+      "Lun",
+      "Mar",
+      "Mié",
+      "Jue",
+      "Vie",
+      "Sáb",
+      "Dom"
+    ],
+    "months": [
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr",
+      "May",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dic"
+    ]
   },
   "home": {
     "greeting": {
@@ -94,5 +108,10 @@
         "body": "Tu archivo está vacío por ahora."
       }
     }
+  },
+  "habit": {
+    "current_streak": "Racha actual",
+    "longest_streak": "Racha más larga",
+    "total_logs": "Total de registros"
   }
 }

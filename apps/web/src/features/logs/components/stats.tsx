@@ -4,22 +4,32 @@ import { Stats } from "@/types/api";
 import { TbFlame } from "react-icons/tb";
 import { LuAward } from "react-icons/lu";
 import { LuHistory } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 
 interface StatsCardsProps {
   data: Stats;
 }
 
 export default function StatsCards({ data }: StatsCardsProps) {
+  const { t } = useTranslation()
   const longestStreak = data.streaks ? Math.max(...data.streaks) : 0;
 
   const cards = [
     {
-      name: "Current Streak",
+      name: t('habit.current_streak'),
       value: data.currentStreak || 0,
       icon: <TbFlame />,
     },
-    { name: "Longest Streak", value: longestStreak, icon: <LuAward /> },
-    { name: "Total Logs", value: data.amountOfLogs || 0, icon: <LuHistory /> },
+    {
+      name: t('habit.longest_streak'),
+      value: longestStreak,
+      icon: <LuAward />
+    },
+    {
+      name: t('habit.total_logs'),
+      value: data.amountOfLogs || 0,
+      icon: <LuHistory />
+    },
   ];
 
   return (

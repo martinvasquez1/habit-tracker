@@ -32,6 +32,9 @@ import { Skeleton } from "./ui/skeleton";
 import { User } from "@repo/open-api";
 import { useUser } from "@/features/users/api/get-user";
 import { useTranslation } from "react-i18next";
+import { Button } from "./ui/button";
+import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
+import { ThemeToggle } from "./theme-toggle";
 
 interface UserSectionProps {
   user?: User;
@@ -107,7 +110,7 @@ export function NavUser({ }) {
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg transition-none"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}
@@ -132,6 +135,8 @@ export function NavUser({ }) {
                 {t('sidebar.notifications')}
               </DropdownMenuItem>
             </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <ThemeToggle />
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout}>
               <LogOut />

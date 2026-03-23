@@ -18,14 +18,12 @@ const calendarDayStyles = cva("aspect-square shadow-none", {
     status: {
       [LogStatusEnum.COMPLETED]: "",
       [LogStatusEnum.MISSED]:
-        "bg-slate-200 hover:bg-slate-200/75 border-2 border-slate-300/50",
+        "bg-secondary border-1 border-border hover:bg-secondary/50",
       [LogStatusEnum.SKIPPED]:
-        "bg-slate-300 hover:bg-slate-200 border-2 border-slate-400/20 rounded-full ",
+        "bg-secondary border-1 border-border hover:bg-secondary/25",
     },
     color: colorsWithHover,
-    disabled: {
-      true: "bg-slate-200 border-2 border-slate-300/50",
-    },
+    disabled: { true: "bg-secondary" },
     size: {
       default: "",
       grow: "w-full h-full p-0 m-0 md:border",

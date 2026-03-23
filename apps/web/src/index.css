@@ -20,12 +20,16 @@
 
   --primary: oklch(0.546 0.2153 262.87);
   --primary-foreground: oklch(0.9838 0.0035 247.86);
-  --secondary: oklch(0.9684 0.0068 247.9);
+
+  --secondary: oklch(94.705% 0.00981 253.018);
   --secondary-foreground: oklch(0.2079 0.0399 265.73);
+
   --muted: oklch(0.9684 0.0068 247.9);
   --muted-foreground: oklch(0.5547 0.0407 257.44);
+
   --accent: oklch(0.9684 0.0068 247.9);
   --accent-foreground: oklch(0.2079 0.0399 265.73);
+
   --destructive: oklch(0.6368 0.2078 25.33);
   --destructive-foreground: oklch(0.9838 0.0035 247.86);
 
@@ -68,28 +72,39 @@
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
+
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
+
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+
+  --primary: oklch(0.546 0.2153 262.87);
+  --primary-foreground: oklch(0.9838 0.0035 247.86);
+
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
+
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
+
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
+
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: hsl(210 40% 98%);
+
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+  --radius: 0.5rem;
+
   --chart-1: oklch(0.809 0.105 251.813);
   --chart-2: oklch(0.623 0.214 259.815);
   --chart-3: oklch(0.546 0.245 262.881);
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
+
   --sidebar-background: hsl(240 5.9% 10%);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -99,6 +114,20 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
   --sidebar: oklch(0.205 0 0);
+
+  --habit-red: oklch(0.662 0.2246 25.12);
+  --habit-orange: oklch(0.7619 0.167 57.05);
+  --habit-yellow: oklch(0.8848 0.1816 94.9);
+  --habit-green: oklch(0.7556 0.2082 146.98);
+  --habit-mint: oklch(0.7969 0.143053 181.6472);
+  --habit-teal: oklch(0.7871 0.134091 203.3439);
+  --habit-cyan: oklch(0.8076 0.135 221.82);
+  --habit-blue: oklch(0.6515 0.191972 251.4696);
+  --habit-indigo: oklch(0.6413 0.1928 274.69);
+  --habit-purple: oklch(0.6579 0.2791 322.41);
+  --habit-pink: oklch(0.6577 0.2317 16.02);
+  --habit-brown: oklch(0.6681 0.0743 59.71);
+  --habit-gray: oklch(0.6483 0.0073 286.19);
 }
 
 /*

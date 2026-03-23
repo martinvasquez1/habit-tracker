@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Habit, Log, LogStatusEnum } from "@repo/open-api";
+import { Habit, Log } from "@repo/open-api";
 
 import IconWrapper from "@/components/icon-wrapper";
 import { Button } from "@/components/ui/button";
@@ -68,13 +68,6 @@ export default function YearlyCalendar({ habit, logs }: YearlyCalendarProps) {
             <div key={index} className="aspect-square w-full bg-card"></div>
           ))}
         {filledLogs.map((log) => {
-          const today = new Date();
-          const currentDate = `${today.getFullYear()}-${String(
-            today.getMonth() + 1
-          ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-          const isToday = log.date === currentDate;
-          const showHighlight = isToday && log.status === LogStatusEnum.MISSED;
-
           return (
             <div key={log.id} className={`flex justify-center`}>
               <CalendarDay
@@ -82,7 +75,7 @@ export default function YearlyCalendar({ habit, logs }: YearlyCalendarProps) {
                 habitId={habitId}
                 color={color}
                 size="grow"
-                className={`rounded-sm ${showHighlight && "bg-stone-400"}`}
+                className={"rounded-sm"}
               />
             </div>
           );

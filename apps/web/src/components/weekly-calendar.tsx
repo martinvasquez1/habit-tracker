@@ -145,7 +145,7 @@ export function WeeklyCalendar({ }) {
         {/* {formatDateRange(monday, sunday)} */}
         <Table className="">
           <TableHeader className="">
-            <TableRow className="bg-[#fbfbfd] hover:bg-[#fbfbfb]">
+            <TableRow>
               <TableHead className="min-w-[100px] pl-4 py-3">{t('common.habit')}</TableHead>
               <DayNames startDate={monday} endDate={sunday} />
               <TableHead className="text-center"></TableHead>

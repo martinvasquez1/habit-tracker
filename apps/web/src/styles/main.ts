@@ -1,3 +1,5 @@
+// TODO: Remove duplication!!!
+
 export const colors = {
   red: "bg-habit-red",
   orange: "bg-habit-orange",
@@ -27,5 +29,22 @@ export const colorsWithHover = {
   pink: "bg-habit-pink hover:bg-habit-pink/75",
   brown: "bg-habit-brown hover:bg-habit-brown/75",
   gray: "bg-habit-gray hover:bg-habit-gray/75",
+  null: "",
+};
+
+// Bad code...
+export const colorsIconWrapper = {
+  red: "bg-habit-red/20 *:*:stroke-habit-red",
+  orange: "bg-habit-orange/20 *:*:stroke-habit-orange",
+  yellow: "bg-habit-yellow/20 *:*:stroke-habit-yellow",
+  green: "bg-habit-green/20 *:*:stroke-habit-green",
+  mint: "bg-habit-mint/20 *:*:stroke-habit-mint",
+  cyan: "bg-habit-cyan/20 *:*:stroke-habit-cyan",
+  blue: "bg-habit-blue/20 *:*:stroke-habit-blue",
+  indigo: "bg-habit-indigo/20 *:*:stroke-habit-indigo",
+  purple: "bg-habit-purple/20 *:*:stroke-habit-purple",
+  pink: "bg-habit-pink/20 *:*:stroke-habit-pink",
+  brown: "bg-habit-brown/20 *:*:stroke-habit-brown",
+  gray: "bg-habit-gray/20 *:*:stroke-habit-gray",
   null: "",
 };

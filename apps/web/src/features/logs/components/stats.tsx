@@ -5,14 +5,19 @@ import { TbFlame } from "react-icons/tb";
 import { LuAward } from "react-icons/lu";
 import { LuHistory } from "react-icons/lu";
 import { useTranslation } from "react-i18next";
+import { HabitColorEnum } from "@repo/open-api";
+import { colorsIconWrapper } from "@/styles/main";
 
 interface StatsCardsProps {
   data: Stats;
+  color: HabitColorEnum;
 }
 
-export default function StatsCards({ data }: StatsCardsProps) {
+export default function StatsCards({ data, color }: StatsCardsProps) {
   const { t } = useTranslation()
   const longestStreak = data.streaks ? Math.max(...data.streaks) : 0;
+
+  const iconWrapperStyles = colorsIconWrapper[color];
 
   const cards = [
     {
@@ -42,7 +47,9 @@ export default function StatsCards({ data }: StatsCardsProps) {
           >
             <div className="flex justify-between items-baseline gap-4">
               <div className="font-semibold text-lg pb-2">{c.name}</div>
-              <IconWrapper icon={c.icon} size="xs" color="black" />
+              <div className={`${iconWrapperStyles} p-2 rounded-lg`}>
+                <IconWrapper icon={c.icon} size="xs" />
+              </div>
             </div>
             <div className="font-semibold text-xl">{c.value}</div>
           </div>

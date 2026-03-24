@@ -42,7 +42,7 @@ export default function Habit() {
   return (
     <div>
       <h1 className="font-bold text-2xl mb-6">{habit!.name}</h1>
-      <StatsCards data={stats!} />
+      <StatsCards data={stats!} color={habit!.color} />
       <YearlyCalendar habit={habit!} logs={logs!} />
     </div>
   );

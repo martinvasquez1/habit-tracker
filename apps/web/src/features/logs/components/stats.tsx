@@ -15,9 +15,11 @@ interface StatsCardsProps {
 
 export default function StatsCards({ data, color }: StatsCardsProps) {
   const { t } = useTranslation()
-  const longestStreak = data.streaks ? Math.max(...data.streaks) : 0;
 
   const iconWrapperStyles = colorsIconWrapper[color];
+
+  const streaks = data.streaks;
+  const longestStreak = Math.max(...streaks, 0);
 
   const cards = [
     {

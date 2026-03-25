@@ -27,7 +27,7 @@ export default function WelcomeMessage() {
 
   return (
     <div>
-      <h1 className="font-bold text-2xl mb-6">
+      <h1 className="font-bold text-2xl mb-7">
         {greeting}, {user?.username}
       </h1>
     </div>

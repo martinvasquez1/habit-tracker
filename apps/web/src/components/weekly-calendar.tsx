@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef  } from "react";
 
 import {
   Table,
@@ -19,20 +19,6 @@ import { useHabitsWithLogs } from "../features/habits/api/get-habits-with-logs";
 import InfoCard from "./info-card";
 import { formatYYYYMMDD } from "@/utils/format-yyyy-mm-dd";
 import { useTranslation } from "react-i18next";
-
-function getWeekMonday(date: Date): Date {
-  const dayOfWeek = date.getDay();
-
-  if (dayOfWeek === 1) {
-    return date;
-  }
-
-  const daysToSubtract = (dayOfWeek + 6) % 7;
-  const monday = new Date(date);
-  monday.setDate(date.getDate() - daysToSubtract);
-
-  return monday;
-}
 
 function PaddingRow({ cellCount }: { cellCount: number }) {
   return (
@@ -98,18 +84,14 @@ function ConfettiFireworks({ shouldFire }: { shouldFire: boolean }) {
   return null
 }
 
-export function WeeklyCalendar({ }) {
+interface WeeklyCalendarProps {
+  monday: Date,
+  sunday: Date,
+  today: Date 
+}
+
+export function WeeklyCalendar({ monday, sunday, today }: WeeklyCalendarProps) {
   const { t } = useTranslation();
-
-  const [weekShift] = useState(0);
-
-  const date = new Date();
-  date.setDate(date.getDate() + weekShift * 7);
-
-  const monday = getWeekMonday(date);
-  const sunday = new Date(monday);
-  sunday.setDate(monday.getDate() + 6);
-  const today = new Date();
 
   const mondayStr = formatYYYYMMDD(monday);
   const sundayStr = formatYYYYMMDD(sunday);

@@ -20,7 +20,7 @@ const calendarDayStyles = cva("aspect-square shadow-none", {
       [LogStatusEnum.MISSED]:
         "bg-secondary border-1 border-border hover:bg-secondary/50",
       [LogStatusEnum.SKIPPED]:
-        "bg-secondary border-1 border-border hover:bg-secondary/25",
+        "bg-red-800",
     },
     color: colorsWithHover,
     disabled: { true: "bg-secondary" },

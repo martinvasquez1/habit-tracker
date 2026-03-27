@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import ResponsiveDialog from "@/components/ui/responsive-dialog";
 import { UpdateLogForm } from "@/features/logs/components/update-log-form";
 
@@ -27,6 +29,8 @@ export default function UpdateLogDialog({
   isOpen,
   setIsOpen,
 }: UpdateLogDialogProps) {
+  const { t } = useTranslation();
+
   const fakeLog = log?.status === LogStatusEnum.MISSED;
   if (fakeLog) log = null;
 
@@ -61,8 +65,8 @@ export default function UpdateLogDialog({
 
   return (
     <ResponsiveDialog
-      title="Update a log"
-      description="Update a Log"
+      title={t('logs.update.title')}
+      description={t('logs.update.body')}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       isDone={isDone}
@@ -71,7 +75,7 @@ export default function UpdateLogDialog({
         form={form}
         onSubmit={onSubmit}
         isPending={isPending}
-        submitText="Update Log"
+        submitText={t('logs.update.button')}
       />
     </ResponsiveDialog>
   );

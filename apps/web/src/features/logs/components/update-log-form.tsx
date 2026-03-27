@@ -1,14 +1,13 @@
-import { UseFormReturn } from "react-hook-form";
+import { Controller, UseFormReturn } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
+  Field,
+  FieldContent,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
 import {
   Select,
   SelectContent,
@@ -17,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 interface UpdateLogFormProps {
   form: UseFormReturn<any>;
@@ -31,58 +31,67 @@ export const UpdateLogForm: React.FC<UpdateLogFormProps> = ({
   isPending,
   submitText,
 }) => {
+  const { t } = useTranslation();
+
   return (
-    <div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-          <FormField
-            control={form.control}
-            name="note"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Note</FormLabel>
-                <FormControl>
-                  <Textarea placeholder="This day..." rows={4} {...field} />
-                </FormControl>
+    <form onSubmit={form.handleSubmit(onSubmit)} id="update-log-form">
+      <FieldGroup>
+        <Controller
+          name="note"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor="note">{t('logs.update.note')}</FieldLabel>
+              <Textarea
+                {...field}
+                id="note"
+                placeholder={t('logs.update.note_placeholder')}
+                autoComplete="off"
+                aria-invalid={fieldState.invalid}
+                className="min-h-[120px]"
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="status"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Status</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+        <Controller
+          name="status"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field orientation="responsive" data-invalid={fieldState.invalid}>
+              <FieldContent>
+                <FieldLabel htmlFor="status">{t('logs.update.status')}</FieldLabel>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              </FieldContent>
+              <Select
+                name={field.name}
+                value={field.value}
+                onValueChange={field.onChange}
+              >
+                <SelectTrigger
+                  id="status"
+                  aria-invalid={fieldState.invalid}
                 >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a status" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value={"completed"}>Completed</SelectItem>
-                    <SelectItem value={"skipped"}>Skipped</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button
-            type="submit"
-            className="w-full md:mb-0 mb-4"
-            disabled={isPending}
-          >
-            {submitText}
-          </Button>
-        </form>
-      </Form>
-    </div>
+                  <SelectValue placeholder={field.value.status}/>
+                </SelectTrigger>
+                <SelectContent position="item-aligned">
+                  <SelectItem value="completed">Completed</SelectItem>
+                  <SelectItem value="skipped">Skipped</SelectItem>
+                </SelectContent>
+              </Select>
+            </Field>
+          )}
+        />
+      </FieldGroup>
+      <Button
+        type="submit"
+        form="update-log-form"
+        className="w-full md:mb-0 mt-6"
+        disabled={isPending}
+      >
+        {submitText}{isPending && ' ...'}
+      </Button>
+    </form>
   );
 };

@@ -114,6 +114,17 @@
     "longest_streak": "Racha más larga",
     "total_logs": "Total de registros"
   },
+  "logs": {
+    "update": {
+      "title": "Actualizar hábito",
+      "body": "Actualizar la información del hábito.",
+      "note": "Nota",
+      "note_placeholder": "Poco a poco, sigo mejorando",
+      "status": "Estado",
+      "status_placeholder": "...",
+      "button": "Actualizar"
+    }
+  },
   "settings": {
     "title": "Configuración",
     "language": "Idioma",

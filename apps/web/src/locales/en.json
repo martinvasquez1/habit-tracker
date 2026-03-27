@@ -114,6 +114,17 @@
     "longest_streak": "Longest streak",
     "total_logs": "Total logs"
   },
+  "logs": {
+    "update": {
+      "title": "Update Habit",
+      "body": "Update habit information.",
+      "note": "Note",
+      "note_placeholder": "Small step — feeling good",
+      "status": "Status",
+      "status_placeholder": "...",
+      "button": "Update"
+    }
+  },
   "settings": {
     "title": "Settings",
     "language": "Language",

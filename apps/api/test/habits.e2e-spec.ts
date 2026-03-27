@@ -13,6 +13,7 @@ import { LogsModule } from 'src/logs/logs.module';
 import { AuthModule } from 'src/auth/auth.module';
 
 import { Habit } from 'src/habits/entities/habit.entity';
+import { LogStatus } from 'src/logs/entities/log.entity';
 
 const userDto = {
   username: 'admin',
@@ -319,33 +320,124 @@ describe('/habits', () => {
       expect(body).toEqual(stats);
     });
 
-    it('should get stats for habit with logs: C C M C C C', async () => {
-      const currentDate = '2000-06-06';
+    it('should get stats for habit with logs: S', async () => {
+      const currentDate = '2000-06-01';
 
       const logDtoDay1 = {
-        status: 'completed',
+        status: LogStatus.SKIPPED,
         date: '2000-06-01',
         note: 'Day 1',
       };
+
+      await request(app.getHttpServer())
+        .post(`/habits/${userHabit.id}/logs`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(logDtoDay1)
+        .expect(201);
+
+      const { body } = await request(app.getHttpServer())
+        .get(`/habits/${userHabit.id}/stats`)
+        .set('Authorization', `Bearer ${token}`)
+        .query({ currentDate })
+        .expect(200);
+
+      const stats = { currentStreak: 1, streaks: [1], amountOfLogs: 1 };
+      expect(body).toEqual(stats);
+    });
+
+    it('should get stats for habit with logs: S S', async () => {
+      const currentDate = '2000-06-02';
+
+      const logDtoDay1 = {
+        status: LogStatus.SKIPPED,
+        date: '2000-06-01',
+        note: 'Day 1',
+      };
+
       const logDtoDay2 = {
-        status: 'completed',
+        status: LogStatus.SKIPPED,
         date: '2000-06-02',
         note: 'Day 2',
       };
-      const logDtoDay4 = {
-        status: 'completed',
-        date: '2000-06-04',
+
+      await request(app.getHttpServer())
+        .post(`/habits/${userHabit.id}/logs`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(logDtoDay1)
+        .expect(201);
+
+      await request(app.getHttpServer())
+        .post(`/habits/${userHabit.id}/logs`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(logDtoDay2)
+        .expect(201);
+
+      const { body } = await request(app.getHttpServer())
+        .get(`/habits/${userHabit.id}/stats`)
+        .set('Authorization', `Bearer ${token}`)
+        .query({ currentDate })
+        .expect(200);
+
+      const stats = { currentStreak: 2, streaks: [2], amountOfLogs: 2 };
+      expect(body).toEqual(stats);
+    });
+
+    it('should get stats for habit with logs: S C', async () => {
+      const currentDate = '2000-06-02';
+
+      const logDtoDay1 = {
+        status: LogStatus.SKIPPED,
+        date: '2000-06-01',
+        note: 'Day 1',
+      };
+
+      const logDtoDay2 = {
+        status: LogStatus.COMPLETED,
+        date: '2000-06-02',
+        note: 'Day 2',
+      };
+
+      await request(app.getHttpServer())
+        .post(`/habits/${userHabit.id}/logs`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(logDtoDay1)
+        .expect(201);
+
+      await request(app.getHttpServer())
+        .post(`/habits/${userHabit.id}/logs`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(logDtoDay2)
+        .expect(201);
+
+      const { body } = await request(app.getHttpServer())
+        .get(`/habits/${userHabit.id}/stats`)
+        .set('Authorization', `Bearer ${token}`)
+        .query({ currentDate })
+        .expect(200);
+
+      const stats = { currentStreak: 2, streaks: [2], amountOfLogs: 2 };
+      expect(body).toEqual(stats);
+    });
+
+    it('should get stats for habit with logs: C S C', async () => {
+      const currentDate = '2000-06-03';
+
+      const logDtoDay1 = {
+        status: LogStatus.COMPLETED,
+        date: '2000-06-01',
+        note: 'Day 1',
+      };
+
+      const logDtoDay2 = {
+        status: LogStatus.SKIPPED,
+        date: '2000-06-02',
+        note: 'Day 2',
+      };
+
+      const logDtoDay3 = {
+        status: LogStatus.COMPLETED,
+        date: '2000-06-03',
         note: 'Day 3',
-      };
-      const logDtoDay5 = {
-        status: 'completed',
-        date: '2000-06-05',
-        note: 'Day 4',
-      };
-      const logDtoDay6 = {
-        status: 'completed',
-        date: '2000-06-06',
-        note: 'Day 5',
       };
 
       await request(app.getHttpServer())
@@ -363,19 +455,7 @@ describe('/habits', () => {
       await request(app.getHttpServer())
         .post(`/habits/${userHabit.id}/logs`)
         .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay4)
-        .expect(201);
-
-      await request(app.getHttpServer())
-        .post(`/habits/${userHabit.id}/logs`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay5)
-        .expect(201);
-
-      await request(app.getHttpServer())
-        .post(`/habits/${userHabit.id}/logs`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay6)
+        .send(logDtoDay3)
         .expect(201);
 
       const { body } = await request(app.getHttpServer())
@@ -384,7 +464,7 @@ describe('/habits', () => {
         .query({ currentDate })
         .expect(200);
 
-      const stats = { currentStreak: 3, streaks: [3, 2], amountOfLogs: 5 };
+      const stats = { currentStreak: 3, streaks: [3], amountOfLogs: 3 };
       expect(body).toEqual(stats);
     });
   });

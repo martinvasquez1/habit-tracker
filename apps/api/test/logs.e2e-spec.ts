@@ -13,7 +13,7 @@ import { LogsModule } from 'src/logs/logs.module';
 import { AuthModule } from 'src/auth/auth.module';
 
 import { Habit } from 'src/habits/entities/habit.entity';
-import { Log } from 'src/logs/entities/log.entity';
+import { Log, LogStatus } from 'src/logs/entities/log.entity';
 
 const userDto = {
   username: 'admin',
@@ -28,7 +28,7 @@ const habitDto = {
 };
 
 const logDto = {
-  status: 'completed',
+  status: LogStatus.COMPLETED,
   date: '2000-01-19',
   note: 'First log',
 };
@@ -91,7 +91,28 @@ describe('Logs (e2e)', () => {
       note: '...',
     };
 
-    it('should create a log', async () => {
+    it('should create a log with status COMPLETED', async () => {
+      const { body } = await request(app.getHttpServer())
+        .post(`/habits/${userHabit.id}/logs`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(dto)
+        .expect(201);
+
+      expect(body).toEqual({
+        ...dto,
+        id: expect.any(Number),
+        habitId: 1,
+        createdDate: expect.any(String),
+      });
+    });
+
+    it('should create a log with status SKIPPED', async () => {
+      const dto = {
+        status: LogStatus.SKIPPED,
+        date: '2000-01-20',
+        note: '...',
+      }
+
       const { body } = await request(app.getHttpServer())
         .post(`/habits/${userHabit.id}/logs`)
         .set('Authorization', `Bearer ${token}`)
@@ -189,13 +210,25 @@ describe('Logs (e2e)', () => {
   });
 
   describe('PATCH /habits/:id/logs/:id', () => {
-    it('should update log', async () => {
+    it('should update log note', async () => {
       const expectedLog = { ...userLog, note: 'new' };
 
       const { body } = await request(app.getHttpServer())
         .patch(`/habits/${userHabit.id}/logs/${userLog.id}`)
         .set('Authorization', `Bearer ${token}`)
         .send({ note: expectedLog.note })
+        .expect(200);
+
+      expect(body).toEqual(expectedLog);
+    });
+
+    it('should update log status from COMPLETED to SKIPPED', async () => {
+      const expectedLog = { ...userLog, status: LogStatus.SKIPPED };
+
+      const { body } = await request(app.getHttpServer())
+        .patch(`/habits/${userHabit.id}/logs/${userLog.id}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send({ status: expectedLog.status })
         .expect(200);
 
       expect(body).toEqual(expectedLog);

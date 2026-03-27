@@ -56,10 +56,6 @@ export class LogsService {
   ): Promise<Log> {
     await this.habitsService.findOne(habitId);
     const log = await this.findOne(habitId, logId);
-
-    // Log's won't be able to update date (for now)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { date, ...payload } = updateLogDto;
     return await this.logsRepository.update(log, updateLogDto);
   }
 

@@ -11,7 +11,6 @@ import { colorsWithHover } from "@/styles/main";
 
 import { useCreateLog } from "../api/create-log";
 import { useDeleteLog } from "../api/delete-log";
-import { useUpdateLog } from "../api/update-log";
 
 const calendarDayStyles = cva("aspect-square shadow-none", {
   variants: {
@@ -20,7 +19,7 @@ const calendarDayStyles = cva("aspect-square shadow-none", {
       [LogStatusEnum.MISSED]:
         "bg-secondary border-1 border-border hover:bg-secondary/50",
       [LogStatusEnum.SKIPPED]:
-        "bg-red-800",
+        "bg-secondary border-1 border-border hover:bg-secondary/25 bg-red-800",
     },
     color: colorsWithHover,
     disabled: { true: "bg-secondary" },
@@ -54,7 +53,6 @@ export default function CalendarDay({
 }: CalendarDayProps) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const createLogMutation = useCreateLog(habitId);
-  const updateLogMutation = useUpdateLog(habitId);
   const deleteLogMutation = useDeleteLog(habitId);
 
   const { date, status } = data;
@@ -63,11 +61,8 @@ export default function CalendarDay({
     const isComplete = data.status === LogStatusEnum.COMPLETED;
     const isSkipped = data.status === LogStatusEnum.SKIPPED;
 
-    if (isComplete) {
+    if (isComplete || isSkipped) {
       deleteLogMutation.mutate({ habitId, logId: data.id });
-    } else if (isSkipped) {
-      const payload = { status: LogStatusEnum.COMPLETED };
-      updateLogMutation.mutate({ habitId, logId: data.id, updateLogDto: payload });
     } else {
       const status = LogStatusEnum.COMPLETED;
       const createLogDto = { status, date}

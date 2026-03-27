@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import UpdateLogDialog from "./update-log-dialog";
 
 import { Log, LogStatusEnum } from "@repo/open-api";
-import { colors } from "@/styles/main";
+import { colorMissedDay, colors } from "@/styles/main";
 import { colorsWithHover } from "@/styles/main";
 
 import { useCreateLog } from "../api/create-log";
@@ -16,10 +16,8 @@ const calendarDayStyles = cva("aspect-square shadow-none", {
   variants: {
     status: {
       [LogStatusEnum.COMPLETED]: "",
-      [LogStatusEnum.MISSED]:
-        "bg-secondary border-1 border-border hover:bg-secondary/50",
-      [LogStatusEnum.SKIPPED]:
-        "bg-secondary border-1 border-border hover:bg-secondary/25 bg-red-800",
+      [LogStatusEnum.MISSED]: "bg-secondary border-1 border-border hover:bg-secondary/50",
+      [LogStatusEnum.SKIPPED]: "",
     },
     color: colorsWithHover,
     disabled: { true: "bg-secondary" },
@@ -28,6 +26,15 @@ const calendarDayStyles = cva("aspect-square shadow-none", {
       grow: "w-full h-full p-0 m-0 md:border",
     },
   },
+  compoundVariants: [
+    ...(Object.keys(colorMissedDay) as Array<
+      keyof typeof colorMissedDay
+    >).map((c) => ({
+      status: LogStatusEnum.SKIPPED,
+      color: c,
+      className: `border-3 ${colorMissedDay[c]} bg-secondary hover:bg-secondary/50`,
+    })),
+  ],
   defaultVariants: {
     status: LogStatusEnum.MISSED,
     color: "null",
@@ -65,8 +72,8 @@ export default function CalendarDay({
       deleteLogMutation.mutate({ habitId, logId: data.id });
     } else {
       const status = LogStatusEnum.COMPLETED;
-      const createLogDto = { status, date}
-      createLogMutation.mutate({habitId, createLogDto});
+      const createLogDto = { status, date }
+      createLogMutation.mutate({ habitId, createLogDto });
     }
   }
 
@@ -79,7 +86,7 @@ export default function CalendarDay({
   const logDate = new Date(date + "T00:00:00");
   const isDisabled = logDate > today;
 
-  if (status !== LogStatusEnum.COMPLETED) color = "null";
+  if (status == LogStatusEnum.MISSED) color = "null";
 
   return (
     <>

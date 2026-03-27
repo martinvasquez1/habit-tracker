@@ -32,6 +32,22 @@ export const colorsWithHover = {
   null: "",
 };
 
+export const colorMissedDay = {
+  red: "border-habit-red",
+  orange: "border-habit-orange",
+  yellow: "border-habit-yellow",
+  green: "border-habit-green",
+  mint: "border-habit-mint",
+  cyan: "border-habit-cyan",
+  blue: "border-habit-blue",
+  indigo: "border-habit-indigo",
+  purple: "border-habit-purple",
+  pink: "border-habit-pink",
+  brown: "border-habit-brown",
+  gray: "border-habit-gray",
+  null: "",
+};
+
 // Bad code...
 export const colorsIconWrapper = {
   red: "bg-habit-red/20 *:*:stroke-habit-red",

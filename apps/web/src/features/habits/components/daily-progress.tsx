@@ -27,7 +27,7 @@ export default function DailyProgress({ monday, sunday, today }: DailyProgressPr
     if (!data) return null;
 
     const completed = data.reduce((count, habit) =>
-        count + (habit.logs.some(log => log.date === todayStr && log.status === "completed") ? 1 : 0),
+        count + (habit.logs.some(log => log.date === todayStr && log.status !== "missed") ? 1 : 0),
         0
     );
     const currentProgress = Math.round((completed / data.length) * 100);

@@ -31,7 +31,6 @@ describe('HabitsService', () => {
     create: jest.fn(),
     findAll: jest.fn(),
     findAllWithRangedLogs: jest.fn(),
-    findAllWithCompletedLogs: jest.fn(),
     findOneWithLogs: jest.fn(),
     findOne: jest.fn(),
     update: jest.fn(),
@@ -322,9 +321,9 @@ describe('HabitsService', () => {
 
   describe('getStats', () => {
     it('should return empty stats when no logs exist', async () => {
-      const mockHabitsWithCompleteLogs = [{ ...mockHabit, logs: [] }];
-      habitsRepository.findAllWithCompletedLogs.mockResolvedValue(
-        mockHabitsWithCompleteLogs,
+      const mockHabitsWithCompleteLogs = { ...mockHabit, logs: [] };
+      habitsRepository.findOneWithLogs.mockResolvedValue(
+        mockHabitsWithCompleteLogs
       );
       const result = await service.getStats(1, new Date());
 
@@ -342,9 +341,9 @@ describe('HabitsService', () => {
       ];
       const currentDayStr: string = '2000-06-02';
       const currentDay = new Date(`${currentDayStr}T00:00:00Z`);
-      const mockHabitsWithCompleteLogs = [{ ...mockHabit, logs }];
+      const mockHabitsWithCompleteLogs = { ...mockHabit, logs };
 
-      habitsRepository.findAllWithCompletedLogs.mockResolvedValue(
+      habitsRepository.findOneWithLogs.mockResolvedValue(
         mockHabitsWithCompleteLogs,
       );
       const result = await service.getStats(mockHabit.id, currentDay);

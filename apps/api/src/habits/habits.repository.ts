@@ -56,26 +56,15 @@ export class HabitsRepository {
       .getMany();
   }
 
-  async findAllWithCompletedLogs(
-    habitId: number,
-    order: 'ASC' | 'DESC',
-  ): Promise<Habit[]> {
-    return await this.ORM.createQueryBuilder('habit')
-      .leftJoinAndSelect('habit.logs', 'log')
-      .where('habit.id = :habitId', { habitId })
-      .andWhere('log.status = :status', { status: LogStatus.COMPLETED })
-      .orderBy('log.date', order)
-      .getMany();
-  }
-
   async findOne(id: number): Promise<Habit | null> {
     return await this.ORM.findOneBy({ id });
   }
 
-  async findOneWithLogs(id: number): Promise<Habit | null> {
+  async findOneWithLogs(id: number, order: 'ASC' | 'DESC' = 'DESC'): Promise<Habit | null> {
     return await this.ORM.findOne({
       where: { id },
       relations: ['logs'],
+      order: { logs: { date: order } }
     });
   }
 

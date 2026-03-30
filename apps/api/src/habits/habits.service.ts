@@ -142,15 +142,6 @@ export class HabitsService {
     return streak;
   }
 
-  async getStreak(habitId: number, currentDate: Date) {
-    await this.findOne(habitId);
-
-    const habit = await this.habitsRepository.findOneWithLogs(habitId);
-    const streak = this.calculateStreak(habit!.logs, currentDate);
-
-    return streak;
-  }
-
   async getStats(habitId: number, currentDate: Date) {
     const habit = await this.habitsRepository.findOneWithLogs(
       habitId,

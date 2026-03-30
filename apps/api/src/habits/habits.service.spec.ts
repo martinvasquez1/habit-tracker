@@ -297,28 +297,6 @@ describe('HabitsService', () => {
     });
   });
 
-  describe('getStreak', () => {
-    it('should get habit with streak', async () => {
-      const mockLog = { date: '2000-06-01' } as unknown as Log;
-      const mockHabitsWithLogs = { ...mockHabit, logs: [mockLog] };
-      const today: Date = new Date('2000-06-01');
-
-      habitsRepository.findOne.mockResolvedValue(mockHabit);
-      habitsRepository.findOneWithLogs.mockResolvedValue(mockHabitsWithLogs);
-
-      const result = await service.getStreak(1, today);
-
-      expect(result).toEqual(1);
-    });
-
-    it('should throw NotFoundException if habit not found', async () => {
-      habitsRepository.findOne.mockResolvedValue(null);
-      await expect(service.getStreak(99, new Date())).rejects.toThrow(
-        NotFoundException,
-      );
-    });
-  });
-
   describe('getStats', () => {
     it('should return empty stats when no logs exist', async () => {
       const mockHabitsWithCompleteLogs = { ...mockHabit, logs: [] };

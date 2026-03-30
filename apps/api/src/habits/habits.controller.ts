@@ -127,12 +127,4 @@ export class HabitsController {
   async remove(@Param('id') id: string): Promise<DeleteHabitResponseDto> {
     return this.habitsService.remove(+id);
   }
-
-  @Get(':id/streak')
-  @UseGuards(PolicyGuard)
-  @CheckPolicies(ReadHabitPolicy)
-  async getStreak(@Param('id') id: string, @Query() query: GetStreakQueryDto) {
-    const currentDate = new Date(query.currentDate);
-    return this.habitsService.getStreak(+id, currentDate);
-  }
 }

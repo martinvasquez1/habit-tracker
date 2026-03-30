@@ -30,7 +30,6 @@ describe('HabitsController', () => {
     findOne: jest.fn(),
     update: jest.fn(),
     remove: jest.fn(),
-    getStreak: jest.fn(),
     getStats: jest.fn(),
   };
 

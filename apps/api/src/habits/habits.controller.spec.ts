@@ -81,7 +81,7 @@ describe('HabitsController', () => {
   });
 
   describe('findAllWithLogs', () => {
-    it('should get habits with logs', async () => {
+    it('should get habits with logs and streak', async () => {
       const mockLog = { id: 1 } as Log;
       const mockResponse = [{ ...mockHabit, logs: [mockLog], streak: 1 }];
 

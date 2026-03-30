@@ -58,7 +58,7 @@ export class HabitsController {
   }
 
   /**
-  * Retrieves all habits along with their logs for a specific date range.
+  * Retrieves all habits along with their logs and current streak for a specific date range.
   *
   * @remarks
   * The date query parameters must be provided as **strings in the user's local date**

@@ -10,7 +10,8 @@ export async function getLogs(data: ApiGetLogsRequest) {
 
 export function useLogs(habitId: number, startDate: string, endDate: string) {
   return useQuery({
-    queryKey: ["habits", habitId, "logs"],
+    queryKey: ["habits", habitId, "logs", startDate, endDate],
     queryFn: () => getLogs({ habitId, startDate, endDate }),
+    placeholderData: (previousData) => previousData,
   });
 }

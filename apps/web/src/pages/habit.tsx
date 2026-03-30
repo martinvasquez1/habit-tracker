@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router";
 
 import { Spinner } from "@/components/ui/spinner";
@@ -5,19 +6,25 @@ import Error from "@/components/error";
 
 import YearlyCalendar from "@/features/logs/components/yearly-calendar";
 import StatsCards from "@/features/logs/components/stats";
-
 import { useHabit } from "@/features/habits/api/get-habit";
 import { useLogs } from "@/features/logs/api/get-logs";
 import { useStats } from "@/features/habits/api/get-stats";
+
 import { formatYYYYMMDD } from "@/utils/format-yyyy-mm-dd";
 
 export default function Habit() {
   const { habitId } = useParams<{ habitId: string }>();
 
+  const [yearShift, setYearShift] = useState<number>(0);
+
   const { data: habit, isLoading, isError } = useHabit(habitId!);
 
-  const firstDayYear = new Date(new Date().getFullYear(), 0, 1);
-  const lastDayYear = new Date(new Date().getFullYear(), 11, 31);
+  let currentYear = new Date().getFullYear();
+
+  const year = currentYear + yearShift;
+
+  const firstDayYear = new Date(year, 0, 1);
+  const lastDayYear = new Date(year, 11, 31);
   const firstDayYearStr = formatYYYYMMDD(firstDayYear);
   const lastDayYearStr = formatYYYYMMDD(lastDayYear);
 
@@ -43,7 +50,14 @@ export default function Habit() {
     <div>
       <h1 className="font-bold text-2xl mb-6">{habit!.name}</h1>
       <StatsCards data={stats!} color={habit!.color} />
-      <YearlyCalendar habit={habit!} logs={logs!} />
+      <YearlyCalendar
+        habit={habit!}
+        logs={logs!}
+        year={year}
+        setYearShift={setYearShift}
+        firstDay={firstDayYear}
+        lastDay={lastDayYear}
+      />
     </div>
   );
 }

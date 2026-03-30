@@ -12,35 +12,30 @@ import { fillMissingLogs } from "@/utils/fill-missing-logs";
 interface YearlyCalendarProps {
   habit: Habit;
   logs: Log[];
+  year: number;
+  setYearShift: (updater: (prev: number) => number) => void;
+  firstDay: Date,
+  lastDay: Date,
 }
 
-export default function YearlyCalendar({ habit, logs }: YearlyCalendarProps) {
+export default function YearlyCalendar({ habit, logs, year, setYearShift, firstDay, lastDay }: YearlyCalendarProps) {
   const { t } = useTranslation();
   const months = t('common.months', { returnObjects: true }) as string[];
 
   const { color, id: habitId } = habit;
-  
-  const [yearShift, setYearShift] = useState(0);
-  let currentYear = new Date().getFullYear();
-  currentYear += yearShift;
-
-  const firstDay = new Date(currentYear, 0, 1);
-  const lastDay = new Date(currentYear, 11, 31);
   const filledLogs = fillMissingLogs(logs, habitId, firstDay, lastDay);
 
-  // -1 so week starts at Monday
-  let firstDayIndex = firstDay.getDay() - 1; 
+  let firstDayIndex = firstDay.getDay(); 
 
   return (
     <div className="bg-card px-4 py-4 border border-border rounded-lg">
       <div className="flex justify-between">
-        <h2 className="text-xl font-semibold mb-4">{currentYear}</h2>
+        <h2 className="text-xl font-semibold mb-4">{year}</h2>
         <div className="flex gap-2">
           <Button
             variant="outline"
             className="w-6 h-6 p-0"
             onClick={() => setYearShift((prev) => prev - 1)}
-            disabled={true}
           >
             <IconWrapper icon={<LuChevronLeft />} />
           </Button>
@@ -48,7 +43,7 @@ export default function YearlyCalendar({ habit, logs }: YearlyCalendarProps) {
             variant="outline"
             className="w-6 h-6 p-0"
             onClick={() => setYearShift((prev) => prev + 1)}
-            disabled={true}
+            disabled={year + 1  > new Date().getFullYear()}
           >
             <IconWrapper icon={<LuChevronRight />} />
           </Button>

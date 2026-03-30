@@ -1,5 +1,7 @@
 "use client";
 
+import { Link, useLocation } from "react-router";
+
 import {
   SidebarGroup,
   SidebarMenu,
@@ -11,8 +13,6 @@ import {
 import { cn } from "@/lib/utils";
 import { type LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
-import { Link } from "react-router";
 
 export function NavMain({
   items,
@@ -30,13 +30,14 @@ export function NavMain({
   }[];
 }) {
   const { i18n } = useTranslation();
+  const location = useLocation();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
   };
 
   const { isMobile, setOpenMobile } = useSidebar();
-
+ 
   return (
     <SidebarGroup>
       <SidebarMenu className="space-y-1">
@@ -52,7 +53,11 @@ export function NavMain({
                   <span>{item.title}</span>
                 </button>
               ) : (
-                <SidebarMenuButton tooltip={item.title} className="pl-3" asChild>
+                <SidebarMenuButton
+                  tooltip={item.title}
+                  asChild
+                  className={`pl-3 ${location.pathname.startsWith(item.url) ? 'text-sidebar-primary hover:text-sidebar-primary bg-sidebar-primary/5  hover:bg-sidebar-primary/5' : ''}`}
+                >
                   <Link
                     to={item.url}
                     onClick={() => isMobile && setOpenMobile(false)}

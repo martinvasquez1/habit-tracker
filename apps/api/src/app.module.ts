@@ -15,6 +15,7 @@ import { CaslModule } from './casl/casl.module';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { StatsModule } from './stats/stats.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { AppService } from './app.service';
     HabitsModule,
     LogsModule,
     CaslModule,
+    StatsModule,
   ],
   controllers: [AppController],
   providers: [

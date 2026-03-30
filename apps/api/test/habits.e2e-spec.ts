@@ -9,6 +9,7 @@ import { DataSource } from 'typeorm';
 import cleanDatabase from './util/clean-database';
 
 import { HabitsModule } from 'src/habits/habits.module';
+import { StatsModule } from 'src/stats/stats.module';
 import { LogsModule } from 'src/logs/logs.module';
 import { AuthModule } from 'src/auth/auth.module';
 
@@ -52,7 +53,7 @@ describe('/habits', () => {
     const { container, dbURL } = await createPostgresContainer();
     startedContainer = container;
 
-    app = await createApp([HabitsModule, LogsModule, AuthModule], dbURL);
+    app = await createApp([HabitsModule, StatsModule, LogsModule, AuthModule], dbURL);
     dataSource = app.get(DataSource);
 
     await app.init();

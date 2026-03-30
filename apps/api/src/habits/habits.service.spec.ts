@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing';
 import { HabitsService } from './habits.service';
 import { HabitsRepository } from './habits.repository';
 import { UsersService } from 'src/users/users.service';
+import { StatsService } from 'src/stats/stats.service';
 
 import { Color, Habit } from './entities/habit.entity';
 
@@ -26,6 +27,7 @@ describe('HabitsService', () => {
   let service: HabitsService;
   let habitsRepository: jest.Mocked<HabitsRepository>;
   let usersService: jest.Mocked<UsersService>;
+  let statsService: jest.Mocked<StatsService>;
 
   const mockHabitsRepository = {
     create: jest.fn(),
@@ -41,6 +43,11 @@ describe('HabitsService', () => {
     findOne: jest.fn(),
   };
 
+  const mockStatsService = {
+    calculateStreak: jest.fn(),
+    calculateStreaks: jest.fn(),
+  };
+
   beforeEach(async () => {
     const module = await Test.createTestingModule({
       providers: [
@@ -53,12 +60,17 @@ describe('HabitsService', () => {
           provide: UsersService,
           useValue: mockUsersService,
         },
+        {
+          provide: StatsService,
+          useValue: mockStatsService
+        }
       ],
     }).compile();
 
     service = module.get<HabitsService>(HabitsService);
     habitsRepository = module.get(HabitsRepository);
     usersService = module.get(UsersService);
+    statsService = module.get(StatsService);
 
     jest.clearAllMocks();
   });
@@ -123,7 +135,7 @@ describe('HabitsService', () => {
 
       usersService.findOne.mockResolvedValue(user);
       habitsRepository.findAllWithRangedLogs.mockResolvedValue(mockHabits);
-      jest.spyOn(service, 'calculateStreak').mockImplementation(() => streak);
+      jest.spyOn(statsService, 'calculateStreak').mockImplementation(() => streak);
 
       const startDate = new Date('2001-01-01');
       const endDate = new Date('2001-01-30');
@@ -224,112 +236,33 @@ describe('HabitsService', () => {
     });
   });
 
-  describe('calculateStreak', () => {
-    const currentDateStr: string = '2000-06-03';
-    const currentDate = new Date(`${currentDateStr}T00:00:00Z`);
-
-    it('should return 0 if no logs', () => {
-      expect(service.calculateStreak([], currentDate)).toBe(0);
-    });
-
-    it('should count consecutive logs including today', () => {
-      const logs = [
-        { date: '2000-06-01' } as unknown as Log,
-        { date: '2000-06-02' } as unknown as Log,
-        { date: '2000-06-03' } as unknown as Log,
-      ];
-
-      expect(service.calculateStreak(logs, currentDate)).toBe(3);
-    });
-
-    it('should stop streak at first missing day', () => {
-      const logs = [
-        { date: '2000-06-01' } as unknown as Log,
-        { date: '2000-06-02' } as unknown as Log,
-      ];
-
-      expect(service.calculateStreak(logs, currentDate)).toBe(0);
-    });
-
-    it('should handle single log today', () => {
-      const log = { date: '2000-06-03' } as unknown as Log;
-      expect(service.calculateStreak([log], currentDate)).toBe(1);
-    });
-  });
-
-  describe('calculateStreaks', () => {
-    it('should return empty array if no logs', () => {
-      expect(service.calculateStreaks([])).toEqual([]);
-    });
-
-    it('should handle a single log as streak of 1', () => {
-      const logs: Log[] = [{ date: '2000-06-01' } as unknown as Log];
-      expect(service.calculateStreaks(logs)).toEqual([1]);
-    });
-
-    it('should return single streak for consecutive logs', () => {
-      const logs: Log[] = [
-        { date: '2000-06-01' } as unknown as Log,
-        { date: '2000-06-02' } as unknown as Log,
-        { date: '2000-06-03' } as unknown as Log,
-      ];
-      expect(service.calculateStreaks(logs)).toEqual([3]);
-    });
-
-    it('should handle multiple streaks separated by gaps', () => {
-      const logs: Log[] = [
-        { date: '2000-06-01' } as unknown as Log,
-        { date: '2000-06-02' } as unknown as Log,
-        { date: '2000-06-04' } as unknown as Log,
-        { date: '2000-06-05' } as unknown as Log,
-        { date: '2000-06-06' } as unknown as Log,
-      ];
-      expect(service.calculateStreaks(logs)).toEqual([3, 2]);
-    });
-
-    it('should treat non-consecutive single-day logs as separate streaks', () => {
-      const logs: Log[] = [
-        { date: '2000-06-01' } as unknown as Log,
-        { date: '2000-06-03' } as unknown as Log,
-        { date: '2000-06-05' } as unknown as Log,
-      ];
-      expect(service.calculateStreaks(logs)).toEqual([1, 1, 1]);
-    });
-  });
-
   describe('getStats', () => {
-    it('should return empty stats when no logs exist', async () => {
-      const mockHabitsWithCompleteLogs = { ...mockHabit, logs: [] };
-      habitsRepository.findOneWithLogs.mockResolvedValue(
-        mockHabitsWithCompleteLogs
+    it('should return empty stats when habit not found', async () => {
+      const habitId = 1;
+      const currentDate = new Date();
+
+      habitsRepository.findOneWithLogs.mockResolvedValue(null);
+
+      await expect(service.getStats(habitId, currentDate)).rejects.toThrow(
+        new NotFoundException(`Habit with ID ${habitId} not found`)
       );
+    });
+
+    it('should return StatsService values and return amount of logs', async () => {
+      const mockHabitsWithCompleteLogs = { ...mockHabit, logs: [ {} as Log ] };
+      const mockStreak = 0
+      const mockStreaks: number[] = []
+
+      habitsRepository.findOneWithLogs.mockResolvedValue(mockHabitsWithCompleteLogs);
+      statsService.calculateStreak.mockReturnValue(mockStreak);
+      statsService.calculateStreaks.mockReturnValue(mockStreaks);
+ 
       const result = await service.getStats(1, new Date());
 
       expect(result).toEqual({
-        currentStreak: 0,
+        currentStreak: mockStreak,
         streaks: [],
-        amountOfLogs: 0,
-      });
-    });
-
-    it('should return stats', async () => {
-      const logs: Log[] = [
-        { date: '2000-06-01' } as unknown as Log,
-        { date: '2000-06-02' } as unknown as Log,
-      ];
-      const currentDayStr: string = '2000-06-02';
-      const currentDay = new Date(`${currentDayStr}T00:00:00Z`);
-      const mockHabitsWithCompleteLogs = { ...mockHabit, logs };
-
-      habitsRepository.findOneWithLogs.mockResolvedValue(
-        mockHabitsWithCompleteLogs,
-      );
-      const result = await service.getStats(mockHabit.id, currentDay);
-
-      expect(result).toEqual({
-        currentStreak: 2,
-        streaks: [2],
-        amountOfLogs: 2,
+        amountOfLogs: 1,
       });
     });
   });

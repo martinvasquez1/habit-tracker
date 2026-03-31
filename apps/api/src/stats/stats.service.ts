@@ -3,7 +3,7 @@ import { Log } from 'src/logs/entities/log.entity';
 
 @Injectable()
 export class StatsService {
-  constructor() {}
+  constructor() { }
 
   /**
    * Calculates consecutive-day streaks from a list of logs.
@@ -73,5 +73,18 @@ export class StatsService {
     }
 
     return streak;
+  }
+
+  countLogsPerMonth(logs: Log[]): number[] {
+    const months = Array(12).fill(0)
+    const result = months;
+
+    for (const log of logs) {
+      const date = log.date.toISOString().slice(0, 10);;
+      const month = Number(date.slice(5, 7)) - 1;
+      result[month]++;
+    }
+
+    return result;
   }
 }

@@ -12,6 +12,33 @@ import { useStats } from "@/features/habits/api/get-stats";
 
 import { formatYYYYMMDD } from "@/utils/format-yyyy-mm-dd";
 
+import { ChartBar } from "@/components/ui/chart-bar";
+import { ChartConfig } from "@/components/ui/chart";
+
+export const description = "A bar chart"
+
+const chartData = [
+  { month: "January", logs: 186 },
+  { month: "February", logs: 305 },
+  { month: "March", logs: 237 },
+  { month: "April", logs: 73 },
+  { month: "May", logs: 209 },
+  { month: "June", logs: 214 },
+  { month: "July", logs: 0 },
+  { month: "August", logs: 0 },
+  { month: "September", logs: 0 },
+  { month: "October", logs: 0 },
+  { month: "November", logs: 0 },
+  { month: "December", logs: 0 },
+]
+
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "var(--chart-1)",
+  },
+} satisfies ChartConfig
+
 export default function Habit() {
   const { habitId } = useParams<{ habitId: string }>();
 
@@ -58,6 +85,22 @@ export default function Habit() {
         firstDay={firstDayYear}
         lastDay={lastDayYear}
       />
+      <div className="flex flex-col md:flex-row gap-4 my-6 *:flex-1">
+        <ChartBar
+          title="Monthly Habit Logs"
+          data={chartData}
+          dataKey="logs"
+          xKey="month"
+          config={chartConfig}
+        />
+        <ChartBar
+          title="Lorem"
+          data={chartData}
+          dataKey="logs"
+          xKey="month"
+          config={chartConfig}
+        />
+      </div>
     </div>
   );
-}
+};

@@ -46,6 +46,7 @@ describe('HabitsService', () => {
   const mockStatsService = {
     calculateStreak: jest.fn(),
     calculateStreaks: jest.fn(),
+    countLogsPerMonth: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -83,7 +84,7 @@ describe('HabitsService', () => {
     const dto: CreateHabitDto = {
       name: 'Workout',
       description: '...',
-      color: Color.BLUE, 
+      color: Color.BLUE,
     };
 
     it('should create a habit for the user', async () => {
@@ -249,19 +250,22 @@ describe('HabitsService', () => {
     });
 
     it('should return StatsService values and return amount of logs', async () => {
-      const mockHabitsWithCompleteLogs = { ...mockHabit, logs: [ {} as Log ] };
+      const mockHabitsWithCompleteLogs = { ...mockHabit, logs: [{} as Log] };
       const mockStreak = 0
       const mockStreaks: number[] = []
+      const mockLogsPerMonth: number[] = []
 
       habitsRepository.findOneWithLogs.mockResolvedValue(mockHabitsWithCompleteLogs);
       statsService.calculateStreak.mockReturnValue(mockStreak);
       statsService.calculateStreaks.mockReturnValue(mockStreaks);
- 
+      statsService.countLogsPerMonth.mockReturnValue(mockLogsPerMonth);
+
       const result = await service.getStats(1, new Date());
 
       expect(result).toEqual({
         currentStreak: mockStreak,
-        streaks: [],
+        streaks: mockStreaks,
+        logsPerMonth: mockLogsPerMonth,
         amountOfLogs: 1,
       });
     });

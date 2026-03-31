@@ -85,9 +85,10 @@ export class HabitsService {
 
     const currentStreak = this.statsService.calculateStreak(logs, currentDate);
     const streaks = this.statsService.calculateStreaks(logs);
+    const logsPerMonth = this.statsService.countLogsPerMonth(logs);
     const amountOfLogs = logs.length;
 
-    const results = { currentStreak, streaks, amountOfLogs };
+    const results = { currentStreak, streaks, logsPerMonth, amountOfLogs };
 
     return results;
   }

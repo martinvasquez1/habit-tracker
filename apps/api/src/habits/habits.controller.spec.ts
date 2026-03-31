@@ -105,7 +105,7 @@ describe('HabitsController', () => {
     it('should get habit stats', async () => {
       const id = 1;
       const query = { currentDate: '2001-01-01' } as GetStreakQueryDto;
-      const mockResult = { currentStreak: 0, streaks: [], amountOfLogs: 0 };
+      const mockResult: any = {};
 
       service.getStats.mockResolvedValue(mockResult);
 

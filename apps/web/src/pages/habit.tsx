@@ -61,7 +61,7 @@ export default function Habit() {
   const chartConfig = {
     desktop: {
       label: "Desktop",
-      color: "var(--chart-1)",
+      color: `var(--habit-${habit!.color})`
     },
   } satisfies ChartConfig
 

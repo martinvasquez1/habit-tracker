@@ -103,9 +103,9 @@ describe('StatsService', () => {
 
     it('should count logs in the same month across different years', () => {
       const logs = [
-        { date: new Date('2001-01-01') },
-        { date: new Date('2002-01-02') },
-        { date: new Date('2003-01-03') },
+        { date: '2001-01-01' },
+        { date: '2002-01-02' },
+        { date: '2003-01-03' },
       ] as Log[];
 
       const result = service.countLogsPerMonth(logs);
@@ -115,9 +115,9 @@ describe('StatsService', () => {
 
     it('should count logs across multiple months', () => {
       const logs = [
-        { date: new Date('2000-01-01') },
-        { date: new Date('2000-02-01') },
-        { date: new Date('2000-03-01') },
+        { date: '2000-01-01' },
+        { date: '2000-02-01' },
+        { date: '2000-03-01' },
       ] as Log[];
 
       const result = service.countLogsPerMonth(logs);
@@ -127,18 +127,18 @@ describe('StatsService', () => {
 
     it('should handle all months being used', () => {
       const logs = [
-        { date: new Date('2000-01-01') },
-        { date: new Date('2000-02-01') },
-        { date: new Date('2000-03-01') },
-        { date: new Date('2000-04-01') },
-        { date: new Date('2000-05-01') },
-        { date: new Date('2000-06-01') },
-        { date: new Date('2000-07-01') },
-        { date: new Date('2000-08-01') },
-        { date: new Date('2000-09-01') },
-        { date: new Date('2000-10-01') },
-        { date: new Date('2000-11-01') },
-        { date: new Date('2000-12-01') },
+        { date: '2000-01-01' },
+        { date: '2000-02-01' },
+        { date: '2000-03-01' },
+        { date: '2000-04-01' },
+        { date: '2000-05-01' },
+        { date: '2000-06-01' },
+        { date: '2000-07-01' },
+        { date: '2000-08-01' },
+        { date: '2000-09-01' },
+        { date: '2000-10-01' },
+        { date: '2000-11-01' },
+        { date: '2000-12-01' },
       ] as Log[];
 
       const result = service.countLogsPerMonth(logs);
@@ -148,8 +148,8 @@ describe('StatsService', () => {
 
     it('should correctly count edge dates like January 1st regardless of year', () => {
       const logs = [
-        { date: new Date('2020-01-01') },
-        { date: new Date('2030-01-01') },
+        { date: '2020-01-01' },
+        { date: '2030-01-01' },
       ] as Log[];
 
       const result = service.countLogsPerMonth(logs);
@@ -160,8 +160,8 @@ describe('StatsService', () => {
 
     it('should correctly count edge dates like December 31st regardless of year', () => {
       const logs = [
-        { date: new Date('2020-12-31') },
-        { date: new Date('2030-12-31') },
+        { date: '2020-12-31' },
+        { date: '2030-12-31' },
       ] as Log[];
 
       const result = service.countLogsPerMonth(logs);

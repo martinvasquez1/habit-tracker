@@ -20,7 +20,7 @@ export class Log {
   id: number;
 
   @Column({ type: 'date' })
-  date: Date; // Stores the date in YYYY-MM-DD format
+  date: string; // Stores the date in YYYY-MM-DD format
 
   @CreateDateColumn()
   createdDate: Date;

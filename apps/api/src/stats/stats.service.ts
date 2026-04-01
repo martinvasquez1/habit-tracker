@@ -75,16 +75,22 @@ export class StatsService {
     return streak;
   }
 
+  private getMonthIndex(dateString: string): number {
+    const [_, month] = dateString.split('-');
+    return Number(month) - 1;
+  }
+
   countLogsPerMonth(logs: Log[]): number[] {
-    const months = Array(12).fill(0)
-    const result = months;
+    const months_in_year = 12;
+    const months = Array(months_in_year).fill(0);
 
     for (const log of logs) {
-      const date = log.date.toISOString().slice(0, 10);;
-      const month = Number(date.slice(5, 7)) - 1;
-      result[month]++;
+      const date = log.date;
+      const monthIndex = this.getMonthIndex(date);
+
+      months[monthIndex]++;
     }
 
-    return result;
+    return months;
   }
 }

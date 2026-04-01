@@ -12,14 +12,13 @@ All URIs are relative to *http://localhost*
 |[**deleteLog**](#deletelog) | **DELETE** /habits/{habitId}/logs/{logId} | |
 |[**deleteUser**](#deleteuser) | **DELETE** /users/{id} | |
 |[**getHabit**](#gethabit) | **GET** /habits/{id} | |
-|[**getHabitStats**](#gethabitstats) | **GET** /habits/{id}/stats | |
+|[**getHabitStats**](#gethabitstats) | **GET** /habits/{id}/stats | Retrieves statistics for a specific habit.|
 |[**getHabits**](#gethabits) | **GET** /habits | |
-|[**getHabitsWithLogs**](#gethabitswithlogs) | **GET** /habits/logs | |
+|[**getHabitsWithLogs**](#gethabitswithlogs) | **GET** /habits/logs | Retrieves all habits along with their logs and current streak for a specific date range.|
 |[**getLog**](#getlog) | **GET** /habits/{habitId}/logs/{logId} | |
-|[**getLogs**](#getlogs) | **GET** /habits/{habitId}/logs | |
+|[**getLogs**](#getlogs) | **GET** /habits/{habitId}/logs | Retrieves logs for a specific habit.|
 |[**getUser**](#getuser) | **GET** /users/{id} | |
 |[**getUsers**](#getusers) | **GET** /users | |
-|[**habitsControllerGetStreak**](#habitscontrollergetstreak) | **GET** /habits/{id}/streak | |
 |[**signIn**](#signin) | **POST** /auth/sign-in | |
 |[**signUp**](#signup) | **POST** /auth/sign-up | |
 |[**signUpAdmin**](#signupadmin) | **POST** /auth/sign-up/admin | |
@@ -441,6 +440,7 @@ No authorization required
 # **getHabitStats**
 > GetStatsResponseDto getHabitStats()
 
+The `currentDate` query parameter must be a **string representing the user\'s local date** in `YYYY-MM-DD` format.
 
 ### Example
 
@@ -454,7 +454,7 @@ const configuration = new Configuration();
 const apiInstance = new Api(configuration);
 
 let id: number; // (default to undefined)
-let currentDate: string; // (default to undefined)
+let currentDate: string; //The current date for which the streak should be calculated. Must be a string in `YYYY-MM-DD` format. (default to undefined)
 
 const { status, data } = await apiInstance.getHabitStats(
     id,
@@ -467,7 +467,7 @@ const { status, data } = await apiInstance.getHabitStats(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **id** | [**number**] |  | defaults to undefined|
-| **currentDate** | [**string**] |  | defaults to undefined|
+| **currentDate** | [**string**] | The current date for which the streak should be calculated. Must be a string in &#x60;YYYY-MM-DD&#x60; format. | defaults to undefined|
 
 
 ### Return type
@@ -539,6 +539,7 @@ No authorization required
 # **getHabitsWithLogs**
 > Array<HabitWithStreak> getHabitsWithLogs()
 
+The date query parameters must be provided as **strings in the user\'s local date** using the `YYYY-MM-DD` format (ISO local date without time).
 
 ### Example
 
@@ -551,9 +552,9 @@ import {
 const configuration = new Configuration();
 const apiInstance = new Api(configuration);
 
-let startDate: string; // (default to undefined)
-let endDate: string; // (default to undefined)
-let currentDate: string; // (default to undefined)
+let startDate: string; //Start date of the requested range. Must be a string representing the user\'s local date in `YYYY-MM-DD` format. (default to undefined)
+let endDate: string; //End date of the requested range. Must be a string representing the user\'s local date in `YYYY-MM-DD` format. (default to undefined)
+let currentDate: string; //Current date in the user\'s local timezone. Must be a string representing the user\'s local date in `YYYY-MM-DD` format. (default to undefined)
 
 const { status, data } = await apiInstance.getHabitsWithLogs(
     startDate,
@@ -566,9 +567,9 @@ const { status, data } = await apiInstance.getHabitsWithLogs(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **startDate** | [**string**] |  | defaults to undefined|
-| **endDate** | [**string**] |  | defaults to undefined|
-| **currentDate** | [**string**] |  | defaults to undefined|
+| **startDate** | [**string**] | Start date of the requested range. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format. | defaults to undefined|
+| **endDate** | [**string**] | End date of the requested range. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format. | defaults to undefined|
+| **currentDate** | [**string**] | Current date in the user\&#39;s local timezone. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format. | defaults to undefined|
 
 
 ### Return type
@@ -650,6 +651,7 @@ No authorization required
 # **getLogs**
 > Array<Log> getLogs()
 
+Optionally filters logs using a date range. The `startDate` and `endDate` query parameters must be **strings representing the user\'s local date** in `YYYY-MM-DD` format.
 
 ### Example
 
@@ -663,8 +665,8 @@ const configuration = new Configuration();
 const apiInstance = new Api(configuration);
 
 let habitId: number; // (default to undefined)
-let startDate: string; // (default to undefined)
-let endDate: string; // (default to undefined)
+let startDate: string; //Start date of the range filter. Must be a string in `YYYY-MM-DD` format. (default to undefined)
+let endDate: string; //End date of the range filter. Must be a string in `YYYY-MM-DD` format. (default to undefined)
 
 const { status, data } = await apiInstance.getLogs(
     habitId,
@@ -678,8 +680,8 @@ const { status, data } = await apiInstance.getLogs(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **habitId** | [**number**] |  | defaults to undefined|
-| **startDate** | [**string**] |  | defaults to undefined|
-| **endDate** | [**string**] |  | defaults to undefined|
+| **startDate** | [**string**] | Start date of the range filter. Must be a string in &#x60;YYYY-MM-DD&#x60; format. | defaults to undefined|
+| **endDate** | [**string**] | End date of the range filter. Must be a string in &#x60;YYYY-MM-DD&#x60; format. | defaults to undefined|
 
 
 ### Return type
@@ -793,60 +795,6 @@ const { status, data } = await apiInstance.getUsers(
 ### Return type
 
 void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** |  |  -  |
-|**500** | Internal server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **habitsControllerGetStreak**
-> number habitsControllerGetStreak()
-
-
-### Example
-
-```typescript
-import {
-    Api,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new Api(configuration);
-
-let id: string; // (default to undefined)
-let currentDate: string; // (default to undefined)
-
-const { status, data } = await apiInstance.habitsControllerGetStreak(
-    id,
-    currentDate
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **id** | [**string**] |  | defaults to undefined|
-| **currentDate** | [**string**] |  | defaults to undefined|
-
-
-### Return type
-
-**number**
 
 ### Authorization
 

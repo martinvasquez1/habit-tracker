@@ -15,8 +15,17 @@
 
 
 export interface CreateLogDto {
+    /**
+     * Status of the log entry.
+     */
     'status': CreateLogDtoStatusEnum;
+    /**
+     * Date of the log entry in `YYYY-MM-DD` format. Only the date portion is allowed; time will be ignored.
+     */
     'date': string;
+    /**
+     * Optional note or comment for the log entry.
+     */
     'note'?: string;
 }
 

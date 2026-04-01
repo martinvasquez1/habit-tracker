@@ -18,5 +18,6 @@ export interface GetStatsResponseDto {
     'currentStreak': number;
     'streaks': Array<number>;
     'amountOfLogs': number;
+    'logsPerMonth': Array<number>;
 }
 

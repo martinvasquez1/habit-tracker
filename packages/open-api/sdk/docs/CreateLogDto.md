@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **string** |  | [default to undefined]
-**date** | **string** |  | [default to undefined]
-**note** | **string** |  | [optional] [default to undefined]
+**status** | **string** | Status of the log entry. | [default to undefined]
+**date** | **string** | Date of the log entry in &#x60;YYYY-MM-DD&#x60; format. Only the date portion is allowed; time will be ignored. | [default to undefined]
+**note** | **string** | Optional note or comment for the log entry. | [optional] [default to undefined]
 
 ## Example
 

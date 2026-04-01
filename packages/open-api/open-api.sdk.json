@@ -424,12 +424,14 @@
     },
     "/habits/logs": {
       "get": {
+        "description": "The date query parameters must be provided as **strings in the user's local date**\nusing the `YYYY-MM-DD` format (ISO local date without time).",
         "operationId": "getHabitsWithLogs",
         "parameters": [
           {
             "name": "startDate",
             "required": true,
             "in": "query",
+            "description": "Start date of the requested range.\nMust be a string representing the user's local date in `YYYY-MM-DD` format.",
             "schema": {
               "type": "string"
             }
@@ -438,6 +440,7 @@
             "name": "endDate",
             "required": true,
             "in": "query",
+            "description": "End date of the requested range.\nMust be a string representing the user's local date in `YYYY-MM-DD` format.",
             "schema": {
               "type": "string"
             }
@@ -446,6 +449,7 @@
             "name": "currentDate",
             "required": true,
             "in": "query",
+            "description": "Current date in the user's local timezone.\nMust be a string representing the user's local date in `YYYY-MM-DD` format.",
             "schema": {
               "type": "string"
             }
@@ -476,7 +480,7 @@
             }
           }
         },
-        "summary": "",
+        "summary": "Retrieves all habits along with their logs and current streak for a specific date range.",
         "tags": [
           "Api"
         ]
@@ -484,6 +488,7 @@
     },
     "/habits/{id}/stats": {
       "get": {
+        "description": "The `currentDate` query parameter must be a **string representing the user's\nlocal date** in `YYYY-MM-DD` format.",
         "operationId": "getHabitStats",
         "parameters": [
           {
@@ -498,6 +503,7 @@
             "name": "currentDate",
             "required": true,
             "in": "query",
+            "description": "The current date for which the streak should be calculated.\nMust be a string in `YYYY-MM-DD` format.",
             "schema": {
               "type": "string"
             }
@@ -525,7 +531,7 @@
             }
           }
         },
-        "summary": "",
+        "summary": "Retrieves statistics for a specific habit.",
         "tags": [
           "Api"
         ]
@@ -660,54 +666,6 @@
         ]
       }
     },
-    "/habits/{id}/streak": {
-      "get": {
-        "operationId": "HabitsController_getStreak",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "currentDate",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "number"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalServerErrorDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Api"
-        ]
-      }
-    },
     "/habits/{habitId}/logs": {
       "post": {
         "operationId": "createLog",
@@ -759,6 +717,7 @@
         ]
       },
       "get": {
+        "description": "Optionally filters logs using a date range.\nThe `startDate` and `endDate` query parameters must be **strings representing\nthe user's local date** in `YYYY-MM-DD` format.",
         "operationId": "getLogs",
         "parameters": [
           {
@@ -773,7 +732,9 @@
             "name": "startDate",
             "required": true,
             "in": "query",
+            "description": "Start date of the range filter.\nMust be a string in `YYYY-MM-DD` format.",
             "schema": {
+              "example": "2000-01-01",
               "type": "string"
             }
           },
@@ -781,7 +742,9 @@
             "name": "endDate",
             "required": true,
             "in": "query",
+            "description": "End date of the range filter.\nMust be a string in `YYYY-MM-DD` format.",
             "schema": {
+              "example": "2000-01-01",
               "type": "string"
             }
           }
@@ -811,7 +774,7 @@
             }
           }
         },
-        "summary": "",
+        "summary": "Retrieves logs for a specific habit.",
         "tags": [
           "Api"
         ]
@@ -1042,7 +1005,6 @@
             "type": "number"
           },
           "date": {
-            "format": "date-time",
             "type": "string"
           },
           "createdDate": {
@@ -1342,12 +1304,19 @@
           },
           "amountOfLogs": {
             "type": "number"
+          },
+          "logsPerMonth": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
           }
         },
         "required": [
           "currentStreak",
           "streaks",
-          "amountOfLogs"
+          "amountOfLogs",
+          "logsPerMonth"
         ]
       },
       "UpdateHabitDto": {
@@ -1386,6 +1355,8 @@
         "properties": {
           "status": {
             "type": "string",
+            "description": "Status of the log entry.",
+            "example": "LogStatus.COMPLETED",
             "enum": [
               "completed",
               "skipped",
@@ -1394,10 +1365,14 @@
           },
           "date": {
             "type": "string",
+            "description": "Date of the log entry in `YYYY-MM-DD` format.\nOnly the date portion is allowed; time will be ignored.",
+            "example": "2000-01-01",
             "maxLength": 10
           },
           "note": {
-            "type": "string"
+            "type": "string",
+            "description": "Optional note or comment for the log entry.",
+            "example": "Completed morning workout"
           }
         },
         "required": [
@@ -1408,15 +1383,15 @@
       "UpdateLogDto": {
         "type": "object",
         "properties": {
-          "date": {
-            "type": "string",
-            "maxLength": 10
-          },
           "note": {
-            "type": "string"
+            "type": "string",
+            "description": "Optional note or comment for the log entry.",
+            "example": "Completed morning workout"
           },
           "status": {
             "type": "string",
+            "description": "Status of the log entry.",
+            "example": "LogStatus.COMPLETED",
             "enum": [
               "completed",
               "skipped",

@@ -339,10 +339,10 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
             };
         },
         /**
-         * 
-         * @summary 
+         * The `currentDate` query parameter must be a **string representing the user\'s local date** in `YYYY-MM-DD` format.
+         * @summary Retrieves statistics for a specific habit.
          * @param {number} id 
-         * @param {string} currentDate 
+         * @param {string} currentDate The current date for which the streak should be calculated. Must be a string in &#x60;YYYY-MM-DD&#x60; format.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -410,11 +410,11 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
             };
         },
         /**
-         * 
-         * @summary 
-         * @param {string} startDate 
-         * @param {string} endDate 
-         * @param {string} currentDate 
+         * The date query parameters must be provided as **strings in the user\'s local date** using the `YYYY-MM-DD` format (ISO local date without time).
+         * @summary Retrieves all habits along with their logs and current streak for a specific date range.
+         * @param {string} startDate Start date of the requested range. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format.
+         * @param {string} endDate End date of the requested range. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format.
+         * @param {string} currentDate Current date in the user\&#39;s local timezone. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -499,11 +499,11 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
             };
         },
         /**
-         * 
-         * @summary 
+         * Optionally filters logs using a date range. The `startDate` and `endDate` query parameters must be **strings representing the user\'s local date** in `YYYY-MM-DD` format.
+         * @summary Retrieves logs for a specific habit.
          * @param {number} habitId 
-         * @param {string} startDate 
-         * @param {string} endDate 
+         * @param {string} startDate Start date of the range filter. Must be a string in &#x60;YYYY-MM-DD&#x60; format.
+         * @param {string} endDate End date of the range filter. Must be a string in &#x60;YYYY-MM-DD&#x60; format.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -614,46 +614,6 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
                 for (const [key, value] of Object.entries(filter)) {
                     localVarQueryParameter[key] = value;
                 }
-            }
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} currentDate 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        habitsControllerGetStreak: async (id: string, currentDate: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('habitsControllerGetStreak', 'id', id)
-            // verify required parameter 'currentDate' is not null or undefined
-            assertParamExists('habitsControllerGetStreak', 'currentDate', currentDate)
-            const localVarPath = `/habits/{id}/streak`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (currentDate !== undefined) {
-                localVarQueryParameter['currentDate'] = currentDate;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -969,10 +929,10 @@ export const ApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @summary 
+         * The `currentDate` query parameter must be a **string representing the user\'s local date** in `YYYY-MM-DD` format.
+         * @summary Retrieves statistics for a specific habit.
          * @param {number} id 
-         * @param {string} currentDate 
+         * @param {string} currentDate The current date for which the streak should be calculated. Must be a string in &#x60;YYYY-MM-DD&#x60; format.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -995,11 +955,11 @@ export const ApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @summary 
-         * @param {string} startDate 
-         * @param {string} endDate 
-         * @param {string} currentDate 
+         * The date query parameters must be provided as **strings in the user\'s local date** using the `YYYY-MM-DD` format (ISO local date without time).
+         * @summary Retrieves all habits along with their logs and current streak for a specific date range.
+         * @param {string} startDate Start date of the requested range. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format.
+         * @param {string} endDate End date of the requested range. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format.
+         * @param {string} currentDate Current date in the user\&#39;s local timezone. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1024,11 +984,11 @@ export const ApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @summary 
+         * Optionally filters logs using a date range. The `startDate` and `endDate` query parameters must be **strings representing the user\'s local date** in `YYYY-MM-DD` format.
+         * @summary Retrieves logs for a specific habit.
          * @param {number} habitId 
-         * @param {string} startDate 
-         * @param {string} endDate 
+         * @param {string} startDate Start date of the range filter. Must be a string in &#x60;YYYY-MM-DD&#x60; format.
+         * @param {string} endDate End date of the range filter. Must be a string in &#x60;YYYY-MM-DD&#x60; format.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1064,19 +1024,6 @@ export const ApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUsers(page, limit, filter, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Api.getUsers']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} currentDate 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async habitsControllerGetStreak(id: string, currentDate: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.habitsControllerGetStreak(id, currentDate, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['Api.habitsControllerGetStreak']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1235,8 +1182,8 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
             return localVarFp.getHabit(requestParameters.id, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @summary 
+         * The `currentDate` query parameter must be a **string representing the user\'s local date** in `YYYY-MM-DD` format.
+         * @summary Retrieves statistics for a specific habit.
          * @param {ApiGetHabitStatsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1254,8 +1201,8 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
             return localVarFp.getHabits(options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @summary 
+         * The date query parameters must be provided as **strings in the user\'s local date** using the `YYYY-MM-DD` format (ISO local date without time).
+         * @summary Retrieves all habits along with their logs and current streak for a specific date range.
          * @param {ApiGetHabitsWithLogsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1274,8 +1221,8 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
             return localVarFp.getLog(requestParameters.habitId, requestParameters.logId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @summary 
+         * Optionally filters logs using a date range. The `startDate` and `endDate` query parameters must be **strings representing the user\'s local date** in `YYYY-MM-DD` format.
+         * @summary Retrieves logs for a specific habit.
          * @param {ApiGetLogsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1302,15 +1249,6 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
          */
         getUsers(requestParameters: ApiGetUsersRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.getUsers(requestParameters.page, requestParameters.limit, requestParameters.filter, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {ApiHabitsControllerGetStreakRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        habitsControllerGetStreak(requestParameters: ApiHabitsControllerGetStreakRequest, options?: RawAxiosRequestConfig): AxiosPromise<number> {
-            return localVarFp.habitsControllerGetStreak(requestParameters.id, requestParameters.currentDate, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1426,6 +1364,9 @@ export interface ApiGetHabitRequest {
 export interface ApiGetHabitStatsRequest {
     readonly id: number
 
+    /**
+     * The current date for which the streak should be calculated. Must be a string in &#x60;YYYY-MM-DD&#x60; format.
+     */
     readonly currentDate: string
 }
 
@@ -1433,10 +1374,19 @@ export interface ApiGetHabitStatsRequest {
  * Request parameters for getHabitsWithLogs operation in Api.
  */
 export interface ApiGetHabitsWithLogsRequest {
+    /**
+     * Start date of the requested range. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format.
+     */
     readonly startDate: string
 
+    /**
+     * End date of the requested range. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format.
+     */
     readonly endDate: string
 
+    /**
+     * Current date in the user\&#39;s local timezone. Must be a string representing the user\&#39;s local date in &#x60;YYYY-MM-DD&#x60; format.
+     */
     readonly currentDate: string
 }
 
@@ -1455,8 +1405,14 @@ export interface ApiGetLogRequest {
 export interface ApiGetLogsRequest {
     readonly habitId: number
 
+    /**
+     * Start date of the range filter. Must be a string in &#x60;YYYY-MM-DD&#x60; format.
+     */
     readonly startDate: string
 
+    /**
+     * End date of the range filter. Must be a string in &#x60;YYYY-MM-DD&#x60; format.
+     */
     readonly endDate: string
 }
 
@@ -1476,15 +1432,6 @@ export interface ApiGetUsersRequest {
     readonly limit?: number
 
     readonly filter?: object
-}
-
-/**
- * Request parameters for habitsControllerGetStreak operation in Api.
- */
-export interface ApiHabitsControllerGetStreakRequest {
-    readonly id: string
-
-    readonly currentDate: string
 }
 
 /**
@@ -1619,8 +1566,8 @@ export class Api extends BaseAPI {
     }
 
     /**
-     * 
-     * @summary 
+     * The `currentDate` query parameter must be a **string representing the user\'s local date** in `YYYY-MM-DD` format.
+     * @summary Retrieves statistics for a specific habit.
      * @param {ApiGetHabitStatsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1640,8 +1587,8 @@ export class Api extends BaseAPI {
     }
 
     /**
-     * 
-     * @summary 
+     * The date query parameters must be provided as **strings in the user\'s local date** using the `YYYY-MM-DD` format (ISO local date without time).
+     * @summary Retrieves all habits along with their logs and current streak for a specific date range.
      * @param {ApiGetHabitsWithLogsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1662,8 +1609,8 @@ export class Api extends BaseAPI {
     }
 
     /**
-     * 
-     * @summary 
+     * Optionally filters logs using a date range. The `startDate` and `endDate` query parameters must be **strings representing the user\'s local date** in `YYYY-MM-DD` format.
+     * @summary Retrieves logs for a specific habit.
      * @param {ApiGetLogsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1692,16 +1639,6 @@ export class Api extends BaseAPI {
      */
     public getUsers(requestParameters: ApiGetUsersRequest = {}, options?: RawAxiosRequestConfig) {
         return ApiFp(this.configuration).getUsers(requestParameters.page, requestParameters.limit, requestParameters.filter, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {ApiHabitsControllerGetStreakRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public habitsControllerGetStreak(requestParameters: ApiHabitsControllerGetStreakRequest, options?: RawAxiosRequestConfig) {
-        return ApiFp(this.configuration).habitsControllerGetStreak(requestParameters.id, requestParameters.currentDate, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

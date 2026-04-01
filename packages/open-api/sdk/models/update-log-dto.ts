@@ -15,8 +15,13 @@
 
 
 export interface UpdateLogDto {
-    'date'?: string;
+    /**
+     * Optional note or comment for the log entry.
+     */
     'note'?: string;
+    /**
+     * Status of the log entry.
+     */
     'status'?: UpdateLogDtoStatusEnum;
 }
 

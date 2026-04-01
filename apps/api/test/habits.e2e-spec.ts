@@ -208,7 +208,7 @@ describe('/habits', () => {
     });
   });
 
-  describe('GET /habits/:id/stats | C = Completed | S = Skipped | M = Missed', () => {
+  describe('GET /habits/:id/stats', () => {
     it('should get stats for habit with no logs', async () => {
       const currentDate = '2000-01-10';
 
@@ -218,16 +218,21 @@ describe('/habits', () => {
         .query({ currentDate })
         .expect(200);
 
-      const stats = { currentStreak: 0, streaks: [], amountOfLogs: 0 };
+      const stats = {
+        currentStreak: 0,
+        streaks: [],
+        amountOfLogs: 0,
+        logsPerMonth: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      };
       expect(body).toEqual(stats);
     });
 
-    it('should get stats for habit with logs: C', async () => {
-      const currentDate = '2000-01-10';
+    it('should get stats for habit with one log', async () => {
+      const currentDate = '2000-01-01';
 
       const logDto = {
         status: 'completed',
-        date: '2000-01-10',
+        date: '2000-01-01',
         note: '...',
       };
 
@@ -243,59 +248,27 @@ describe('/habits', () => {
         .query({ currentDate })
         .expect(200);
 
-      const stats = { currentStreak: 1, streaks: [1], amountOfLogs: 1 };
+      const stats = {
+        currentStreak: 1,
+        streaks: [1],
+        amountOfLogs: 1,
+        logsPerMonth: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      };
       expect(body).toEqual(stats);
     });
 
-    it('should get stats for habit with logs: C C', async () => {
-      const currentDate = '2000-06-02';
+    it('should get stats for habit with two logs', async () => {
+      const currentDate = '2000-01-02';
 
       const logDtoDay1 = {
         status: 'completed',
-        date: '2000-06-01',
-        note: 'Day 1',
-      };
-
-      const logDtoDay2 = {
-        status: 'completed',
-        date: '2000-06-02',
-        note: 'Day 2',
-      };
-
-      await request(app.getHttpServer())
-        .post(`/habits/${userHabit.id}/logs`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay1)
-        .expect(201);
-
-      await request(app.getHttpServer())
-        .post(`/habits/${userHabit.id}/logs`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay2)
-        .expect(201);
-
-      const { body } = await request(app.getHttpServer())
-        .get(`/habits/${userHabit.id}/stats`)
-        .set('Authorization', `Bearer ${token}`)
-        .query({ currentDate })
-        .expect(200);
-
-      const stats = { currentStreak: 2, streaks: [2], amountOfLogs: 2 };
-      expect(body).toEqual(stats);
-    });
-
-    it('should get stats for habit with logs: C M C', async () => {
-      const currentDate = '2000-06-03';
-
-      const logDtoDay1 = {
-        status: 'completed',
-        date: '2000-06-01',
+        date: '2000-01-01',
         note: 'Day 1',
       };
 
       const logDtoDay2 = {
         status: 'completed',
-        date: '2000-06-03',
+        date: '2000-01-02',
         note: 'Day 2',
       };
 
@@ -317,47 +290,27 @@ describe('/habits', () => {
         .query({ currentDate })
         .expect(200);
 
-      const stats = { currentStreak: 1, streaks: [1, 1], amountOfLogs: 2 };
-      expect(body).toEqual(stats);
-    });
-
-    it('should get stats for habit with logs: S', async () => {
-      const currentDate = '2000-06-01';
-
-      const logDtoDay1 = {
-        status: LogStatus.SKIPPED,
-        date: '2000-06-01',
-        note: 'Day 1',
+      const stats = {
+        currentStreak: 2,
+        streaks: [2],
+        amountOfLogs: 2,
+        logsPerMonth: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       };
-
-      await request(app.getHttpServer())
-        .post(`/habits/${userHabit.id}/logs`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay1)
-        .expect(201);
-
-      const { body } = await request(app.getHttpServer())
-        .get(`/habits/${userHabit.id}/stats`)
-        .set('Authorization', `Bearer ${token}`)
-        .query({ currentDate })
-        .expect(200);
-
-      const stats = { currentStreak: 1, streaks: [1], amountOfLogs: 1 };
       expect(body).toEqual(stats);
     });
 
-    it('should get stats for habit with logs: S S', async () => {
-      const currentDate = '2000-06-02';
+    it('should get stats for habit with a missed log', async () => {
+      const currentDate = '2000-01-03';
 
       const logDtoDay1 = {
-        status: LogStatus.SKIPPED,
-        date: '2000-06-01',
+        status: 'completed',
+        date: '2000-01-01',
         note: 'Day 1',
       };
 
       const logDtoDay2 = {
-        status: LogStatus.SKIPPED,
-        date: '2000-06-02',
+        status: 'completed',
+        date: '2000-01-03',
         note: 'Day 2',
       };
 
@@ -379,23 +332,22 @@ describe('/habits', () => {
         .query({ currentDate })
         .expect(200);
 
-      const stats = { currentStreak: 2, streaks: [2], amountOfLogs: 2 };
+      const stats = {
+        currentStreak: 1,
+        streaks: [1, 1],
+        amountOfLogs: 2,
+        logsPerMonth: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      };
       expect(body).toEqual(stats);
     });
 
-    it('should get stats for habit with logs: S C', async () => {
-      const currentDate = '2000-06-02';
+    it('should get stats for habit with only a skipped log', async () => {
+      const currentDate = '2000-01-01';
 
       const logDtoDay1 = {
         status: LogStatus.SKIPPED,
-        date: '2000-06-01',
+        date: '2000-01-01',
         note: 'Day 1',
-      };
-
-      const logDtoDay2 = {
-        status: LogStatus.COMPLETED,
-        date: '2000-06-02',
-        note: 'Day 2',
       };
 
       await request(app.getHttpServer())
@@ -404,60 +356,48 @@ describe('/habits', () => {
         .send(logDtoDay1)
         .expect(201);
 
-      await request(app.getHttpServer())
-        .post(`/habits/${userHabit.id}/logs`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay2)
-        .expect(201);
-
       const { body } = await request(app.getHttpServer())
         .get(`/habits/${userHabit.id}/stats`)
         .set('Authorization', `Bearer ${token}`)
         .query({ currentDate })
         .expect(200);
 
-      const stats = { currentStreak: 2, streaks: [2], amountOfLogs: 2 };
+      const stats = {
+        currentStreak: 1,
+        streaks: [1],
+        amountOfLogs: 1,
+        logsPerMonth: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      };
       expect(body).toEqual(stats);
     });
 
-    it('should get stats for habit with logs: C S C', async () => {
-      const currentDate = '2000-06-03';
+    it('should get stats for habit with logs on different months of the same year', async () => {
+      const currentDate = '2000-12-31';
 
-      const logDtoDay1 = {
-        status: LogStatus.COMPLETED,
-        date: '2000-06-01',
-        note: 'Day 1',
-      };
+      const logDates = [
+        '2000-01-01',
+        '2000-02-02',
+        '2000-03-03',
+        '2000-04-04',
+        '2000-05-05',
+        '2000-06-06',
+        '2000-07-07',
+        '2000-12-12',
+      ];
 
-      const logDtoDay2 = {
-        status: LogStatus.SKIPPED,
-        date: '2000-06-02',
-        note: 'Day 2',
-      };
+      for (const date of logDates) {
+        const logDto = {
+          status: LogStatus.COMPLETED,
+          date,
+          note: `Log on ${date}`,
+        };
 
-      const logDtoDay3 = {
-        status: LogStatus.COMPLETED,
-        date: '2000-06-03',
-        note: 'Day 3',
-      };
-
-      await request(app.getHttpServer())
-        .post(`/habits/${userHabit.id}/logs`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay1)
-        .expect(201);
-
-      await request(app.getHttpServer())
-        .post(`/habits/${userHabit.id}/logs`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay2)
-        .expect(201);
-
-      await request(app.getHttpServer())
-        .post(`/habits/${userHabit.id}/logs`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(logDtoDay3)
-        .expect(201);
+        await request(app.getHttpServer())
+          .post(`/habits/${userHabit.id}/logs`)
+          .set('Authorization', `Bearer ${token}`)
+          .send(logDto)
+          .expect(201);
+      }
 
       const { body } = await request(app.getHttpServer())
         .get(`/habits/${userHabit.id}/stats`)
@@ -465,8 +405,53 @@ describe('/habits', () => {
         .query({ currentDate })
         .expect(200);
 
-      const stats = { currentStreak: 3, streaks: [3], amountOfLogs: 3 };
-      expect(body).toEqual(stats);
+      const expectedStats = {
+        currentStreak: 0,
+        streaks: [1, 1, 1, 1, 1, 1, 1, 1],
+        amountOfLogs: 8,
+        logsPerMonth: [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1]
+      };
+      expect(body).toEqual(expectedStats);
+    });
+
+    it('should get stats for habit with logs on different months across different years', async () => {
+      const currentDate = '2000-12-31';
+
+      const logDates = [
+        '1997-01-01',
+        '1998-03-03',
+        '1999-07-07',
+        '2000-12-12',
+      ];
+
+      for (const date of logDates) {
+        const logDto = {
+          status: LogStatus.COMPLETED,
+          date,
+          note: `Log on ${date}`,
+        };
+
+        await request(app.getHttpServer())
+          .post(`/habits/${userHabit.id}/logs`)
+          .set('Authorization', `Bearer ${token}`)
+          .send(logDto)
+          .expect(201);
+      }
+
+      const { body } = await request(app.getHttpServer())
+        .get(`/habits/${userHabit.id}/stats`)
+        .set('Authorization', `Bearer ${token}`)
+        .query({ currentDate })
+        .expect(200);
+
+      const expectedStats = {
+        currentStreak: 0,
+        streaks: [1, 1, 1, 1],
+        amountOfLogs: 4,
+        logsPerMonth: [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+      };
+
+      expect(body).toEqual(expectedStats);
     });
   });
 

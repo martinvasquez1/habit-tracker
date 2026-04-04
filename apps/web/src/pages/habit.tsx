@@ -15,6 +15,7 @@ import { formatYYYYMMDD } from "@/utils/format-yyyy-mm-dd";
 
 import { ChartBar } from "@/components/ui/chart-bar";
 import { ChartConfig } from "@/components/ui/chart";
+import { ChartPyramid } from "@/components/ui/chart-pyramid";
 
 export default function Habit() {
   const { t } = useTranslation();
@@ -65,6 +66,12 @@ export default function Habit() {
     },
   } satisfies ChartConfig
 
+  const amount = 5;
+  const topStreaks = stats!.streaks
+    .slice()
+    .sort((a, b) => b - a)
+    .slice(0, amount);
+
   return (
     <div>
       <h1 className="font-bold text-2xl mb-6">{habit!.name}</h1>
@@ -85,13 +92,7 @@ export default function Habit() {
           xKey="month"
           config={chartConfig}
         />
-        <ChartBar
-          title="Lorem"
-          data={chartData}
-          dataKey="logs"
-          xKey="month"
-          config={chartConfig}
-        />
+        <ChartPyramid title="Top streaks" values={topStreaks} config={chartConfig}  />
       </div>
     </div>
   );

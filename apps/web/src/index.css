@@ -251,3 +251,7 @@
   --color-habit-brown: var(--habit-brown);
   --color-habit-gray: var(--habit-gray);
 }
+
+#pyramid-chart g.recharts-layer.recharts-bar:nth-of-type(2) g.recharts-layer.recharts-bar-rectangle {
+  transform: translateX(1px);
+}

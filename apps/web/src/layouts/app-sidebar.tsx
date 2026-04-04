@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import { SidebarLogo } from "@/components/logo";
-import { Home, Settings, Apple, Users, ChartColumn } from "lucide-react";
+import { Home, Settings, Apple, Users, ChartColumn, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -41,6 +41,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       url: "#",
       icon: ChartColumn,
       isDisabled: true,
+    },
+    {
+      title: t('sidebar.profile'),
+      url: "/profile",
+      icon: User,
     },
     {
       title: t('sidebar.settings'),

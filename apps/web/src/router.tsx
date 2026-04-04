@@ -16,6 +16,7 @@ import AppLayout from "./layouts/app-layout.js";
 import Home from "./pages/home.js";
 import Habits from "./pages/habits.js";
 import Habit from "./pages/habit.tsx";
+import Profile from "./pages/profile.tsx";
 import Settings from "./pages/settings.tsx";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ export default function Router() {
                 <Route path="home" element={<Home />} />
                 <Route path="habits" element={<Habits />} />
                 <Route path="habits/:habitId" element={<Habit />} />
+                <Route path="profile/" element={<Profile />} />
                 <Route path="settings/" element={<Settings />} />
                 <Route path="*" element={<NotFound />} />
               </Route>

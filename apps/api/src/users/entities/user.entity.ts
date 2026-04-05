@@ -20,6 +20,15 @@ export class User {
   @Column({ unique: true })
   username: string;
 
+  @Column({ nullable: true })
+  bio: string;
+
+  @Column({ nullable: true })
+  profilePicture: string;
+
+  @Column({ nullable: true })
+  coverPhoto: string;
+
   @Column({ unique: true })
   email: string;
 

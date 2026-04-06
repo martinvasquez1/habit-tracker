@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "copy-openapi": "cp apps/api/open-api.json packages/open-api/open-api.json",
+    "generate:sdk": "npm run generate:openapi -w=api && npm run copy-openapi && npm run sdk:generate --w=@repo/open-api && npm run build --w=@repo/open-api"
   },
   "devDependencies": {
     "turbo": "^2.8.16"

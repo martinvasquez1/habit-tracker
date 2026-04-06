@@ -10,13 +10,8 @@ import { writeFileSync } from 'fs';
 import { InternalServerErrorDto } from 'src/common/decorators/internal-server-error.dto';
 
 async function generateAndExit(document: OpenAPIObject, app: INestApplication) {
-    const filePath = process.env.OPENAPI_FILE_PATH;
-
-    if (!filePath) {
-      console.log("env: no filename for swagger.")
-    }  else {
-      writeFileSync(filePath, JSON.stringify(document, null, 2));
-    }
+    const filePath = './open-api.json';
+    writeFileSync(filePath, JSON.stringify(document, null, 2));
 
     await app.close();
     process.exit(0);

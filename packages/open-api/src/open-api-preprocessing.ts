@@ -1,7 +1,7 @@
 import 'dotenv/config'; 
 import * as fs from "fs";
 
-const inputPath = process.env.OPENAPI_FILE;
+const inputPath = './open-api.json';
 
 if (!inputPath) {
   console.error("Usage: ts-node open-api-preprocessing.ts");

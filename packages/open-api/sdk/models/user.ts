@@ -20,6 +20,9 @@ import type { Habit } from './habit';
 export interface User {
     'id': number;
     'username': string;
+    'bio': string;
+    'profilePicture': string;
+    'coverPhoto': string;
     'email': string;
     'password': string;
     'role': UserRoleEnum;

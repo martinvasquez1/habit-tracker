@@ -2,7 +2,7 @@ import "dotenv/config";
 
 import { rmSync } from "fs";
 
-const target = process.env.SDK_OUTPUT_PATH;
+const target = './sdk';
 
 if (!target) {
   console.error("No target for SDK clean");

@@ -969,6 +969,15 @@
           "username": {
             "type": "string"
           },
+          "bio": {
+            "type": "string"
+          },
+          "profilePicture": {
+            "type": "string"
+          },
+          "coverPhoto": {
+            "type": "string"
+          },
           "email": {
             "type": "string"
           },
@@ -992,6 +1001,9 @@
         "required": [
           "id",
           "username",
+          "bio",
+          "profilePicture",
+          "coverPhoto",
           "email",
           "password",
           "role",

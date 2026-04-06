@@ -7,6 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **number** |  | [default to undefined]
 **username** | **string** |  | [default to undefined]
+**bio** | **string** |  | [default to undefined]
+**profilePicture** | **string** |  | [default to undefined]
+**coverPhoto** | **string** |  | [default to undefined]
 **email** | **string** |  | [default to undefined]
 **password** | **string** |  | [default to undefined]
 **role** | **string** |  | [default to undefined]
@@ -20,6 +23,9 @@ import { User } from './api';
 const instance: User = {
     id,
     username,
+    bio,
+    profilePicture,
+    coverPhoto,
     email,
     password,
     role,

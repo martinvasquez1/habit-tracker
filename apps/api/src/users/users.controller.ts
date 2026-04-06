@@ -55,7 +55,7 @@ export class UsersController {
     { name: 'profilePicture', maxCount: 1 },
     { name: 'coverPhoto', maxCount: 1 },
   ]))
-  @ApiOperation({ operationId: 'createUser' })
+  @ApiOperation({ operationId: 'updateUser' })
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,

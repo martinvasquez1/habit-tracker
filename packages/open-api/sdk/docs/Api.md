@@ -7,7 +7,6 @@ All URIs are relative to *http://localhost*
 |[**appControllerGetHello**](#appcontrollergethello) | **GET** / | |
 |[**createHabit**](#createhabit) | **POST** /habits | |
 |[**createLog**](#createlog) | **POST** /habits/{habitId}/logs | |
-|[**createUser**](#createuser) | **PATCH** /users/{id} | |
 |[**deleteHabit**](#deletehabit) | **DELETE** /habits/{id} | |
 |[**deleteLog**](#deletelog) | **DELETE** /habits/{habitId}/logs/{logId} | |
 |[**deleteUser**](#deleteuser) | **DELETE** /users/{id} | |
@@ -24,6 +23,7 @@ All URIs are relative to *http://localhost*
 |[**signUpAdmin**](#signupadmin) | **POST** /auth/sign-up/admin | |
 |[**updateHabit**](#updatehabit) | **PATCH** /habits/{id} | |
 |[**updateLog**](#updatelog) | **PATCH** /habits/{habitId}/logs/{logId} | |
+|[**updateUser**](#updateuser) | **PATCH** /users/{id} | |
 
 # **appControllerGetHello**
 > string appControllerGetHello()
@@ -172,61 +172,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**201** |  |  -  |
-|**500** | Internal server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **createUser**
-> UpdateUserResponse createUser(updateUserDto)
-
-
-### Example
-
-```typescript
-import {
-    Api,
-    Configuration,
-    UpdateUserDto
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new Api(configuration);
-
-let id: number; // (default to undefined)
-let updateUserDto: UpdateUserDto; //
-
-const { status, data } = await apiInstance.createUser(
-    id,
-    updateUserDto
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **updateUserDto** | **UpdateUserDto**|  | |
-| **id** | [**number**] |  | defaults to undefined|
-
-
-### Return type
-
-**UpdateUserResponse**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** |  |  -  |
 |**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1066,6 +1011,61 @@ const { status, data } = await apiInstance.updateLog(
 ### Return type
 
 **Log**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** |  |  -  |
+|**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateUser**
+> UpdateUserResponse updateUser(updateUserDto)
+
+
+### Example
+
+```typescript
+import {
+    Api,
+    Configuration,
+    UpdateUserDto
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new Api(configuration);
+
+let id: number; // (default to undefined)
+let updateUserDto: UpdateUserDto; //
+
+const { status, data } = await apiInstance.updateUser(
+    id,
+    updateUserDto
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **updateUserDto** | **UpdateUserDto**|  | |
+| **id** | [**number**] |  | defaults to undefined|
+
+
+### Return type
+
+**UpdateUserResponse**
 
 ### Authorization
 

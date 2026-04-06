@@ -166,45 +166,6 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
         /**
          * 
          * @summary 
-         * @param {number} id 
-         * @param {UpdateUserDto} updateUserDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createUser: async (id: number, updateUserDto: UpdateUserDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('createUser', 'id', id)
-            // verify required parameter 'updateUserDto' is not null or undefined
-            assertParamExists('createUser', 'updateUserDto', updateUserDto)
-            const localVarPath = `/users/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateUserDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -818,6 +779,45 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary 
+         * @param {number} id 
+         * @param {UpdateUserDto} updateUserDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateUser: async (id: number, updateUserDto: UpdateUserDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateUser', 'id', id)
+            // verify required parameter 'updateUserDto' is not null or undefined
+            assertParamExists('updateUser', 'updateUserDto', updateUserDto)
+            const localVarPath = `/users/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateUserDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -863,20 +863,6 @@ export const ApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createLog(habitId, createLogDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Api.createLog']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary 
-         * @param {number} id 
-         * @param {UpdateUserDto} updateUserDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createUser(id: number, updateUserDto: UpdateUserDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateUserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createUser(id, updateUserDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['Api.createUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1098,6 +1084,20 @@ export const ApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['Api.updateLog']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * 
+         * @summary 
+         * @param {number} id 
+         * @param {UpdateUserDto} updateUserDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateUser(id: number, updateUserDto: UpdateUserDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateUserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(id, updateUserDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['Api.updateUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -1134,16 +1134,6 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
          */
         createLog(requestParameters: ApiCreateLogRequest, options?: RawAxiosRequestConfig): AxiosPromise<Log> {
             return localVarFp.createLog(requestParameters.habitId, requestParameters.createLogDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 
-         * @param {ApiCreateUserRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createUser(requestParameters: ApiCreateUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<UpdateUserResponse> {
-            return localVarFp.createUser(requestParameters.id, requestParameters.updateUserDto, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1304,6 +1294,16 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
         updateLog(requestParameters: ApiUpdateLogRequest, options?: RawAxiosRequestConfig): AxiosPromise<Log> {
             return localVarFp.updateLog(requestParameters.habitId, requestParameters.logId, requestParameters.updateLogDto, options).then((request) => request(axios, basePath));
         },
+        /**
+         * 
+         * @summary 
+         * @param {ApiUpdateUserRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateUser(requestParameters: ApiUpdateUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<UpdateUserResponse> {
+            return localVarFp.updateUser(requestParameters.id, requestParameters.updateUserDto, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -1321,15 +1321,6 @@ export interface ApiCreateLogRequest {
     readonly habitId: number
 
     readonly createLogDto: CreateLogDto
-}
-
-/**
- * Request parameters for createUser operation in Api.
- */
-export interface ApiCreateUserRequest {
-    readonly id: number
-
-    readonly updateUserDto: UpdateUserDto
 }
 
 /**
@@ -1480,6 +1471,15 @@ export interface ApiUpdateLogRequest {
 }
 
 /**
+ * Request parameters for updateUser operation in Api.
+ */
+export interface ApiUpdateUserRequest {
+    readonly id: number
+
+    readonly updateUserDto: UpdateUserDto
+}
+
+/**
  * Api - object-oriented interface
  */
 export class Api extends BaseAPI {
@@ -1512,17 +1512,6 @@ export class Api extends BaseAPI {
      */
     public createLog(requestParameters: ApiCreateLogRequest, options?: RawAxiosRequestConfig) {
         return ApiFp(this.configuration).createLog(requestParameters.habitId, requestParameters.createLogDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 
-     * @param {ApiCreateUserRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public createUser(requestParameters: ApiCreateUserRequest, options?: RawAxiosRequestConfig) {
-        return ApiFp(this.configuration).createUser(requestParameters.id, requestParameters.updateUserDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1698,6 +1687,17 @@ export class Api extends BaseAPI {
      */
     public updateLog(requestParameters: ApiUpdateLogRequest, options?: RawAxiosRequestConfig) {
         return ApiFp(this.configuration).updateLog(requestParameters.habitId, requestParameters.logId, requestParameters.updateLogDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 
+     * @param {ApiUpdateUserRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public updateUser(requestParameters: ApiUpdateUserRequest, options?: RawAxiosRequestConfig) {
+        return ApiFp(this.configuration).updateUser(requestParameters.id, requestParameters.updateUserDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

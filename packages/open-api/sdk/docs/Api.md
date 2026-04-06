@@ -177,7 +177,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createUser**
-> User createUser(body)
+> UpdateUserResponse createUser(updateUserDto)
 
 
 ### Example
@@ -185,18 +185,19 @@ No authorization required
 ```typescript
 import {
     Api,
-    Configuration
+    Configuration,
+    UpdateUserDto
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new Api(configuration);
 
 let id: number; // (default to undefined)
-let body: object; //
+let updateUserDto: UpdateUserDto; //
 
 const { status, data } = await apiInstance.createUser(
     id,
-    body
+    updateUserDto
 );
 ```
 
@@ -204,13 +205,13 @@ const { status, data } = await apiInstance.createUser(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **body** | **object**|  | |
+| **updateUserDto** | **UpdateUserDto**|  | |
 | **id** | [**number**] |  | defaults to undefined|
 
 
 ### Return type
 
-**User**
+**UpdateUserResponse**
 
 ### Authorization
 

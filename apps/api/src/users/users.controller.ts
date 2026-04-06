@@ -7,7 +7,9 @@ import {
   ParseIntPipe,
   Patch,
   Query,
+  UploadedFiles,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 
@@ -23,10 +25,12 @@ import { ReadUserPolicy } from './policies/read-user-policy';
 import { UpdateUserPolicy } from './policies/update-user-policy';
 import { DeleteUserPolicy } from './policies/delete-user-policy';
 import { ApiOperation } from '@nestjs/swagger';
+import { UpdateUserResponse } from './dto/update-user-response';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   @Get()
   @UseGuards(PolicyGuard)
@@ -47,11 +51,16 @@ export class UsersController {
   @Patch(':id')
   @UseGuards(PolicyGuard)
   @CheckPolicies(UpdateUserPolicy)
+  @UseInterceptors(FileFieldsInterceptor([
+    { name: 'profilePicture', maxCount: 1 },
+    { name: 'coverPhoto', maxCount: 1 },
+  ]))
   @ApiOperation({ operationId: 'createUser' })
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,
-  ) {
+    @UploadedFiles() files: { profilePicture?: Express.Multer.File[], coverPhoto?: Express.Multer.File[] }
+  ): Promise<UpdateUserResponse> {
     return this.usersService.update(+id, updateUserDto);
   }
 

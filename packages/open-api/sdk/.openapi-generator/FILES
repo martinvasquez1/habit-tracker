@@ -21,6 +21,8 @@ docs/SignUpDto.md
 docs/SignUpResponseDto.md
 docs/UpdateHabitDto.md
 docs/UpdateLogDto.md
+docs/UpdateUserDto.md
+docs/UpdateUserResponse.md
 docs/User.md
 git_push.sh
 index.ts
@@ -39,4 +41,6 @@ models/sign-up-dto.ts
 models/sign-up-response-dto.ts
 models/update-habit-dto.ts
 models/update-log-dto.ts
+models/update-user-dto.ts
+models/update-user-response.ts
 models/user.ts

@@ -150,7 +150,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UpdateUserResponse"
                 }
               }
             }
@@ -1123,7 +1123,39 @@
       },
       "UpdateUserDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "profilePicture": {
+            "type": "string",
+            "format": "binary",
+            "description": "Profile picture file"
+          },
+          "coverPhoto": {
+            "type": "string",
+            "format": "binary",
+            "description": "Cover photo file"
+          },
+          "bio": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "bio"
+        ]
+      },
+      "UpdateUserResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
       },
       "BadRequestResponseDto": {
         "type": "object",

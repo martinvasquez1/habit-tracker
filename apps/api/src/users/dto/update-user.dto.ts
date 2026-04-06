@@ -1,4 +1,15 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateUserDto } from './create-user.dto';
+import { IsString } from 'class-validator';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
-export class UpdateUserDto extends PartialType(CreateUserDto) {}
+export class UpdateUserDto extends PartialType(CreateUserDto) {
+  @IsString()
+  bio: string;
+
+  @ApiPropertyOptional({ type: 'string', format: 'binary', description: 'Profile picture file' })
+  profilePicture?: any;
+
+  @ApiPropertyOptional({ type: 'string', format: 'binary', description: 'Cover photo file' })
+  coverPhoto?: any;
+}

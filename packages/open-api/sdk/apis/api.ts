@@ -50,6 +50,10 @@ import type { UpdateHabitDto } from '../models';
 // @ts-ignore
 import type { UpdateLogDto } from '../models';
 // @ts-ignore
+import type { UpdateUserDto } from '../models';
+// @ts-ignore
+import type { UpdateUserResponse } from '../models';
+// @ts-ignore
 import type { User } from '../models';
 /**
  * Api - axios parameter creator
@@ -163,15 +167,15 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
          * 
          * @summary 
          * @param {number} id 
-         * @param {object} body 
+         * @param {UpdateUserDto} updateUserDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createUser: async (id: number, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createUser: async (id: number, updateUserDto: UpdateUserDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('createUser', 'id', id)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('createUser', 'body', body)
+            // verify required parameter 'updateUserDto' is not null or undefined
+            assertParamExists('createUser', 'updateUserDto', updateUserDto)
             const localVarPath = `/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -191,7 +195,7 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateUserDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -865,12 +869,12 @@ export const ApiFp = function(configuration?: Configuration) {
          * 
          * @summary 
          * @param {number} id 
-         * @param {object} body 
+         * @param {UpdateUserDto} updateUserDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createUser(id: number, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createUser(id, body, options);
+        async createUser(id: number, updateUserDto: UpdateUserDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateUserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createUser(id, updateUserDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Api.createUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1138,8 +1142,8 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createUser(requestParameters: ApiCreateUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<User> {
-            return localVarFp.createUser(requestParameters.id, requestParameters.body, options).then((request) => request(axios, basePath));
+        createUser(requestParameters: ApiCreateUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<UpdateUserResponse> {
+            return localVarFp.createUser(requestParameters.id, requestParameters.updateUserDto, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1325,7 +1329,7 @@ export interface ApiCreateLogRequest {
 export interface ApiCreateUserRequest {
     readonly id: number
 
-    readonly body: object
+    readonly updateUserDto: UpdateUserDto
 }
 
 /**
@@ -1518,7 +1522,7 @@ export class Api extends BaseAPI {
      * @throws {RequiredError}
      */
     public createUser(requestParameters: ApiCreateUserRequest, options?: RawAxiosRequestConfig) {
-        return ApiFp(this.configuration).createUser(requestParameters.id, requestParameters.body, options).then((request) => request(this.axios, this.basePath));
+        return ApiFp(this.configuration).createUser(requestParameters.id, requestParameters.updateUserDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

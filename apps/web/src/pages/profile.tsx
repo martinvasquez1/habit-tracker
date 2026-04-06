@@ -51,7 +51,7 @@ export default function Profile() {
                         {data.bio ? data.bio : <div className="text-card-foreground/40">No biography.</div>}
                     </div>
                 </div>
-                <div><UpdateProfile /></div>
+                <div><UpdateProfile user={data} /></div>
             </div>
         </Card>
     )

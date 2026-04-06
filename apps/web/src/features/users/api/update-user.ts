@@ -15,12 +15,14 @@ const updateUserSchema = z.object({
         .instanceof(File)
         .refine(file => file.size <= MAX_SIZE, {
             message: "File too large (max 2MB)"
-        }),
+        })
+        .optional(),
     coverPhoto: z
         .instanceof(File)
         .refine(file => file.size <= MAX_SIZE, {
             message: "File too large (max 2MB)"
-        }),
+        })
+        .optional(),
 });
 
 export const useUpdateUserForm = (defaultValues: User | undefined) => {
@@ -28,7 +30,7 @@ export const useUpdateUserForm = (defaultValues: User | undefined) => {
         resolver: zodResolver(updateUserSchema),
         defaultValues: {
             username: defaultValues?.username,
-            bio: defaultValues?.bio,
+            bio: defaultValues?.bio ?? '',
         },
     });
 };
@@ -46,7 +48,7 @@ export function useUpdateUser(id: number) {
   const mutation = useMutation({
     mutationFn: updateUser,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user", id] });
+      queryClient.invalidateQueries({ queryKey: ["users", id] });
     },
   });
 

@@ -15,7 +15,7 @@ import Error from "@/components/error";
 
 function ProfilePicture() {
     return (
-        <div className="absolute left-8 -bottom-10">
+        <div className="absolute left-6 -bottom-10">
             <div className="size-24 rounded-full overflow-hidden">
                 <Avatar className="w-full h-full border-4 border-card">
                     <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -48,8 +48,10 @@ export default function Profile() {
             </div>
             <div className="flex flex-row gap-4 pt-7 px-6">
                 <div className="flex-1">
-                    <h1 className="text-2xl font-bold">{data?.username}</h1>
-                    <div className="max-w-sm line-clamp-3 pt-2">{data?.bio}</div>
+                    <h1 className="text-2xl font-bold">{data.username}</h1>
+                    <div className="max-w-sm line-clamp-3 pt-2">
+                        {data.bio ? data.bio : <div className="text-card-foreground/40">No biography.</div>}
+                    </div>
                 </div>
                 <div>
                     <Button

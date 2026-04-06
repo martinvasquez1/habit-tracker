@@ -3,15 +3,13 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
-import IconWrapper from "@/components/icon-wrapper";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card"
 
-import { LuPencil } from "react-icons/lu";
 import { jwtDecode } from "jwt-decode";
 import { useUser } from "@/features/users/api/get-user";
 import { Spinner } from "@/components/ui/spinner";
 import Error from "@/components/error";
+import { UpdateProfile } from "@/features/users/components/update-profile";
 
 function ProfilePicture() {
     return (
@@ -53,16 +51,7 @@ export default function Profile() {
                         {data.bio ? data.bio : <div className="text-card-foreground/40">No biography.</div>}
                     </div>
                 </div>
-                <div>
-                    <Button
-                        type="button"
-                        size="icon"
-                        variant="outline"
-                    /* onClick={() => setShowUnarchived((prev) => !prev)} */
-                    >
-                        <IconWrapper icon={<LuPencil />} />
-                    </Button>
-                </div>
+                <div><UpdateProfile /></div>
             </div>
         </Card>
     )

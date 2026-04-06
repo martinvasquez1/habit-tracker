@@ -1031,7 +1031,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateUser**
-> UpdateUserResponse updateUser(updateUserDto)
+> User updateUser(updateUserDto)
 
 
 ### Example
@@ -1065,7 +1065,7 @@ const { status, data } = await apiInstance.updateUser(
 
 ### Return type
 
-**UpdateUserResponse**
+**User**
 
 ### Authorization
 

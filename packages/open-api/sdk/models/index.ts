@@ -13,5 +13,4 @@ export * from './sign-up-response-dto';
 export * from './update-habit-dto';
 export * from './update-log-dto';
 export * from './update-user-dto';
-export * from './update-user-response';
 export * from './user';

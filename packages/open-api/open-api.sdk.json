@@ -150,7 +150,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateUserResponse"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -1136,15 +1136,7 @@
           },
           "bio": {
             "type": "string"
-          }
-        },
-        "required": [
-          "bio"
-        ]
-      },
-      "UpdateUserResponse": {
-        "type": "object",
-        "properties": {
+          },
           "username": {
             "type": "string"
           },

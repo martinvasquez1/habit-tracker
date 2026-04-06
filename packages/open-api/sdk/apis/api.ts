@@ -52,8 +52,6 @@ import type { UpdateLogDto } from '../models';
 // @ts-ignore
 import type { UpdateUserDto } from '../models';
 // @ts-ignore
-import type { UpdateUserResponse } from '../models';
-// @ts-ignore
 import type { User } from '../models';
 /**
  * Api - axios parameter creator
@@ -1092,7 +1090,7 @@ export const ApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateUser(id: number, updateUserDto: UpdateUserDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateUserResponse>> {
+        async updateUser(id: number, updateUserDto: UpdateUserDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(id, updateUserDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Api.updateUser']?.[localVarOperationServerIndex]?.url;
@@ -1301,7 +1299,7 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUser(requestParameters: ApiUpdateUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<UpdateUserResponse> {
+        updateUser(requestParameters: ApiUpdateUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<User> {
             return localVarFp.updateUser(requestParameters.id, requestParameters.updateUserDto, options).then((request) => request(axios, basePath));
         },
     };

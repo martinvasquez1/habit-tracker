@@ -23,6 +23,9 @@ export interface UpdateUserDto {
      * Cover photo file
      */
     'coverPhoto'?: File;
-    'bio': string;
+    'bio'?: string;
+    'username'?: string;
+    'email'?: string;
+    'password'?: string;
 }
 

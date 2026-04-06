@@ -7,7 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **profilePicture** | **File** | Profile picture file | [optional] [default to undefined]
 **coverPhoto** | **File** | Cover photo file | [optional] [default to undefined]
-**bio** | **string** |  | [default to undefined]
+**bio** | **string** |  | [optional] [default to undefined]
+**username** | **string** |  | [optional] [default to undefined]
+**email** | **string** |  | [optional] [default to undefined]
+**password** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -18,6 +21,9 @@ const instance: UpdateUserDto = {
     profilePicture,
     coverPhoto,
     bio,
+    username,
+    email,
+    password,
 };
 ```
 

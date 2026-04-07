@@ -97,12 +97,12 @@ export function UpdateProfile({ user }: UpdateProfileProps) {
                                     id="profilePicture"
                                     type="file"
                                     accept="image/*"
-                                    aria-invalid={fieldState.invalid}
-                                    ref={field.ref}
                                     onChange={(e) => {
                                         const file = e.target.files?.[0];
                                         field.onChange(file);
                                     }}
+                                    onSubmit={() => field.value = undefined}
+                                    aria-invalid={fieldState.invalid}
                                     className="p-2"
                                 />
                                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}

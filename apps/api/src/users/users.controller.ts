@@ -30,6 +30,8 @@ import { ApiConsumes, ApiOperation } from '@nestjs/swagger';
 import { UpdateUserResponse } from './dto/update-user-response';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { MultiFileValidationPipe } from 'src/common/pipes/multi-file-validation-pipe';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
 
 @Controller('users')
 export class UsersController {
@@ -54,7 +56,24 @@ export class UsersController {
   @Patch(':id')
   @UseGuards(PolicyGuard)
   @CheckPolicies(UpdateUserPolicy)
-  @UseInterceptors(FileFieldsInterceptor([{ name: 'profilePicture', maxCount: 1 }, { name: 'coverPhoto', maxCount: 1 }]),)
+  @UseInterceptors(
+    FileFieldsInterceptor(
+      [
+        { name: 'profilePicture', maxCount: 1 },
+        { name: 'coverPhoto', maxCount: 1 },
+      ],
+      {
+        storage: diskStorage({
+          destination: './uploads/users',
+          filename: (req, file, cb) => {
+            const unique = Date.now();
+            const name = `${file.fieldname}-${unique}${extname(file.originalname)}`
+            cb(null, name);
+          },
+        }),
+      },
+    ),
+  )
   @ApiConsumes('multipart/form-data')
   @ApiOperation({ operationId: 'updateUser' })
   async update(
@@ -66,6 +85,9 @@ export class UsersController {
     ]))
     files: { profilePicture?: Express.Multer.File[], coverPhoto?: Express.Multer.File[] }
   ): Promise<UpdateUserResponse> {
+
+    console.log(files)
+
     return this.usersService.update(+id, updateUserDto);
   }
 

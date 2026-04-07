@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import typeOrmConfig from './config/type-orm.config';
@@ -20,6 +23,10 @@ import { StatsModule } from './stats/stats.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+    }),
     TypeOrmModule.forRoot(typeOrmConfig()),
     ThrottlerModule.forRoot(throttlerConfig()),
     UsersModule,
@@ -38,4 +45,4 @@ import { StatsModule } from './stats/stats.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }

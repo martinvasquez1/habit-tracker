@@ -11,6 +11,7 @@ DB_URL="your_url"
 JWT_SECRET="shhh..."
 ORIGIN="your_allowed_origin"
 CREATE_ADMIN_PASSWORD=123
+APP_URL=http://localhost:3000
 ```
 
 Testcontainers

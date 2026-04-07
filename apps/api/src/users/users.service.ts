@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { UsersRepository } from './users.repository';
 import { User, UserRole } from './entities/user.entity';
 
+import { ConfigService } from '@nestjs/config';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto, UpdateUserDtoWithPaths } from './dto/update-user.dto';
 import { PaginateOptionsDto } from 'src/common/paginate/dto/paginate-options.dto';
@@ -16,7 +17,14 @@ import paginate from 'src/common/paginate/paginate';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly usersRepository: UsersRepository) {}
+  constructor(private readonly usersRepository: UsersRepository,
+    private readonly configService: ConfigService,
+  ) { }
+
+  buildFileUrl(filename: string): string {
+    const baseUrl = this.configService.get('APP_URL');
+    return `${baseUrl}/uploads/users/${filename}`;
+  }
 
   async create(createUserDto: CreateUserDto, role?: UserRole): Promise<User> {
     const { username, email } = createUserDto;
@@ -55,7 +63,12 @@ export class UsersService {
   async findOne(id: number): Promise<User> {
     const user = await this.usersRepository.findOne(id);
     if (!user) throw new NotFoundException(`User with ID ${id} not found`);
-    return user;
+
+    return {
+      ...user,
+      profilePicture: user.profilePicture ? this.buildFileUrl(user.profilePicture) : null,
+      coverPhoto: user.coverPhoto ? this.buildFileUrl(user.coverPhoto) : null
+    };
   }
 
   async findByEmail(email: string): Promise<User> {

@@ -24,10 +24,10 @@ export class User {
   bio: string;
 
   @Column({ nullable: true })
-  profilePicture: string;
+  profilePicture: string | null;
 
   @Column({ nullable: true })
-  coverPhoto: string;
+  coverPhoto: string | null;
 
   @Column({ unique: true })
   email: string;

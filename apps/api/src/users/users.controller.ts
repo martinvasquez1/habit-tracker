@@ -15,7 +15,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserDto, UpdateUserDtoWithPaths } from './dto/update-user.dto';
 
 import { User } from './entities/user.entity';
 import { PaginateOptionsDto } from 'src/common/paginate/dto/paginate-options.dto';
@@ -85,10 +85,13 @@ export class UsersController {
     ]))
     files: { profilePicture?: Express.Multer.File[], coverPhoto?: Express.Multer.File[] }
   ): Promise<UpdateUserResponse> {
+    const dto: UpdateUserDtoWithPaths = {
+      ...updateUserDto,
+      profilePicture: files?.profilePicture?.[0].path,
+      coverPhoto: files?.coverPhoto?.[0].path,
+    }
 
-    console.log(files)
-
-    return this.usersService.update(+id, updateUserDto);
+    return this.usersService.update(+id, dto);
   }
 
   @Delete(':id')

@@ -13,3 +13,8 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   @ApiPropertyOptional({ type: 'string', format: 'binary', description: 'Cover photo file' })
   coverPhoto?: any;
 }
+
+export class UpdateUserDtoWithPaths extends UpdateUserDto {
+  profilePicturePath?: string;
+  coverPhotoPath?: string;
+}

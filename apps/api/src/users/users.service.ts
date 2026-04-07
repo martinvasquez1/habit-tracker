@@ -9,7 +9,7 @@ import { UsersRepository } from './users.repository';
 import { User, UserRole } from './entities/user.entity';
 
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserDto, UpdateUserDtoWithPaths } from './dto/update-user.dto';
 import { PaginateOptionsDto } from 'src/common/paginate/dto/paginate-options.dto';
 
 import paginate from 'src/common/paginate/paginate';
@@ -64,7 +64,7 @@ export class UsersService {
     return user;
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(id: number, updateUserDto: UpdateUserDtoWithPaths): Promise<User> {
     const user = await this.usersRepository.findOne(id);
     if (!user) throw new NotFoundException(`User with ID ${id} not found`);
 

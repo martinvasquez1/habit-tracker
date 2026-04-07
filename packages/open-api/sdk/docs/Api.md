@@ -1031,7 +1031,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateUser**
-> User updateUser(updateUserDto)
+> User updateUser()
 
 
 ### Example
@@ -1039,19 +1039,28 @@ No authorization required
 ```typescript
 import {
     Api,
-    Configuration,
-    UpdateUserDto
+    Configuration
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new Api(configuration);
 
 let id: number; // (default to undefined)
-let updateUserDto: UpdateUserDto; //
+let profilePicture: File; //Profile picture file (optional) (default to undefined)
+let coverPhoto: File; //Cover photo file (optional) (default to undefined)
+let bio: string; // (optional) (default to undefined)
+let username: string; // (optional) (default to undefined)
+let email: string; // (optional) (default to undefined)
+let password: string; // (optional) (default to undefined)
 
 const { status, data } = await apiInstance.updateUser(
     id,
-    updateUserDto
+    profilePicture,
+    coverPhoto,
+    bio,
+    username,
+    email,
+    password
 );
 ```
 
@@ -1059,8 +1068,13 @@ const { status, data } = await apiInstance.updateUser(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **updateUserDto** | **UpdateUserDto**|  | |
 | **id** | [**number**] |  | defaults to undefined|
+| **profilePicture** | [**File**] | Profile picture file | (optional) defaults to undefined|
+| **coverPhoto** | [**File**] | Cover photo file | (optional) defaults to undefined|
+| **bio** | [**string**] |  | (optional) defaults to undefined|
+| **username** | [**string**] |  | (optional) defaults to undefined|
+| **email** | [**string**] |  | (optional) defaults to undefined|
+| **password** | [**string**] |  | (optional) defaults to undefined|
 
 
 ### Return type
@@ -1073,7 +1087,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 

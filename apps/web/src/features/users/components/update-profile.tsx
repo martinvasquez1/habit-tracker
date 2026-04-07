@@ -27,7 +27,7 @@ export function UpdateProfile({ user }: UpdateProfileProps) {
     const { mutate, isSuccess, isPending } = useUpdateUser(user.id);
 
     function onSubmit(values: UpdateUserInput) {
-        mutate({ id: user.id, updateUserDto: values });
+        mutate({ id: user.id, ...values });
     }
 
     return (

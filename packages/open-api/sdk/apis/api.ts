@@ -50,8 +50,6 @@ import type { UpdateHabitDto } from '../models';
 // @ts-ignore
 import type { UpdateLogDto } from '../models';
 // @ts-ignore
-import type { UpdateUserDto } from '../models';
-// @ts-ignore
 import type { User } from '../models';
 /**
  * Api - axios parameter creator
@@ -781,15 +779,18 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
          * 
          * @summary 
          * @param {number} id 
-         * @param {UpdateUserDto} updateUserDto 
+         * @param {File} [profilePicture] Profile picture file
+         * @param {File} [coverPhoto] Cover photo file
+         * @param {string} [bio] 
+         * @param {string} [username] 
+         * @param {string} [email] 
+         * @param {string} [password] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUser: async (id: number, updateUserDto: UpdateUserDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateUser: async (id: number, profilePicture?: File, coverPhoto?: File, bio?: string, username?: string, email?: string, password?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateUser', 'id', id)
-            // verify required parameter 'updateUserDto' is not null or undefined
-            assertParamExists('updateUser', 'updateUserDto', updateUserDto)
             const localVarPath = `/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -802,14 +803,39 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
             const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            if (profilePicture !== undefined) { 
+                localVarFormParams.append('profilePicture', profilePicture as any);
+            }
+
+            if (coverPhoto !== undefined) { 
+                localVarFormParams.append('coverPhoto', coverPhoto as any);
+            }
+
+            if (bio !== undefined) { 
+                localVarFormParams.append('bio', bio as any);
+            }
+
+            if (username !== undefined) { 
+                localVarFormParams.append('username', username as any);
+            }
+
+            if (email !== undefined) { 
+                localVarFormParams.append('email', email as any);
+            }
+
+            if (password !== undefined) { 
+                localVarFormParams.append('password', password as any);
+            }
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateUserDto, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1086,12 +1112,17 @@ export const ApiFp = function(configuration?: Configuration) {
          * 
          * @summary 
          * @param {number} id 
-         * @param {UpdateUserDto} updateUserDto 
+         * @param {File} [profilePicture] Profile picture file
+         * @param {File} [coverPhoto] Cover photo file
+         * @param {string} [bio] 
+         * @param {string} [username] 
+         * @param {string} [email] 
+         * @param {string} [password] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateUser(id: number, updateUserDto: UpdateUserDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(id, updateUserDto, options);
+        async updateUser(id: number, profilePicture?: File, coverPhoto?: File, bio?: string, username?: string, email?: string, password?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(id, profilePicture, coverPhoto, bio, username, email, password, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Api.updateUser']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1300,7 +1331,7 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
          * @throws {RequiredError}
          */
         updateUser(requestParameters: ApiUpdateUserRequest, options?: RawAxiosRequestConfig): AxiosPromise<User> {
-            return localVarFp.updateUser(requestParameters.id, requestParameters.updateUserDto, options).then((request) => request(axios, basePath));
+            return localVarFp.updateUser(requestParameters.id, requestParameters.profilePicture, requestParameters.coverPhoto, requestParameters.bio, requestParameters.username, requestParameters.email, requestParameters.password, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1474,7 +1505,23 @@ export interface ApiUpdateLogRequest {
 export interface ApiUpdateUserRequest {
     readonly id: number
 
-    readonly updateUserDto: UpdateUserDto
+    /**
+     * Profile picture file
+     */
+    readonly profilePicture?: File
+
+    /**
+     * Cover photo file
+     */
+    readonly coverPhoto?: File
+
+    readonly bio?: string
+
+    readonly username?: string
+
+    readonly email?: string
+
+    readonly password?: string
 }
 
 /**
@@ -1695,7 +1742,7 @@ export class Api extends BaseAPI {
      * @throws {RequiredError}
      */
     public updateUser(requestParameters: ApiUpdateUserRequest, options?: RawAxiosRequestConfig) {
-        return ApiFp(this.configuration).updateUser(requestParameters.id, requestParameters.updateUserDto, options).then((request) => request(this.axios, this.basePath));
+        return ApiFp(this.configuration).updateUser(requestParameters.id, requestParameters.profilePicture, requestParameters.coverPhoto, requestParameters.bio, requestParameters.username, requestParameters.email, requestParameters.password, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

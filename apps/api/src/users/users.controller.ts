@@ -2,7 +2,9 @@ import {
   Body,
   Controller,
   Delete,
+  FileTypeValidator,
   Get,
+  MaxFileSizeValidator,
   Param,
   ParseIntPipe,
   Patch,
@@ -24,9 +26,10 @@ import { ReadAllUsersPolicy } from './policies/read-all-users-policy';
 import { ReadUserPolicy } from './policies/read-user-policy';
 import { UpdateUserPolicy } from './policies/update-user-policy';
 import { DeleteUserPolicy } from './policies/delete-user-policy';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiConsumes, ApiOperation } from '@nestjs/swagger';
 import { UpdateUserResponse } from './dto/update-user-response';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import { MultiFileValidationPipe } from 'src/common/pipes/multi-file-validation-pipe';
 
 @Controller('users')
 export class UsersController {
@@ -51,15 +54,17 @@ export class UsersController {
   @Patch(':id')
   @UseGuards(PolicyGuard)
   @CheckPolicies(UpdateUserPolicy)
-  @UseInterceptors(FileFieldsInterceptor([
-    { name: 'profilePicture', maxCount: 1 },
-    { name: 'coverPhoto', maxCount: 1 },
-  ]))
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'profilePicture', maxCount: 1 }, { name: 'coverPhoto', maxCount: 1 }]),)
+  @ApiConsumes('multipart/form-data')
   @ApiOperation({ operationId: 'updateUser' })
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,
-    @UploadedFiles() files: { profilePicture?: Express.Multer.File[], coverPhoto?: Express.Multer.File[] }
+    @UploadedFiles(new MultiFileValidationPipe([
+      new FileTypeValidator({ fileType: /^image\/(png|jpeg)$/ }),
+      new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
+    ]))
+    files: { profilePicture?: Express.Multer.File[], coverPhoto?: Express.Multer.File[] }
   ): Promise<UpdateUserResponse> {
     return this.usersService.update(+id, updateUserDto);
   }

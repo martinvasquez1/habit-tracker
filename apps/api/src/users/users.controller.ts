@@ -37,14 +37,6 @@ import { extname } from 'path';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @Get()
-  @UseGuards(PolicyGuard)
-  @CheckPolicies(ReadAllUsersPolicy)
-  @ApiOperation({ operationId: 'getUsers' })
-  async findAll(@Query() options: PaginateOptionsDto<User>) {
-    return this.usersService.findAll(options);
-  }
-
   @Get(':id')
   @UseGuards(PolicyGuard)
   @CheckPolicies(ReadUserPolicy)

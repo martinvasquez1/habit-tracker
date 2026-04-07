@@ -19,19 +19,6 @@ export class UsersRepository {
     return savedUser;
   }
 
-  async findAll(
-    filter: Partial<User>,
-    startIndex: number,
-    limit: number,
-  ): Promise<[User[], number]> {
-    const [items, totalCount] = await this.ORM.findAndCount({
-      where: filter,
-      skip: startIndex,
-      take: limit,
-    });
-    return [items, totalCount];
-  }
-
   async findOne(id: number) {
     return await this.ORM.findOneBy({ id });
   }

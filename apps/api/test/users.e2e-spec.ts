@@ -62,19 +62,6 @@ describe('/users', () => {
     expect(module).toBeDefined();
   });
 
-  describe('GET /users', () => {
-    it('should return paginated users for admin', async () => {
-      const { body } = await request(app.getHttpServer())
-        .get('/users')
-        .set('Authorization', `Bearer ${adminToken}`)
-        .expect(200);
-
-      expect(body.results).toEqual([admin]);
-      expect(body.results.length).toBe(1);
-      expect(body.totalPages).toBe(1);
-    });
-  });
-
   describe('GET /users/:id', () => {
     it('should return a user by id', async () => {
       const { body } = await request(app.getHttpServer())

@@ -56,20 +56,6 @@ describe('UsersController', () => {
     expect(controller).toBeDefined();
   });
 
-  describe('findAll', () => {
-    it('should return all users', async () => {
-      const options: PaginateOptionsDto<User> = { page: 1, limit: 10 };
-      const mockResponse = [mockUser];
-      mockService.findAll.mockResolvedValue(mockResponse);
-
-      const result = await controller.findAll(options);
-
-      expect(mockService.findAll).toHaveBeenCalledWith(options);
-      expect(mockService.findAll).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockResponse);
-    });
-  });
-
   describe('findOne', () => {
     it('should return user by id', async () => {
       mockService.findOne.mockResolvedValue(mockUser);

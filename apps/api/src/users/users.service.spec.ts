@@ -102,23 +102,6 @@ describe('UsersService', () => {
     });
   });
 
-  describe('findAll', () => {
-    const mockPaginatedResult: PaginateResultDto<User> = {
-      results: [mockUser],
-      totalPages: 1,
-    };
-
-    it('should return paginated users', async () => {
-      usersRepository.findAll.mockResolvedValue([[mockUser], 1]);
-      mockedPaginate.mockResolvedValue(mockPaginatedResult);
-
-      const options: PaginateOptionsDto<User> = {};
-      const result = await service.findAll(options);
-
-      expect(result).toEqual(mockPaginatedResult);
-    });
-  });
-
   describe('findOne', () => {
     it('should return a user by id', async () => {
       usersRepository.findOne.mockResolvedValue(mockUser);

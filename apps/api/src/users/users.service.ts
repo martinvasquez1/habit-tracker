@@ -46,20 +46,6 @@ export class UsersService {
     return user;
   }
 
-  async findAll(options: PaginateOptionsDto<User>) {
-    const { page = 1, limit = 10, filter = {} } = options;
-
-    const startIndex = (page - 1) * limit;
-    const [users, totalCount] = await this.usersRepository.findAll(
-      filter,
-      startIndex,
-      limit,
-    );
-    const paginatedUsers = paginate(users, totalCount, options);
-
-    return paginatedUsers;
-  }
-
   async findOne(id: number): Promise<User> {
     const user = await this.usersRepository.findOne(id);
     if (!user) throw new NotFoundException(`User with ID ${id} not found`);

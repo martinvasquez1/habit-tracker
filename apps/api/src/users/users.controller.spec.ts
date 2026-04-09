@@ -80,12 +80,25 @@ describe('UsersController', () => {
     const files = {}
 
     it('should update user by id', async () => {
-      mockService.update.mockResolvedValue({ ...mockUser, ...updateDto });
-      const result = await controller.update(1, updateDto, files);
+      const expectedPayload = {
+        ...updateDto,
+        profilePicture: null,
+        coverPhoto: null,
+      };
 
-      expect(mockService.update).toHaveBeenCalledWith(1, updateDto);
+      mockService.update.mockResolvedValue({
+        ...mockUser,
+        ...expectedPayload,
+      });
+
+      const result = await controller.update(1, updateDto);
+
+      expect(mockService.update).toHaveBeenCalledWith(1, expectedPayload);
       expect(mockService.update).toHaveBeenCalledTimes(1);
-      expect(result).toEqual({ ...mockUser, ...updateDto });
+      expect(result).toEqual({
+        ...mockUser,
+        ...expectedPayload,
+      });
     });
 
     it('should propagate errors', async () => {

@@ -80,12 +80,12 @@ export class UsersController {
       new FileTypeValidator({ fileType: /^image\/(png|jpeg)$/ }),
       new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
     ]))
-    files: { profilePicture?: Express.Multer.File[], coverPhoto?: Express.Multer.File[] }
+    files?: { profilePicture?: Express.Multer.File[], coverPhoto?: Express.Multer.File[] }
   ): Promise<UpdateUserResponse> {
     const dto: UpdateUserDtoWithPaths = {
       ...updateUserDto,
-      profilePicture: files?.profilePicture?.[0].path,
-      coverPhoto: files?.coverPhoto?.[0].path,
+      profilePicture: files?.profilePicture?.[0].path ?? null,
+      coverPhoto: files?.coverPhoto?.[0].path ?? null,
     }
 
     return this.usersService.update(+id, dto);

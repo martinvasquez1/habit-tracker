@@ -4,9 +4,11 @@ import { PipeTransform, Injectable, BadRequestException, MaxFileSizeValidator, F
 export class MultiFileValidationPipe implements PipeTransform {
   constructor(
     private readonly validators: (MaxFileSizeValidator | FileTypeValidator)[],
-  ) {}
+  ) { }
 
   transform(files: { [key: string]: Express.Multer.File[] }) {
+    if (!files || typeof files !== 'object') return files;
+
     for (const [field, fileArray] of Object.entries(files)) {
       if (!fileArray) continue;
 

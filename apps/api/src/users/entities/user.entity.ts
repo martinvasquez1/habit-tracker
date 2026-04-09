@@ -23,10 +23,10 @@ export class User {
   @Column({ nullable: true })
   bio: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'text', nullable: true })
   profilePicture: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'text', nullable: true })
   coverPhoto: string | null;
 
   @Column({ unique: true })

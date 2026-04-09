@@ -1,5 +1,6 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   FileTypeValidator,
@@ -9,6 +10,7 @@ import {
   ParseIntPipe,
   Patch,
   Query,
+  SerializeOptions,
   UploadedFiles,
   UseGuards,
   UseInterceptors,
@@ -32,8 +34,11 @@ import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { MultiFileValidationPipe } from 'src/common/pipes/multi-file-validation-pipe';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { UserResponseDto } from './dto/user-response.dto';
 
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
+@SerializeOptions({ type: UserResponseDto })
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 

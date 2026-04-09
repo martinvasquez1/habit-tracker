@@ -17,9 +17,7 @@ import paginate from 'src/common/paginate/paginate';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly usersRepository: UsersRepository,
-    private readonly configService: ConfigService,
-  ) { }
+  constructor(private readonly usersRepository: UsersRepository) { }
 
   async create(createUserDto: CreateUserDto, role?: UserRole): Promise<User> {
     const { username, email } = createUserDto;

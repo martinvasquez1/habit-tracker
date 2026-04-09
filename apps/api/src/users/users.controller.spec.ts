@@ -77,11 +77,11 @@ describe('UsersController', () => {
 
   describe('update', () => {
     const updateDto: UpdateUserDto = { username: 'newname' } as any;
+    const files = {}
 
     it('should update user by id', async () => {
       mockService.update.mockResolvedValue({ ...mockUser, ...updateDto });
-
-      const result = await controller.update(1, updateDto);
+      const result = await controller.update(1, updateDto, files);
 
       expect(mockService.update).toHaveBeenCalledWith(1, updateDto);
       expect(mockService.update).toHaveBeenCalledTimes(1);
@@ -92,7 +92,7 @@ describe('UsersController', () => {
       mockService.update.mockRejectedValue(
         new NotFoundException('User not found'),
       );
-      await expect(controller.update(99, updateDto)).rejects.toThrow(
+      await expect(controller.update(99, updateDto, files)).rejects.toThrow(
         NotFoundException,
       );
     });

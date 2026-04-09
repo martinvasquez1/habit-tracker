@@ -21,8 +21,8 @@ export interface User {
     'id': number;
     'username': string;
     'bio': string;
-    'profilePicture': string;
-    'coverPhoto': string;
+    'profilePicture': string | null;
+    'coverPhoto': string | null;
     'email': string;
     'password': string;
     'role': UserRoleEnum;

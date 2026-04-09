@@ -544,53 +544,6 @@ export const ApiAxiosParamCreator = function (configuration?: Configuration) {
         /**
          * 
          * @summary 
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {object} [filter] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getUsers: async (page?: number, limit?: number, filter?: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/users`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (filter !== undefined) {
-                for (const [key, value] of Object.entries(filter)) {
-                    localVarQueryParameter[key] = value;
-                }
-            }
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 
          * @param {SignInDto} signInDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1028,21 +981,6 @@ export const ApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary 
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {object} [filter] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getUsers(page?: number, limit?: number, filter?: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getUsers(page, limit, filter, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['Api.getUsers']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary 
          * @param {SignInDto} signInDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1266,16 +1204,6 @@ export const ApiFactory = function (configuration?: Configuration, basePath?: st
         /**
          * 
          * @summary 
-         * @param {ApiGetUsersRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getUsers(requestParameters: ApiGetUsersRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.getUsers(requestParameters.page, requestParameters.limit, requestParameters.filter, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 
          * @param {ApiSignInRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1445,17 +1373,6 @@ export interface ApiGetLogsRequest {
  */
 export interface ApiGetUserRequest {
     readonly id: string
-}
-
-/**
- * Request parameters for getUsers operation in Api.
- */
-export interface ApiGetUsersRequest {
-    readonly page?: number
-
-    readonly limit?: number
-
-    readonly filter?: object
 }
 
 /**
@@ -1666,17 +1583,6 @@ export class Api extends BaseAPI {
      */
     public getUser(requestParameters: ApiGetUserRequest, options?: RawAxiosRequestConfig) {
         return ApiFp(this.configuration).getUser(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 
-     * @param {ApiGetUsersRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public getUsers(requestParameters: ApiGetUsersRequest = {}, options?: RawAxiosRequestConfig) {
-        return ApiFp(this.configuration).getUsers(requestParameters.page, requestParameters.limit, requestParameters.filter, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

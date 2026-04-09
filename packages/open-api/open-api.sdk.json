@@ -32,56 +32,6 @@
         ]
       }
     },
-    "/users": {
-      "get": {
-        "operationId": "getUsers",
-        "parameters": [
-          {
-            "name": "page",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "filter",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/Object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalServerErrorDto"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Api"
-        ]
-      }
-    },
     "/users/{id}": {
       "get": {
         "operationId": "getUser",
@@ -956,10 +906,6 @@
           "message"
         ]
       },
-      "Object": {
-        "type": "object",
-        "properties": {}
-      },
       "User": {
         "type": "object",
         "properties": {
@@ -973,10 +919,12 @@
             "type": "string"
           },
           "profilePicture": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "coverPhoto": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "email": {
             "type": "string"

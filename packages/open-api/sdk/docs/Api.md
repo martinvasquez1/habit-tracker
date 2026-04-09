@@ -17,7 +17,6 @@ All URIs are relative to *http://localhost*
 |[**getLog**](#getlog) | **GET** /habits/{habitId}/logs/{logId} | |
 |[**getLogs**](#getlogs) | **GET** /habits/{habitId}/logs | Retrieves logs for a specific habit.|
 |[**getUser**](#getuser) | **GET** /users/{id} | |
-|[**getUsers**](#getusers) | **GET** /users | |
 |[**signIn**](#signin) | **POST** /auth/sign-in | |
 |[**signUp**](#signup) | **POST** /auth/sign-up | |
 |[**signUpAdmin**](#signupadmin) | **POST** /auth/sign-up/admin | |
@@ -684,63 +683,6 @@ const { status, data } = await apiInstance.getUser(
 ### Return type
 
 **User**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** |  |  -  |
-|**500** | Internal server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getUsers**
-> getUsers()
-
-
-### Example
-
-```typescript
-import {
-    Api,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new Api(configuration);
-
-let page: number; // (optional) (default to undefined)
-let limit: number; // (optional) (default to undefined)
-let filter: object; // (optional) (default to undefined)
-
-const { status, data } = await apiInstance.getUsers(
-    page,
-    limit,
-    filter
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **page** | [**number**] |  | (optional) defaults to undefined|
-| **limit** | [**number**] |  | (optional) defaults to undefined|
-| **filter** | **object** |  | (optional) defaults to undefined|
-
-
-### Return type
-
-void (empty response body)
 
 ### Authorization
 

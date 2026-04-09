@@ -110,6 +110,29 @@ export function UpdateProfile({ user }: UpdateProfileProps) {
                         )}
                     />
 
+                    <Controller
+                        name="coverPhoto"
+                        control={form.control}
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
+                                <FieldLabel htmlFor="coverPhoto">{t('users.update.coverPhoto')}</FieldLabel>
+                                <Input
+                                    id="coverPhoto"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                        const file = e.target.files?.[0];
+                                        field.onChange(file);
+                                    }}
+                                    onSubmit={() => field.value = undefined}
+                                    aria-invalid={fieldState.invalid}
+                                    className="p-2"
+                                />
+                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                            </Field>
+                        )}
+                    />
+
                 </FieldGroup>
                 <Button
                     type="submit"

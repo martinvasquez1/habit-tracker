@@ -64,3 +64,19 @@ export const colorsIconWrapper = {
   gray: "bg-habit-gray/20 *:*:stroke-habit-gray",
   null: "",
 };
+
+export const colorsMesh = {
+  red: "bg-red-mesh",
+  orange: "bg-orange-mesh",
+  yellow: "bg-yellow-mesh",
+  green: "bg-green-mesh",
+  mint: "bg-mint-mesh",
+  cyan: "bg-cyan-mesh",
+  blue: "bg-blue-mesh",
+  indigo: "bg-indigo-mesh",
+  purple: "bg-purple-mesh",
+  pink: "bg-pink-mesh",
+  brown: "bg-brown-mesh",
+  gray: "bg-gray-mesh",
+  null: "",
+}

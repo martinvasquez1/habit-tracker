@@ -24,7 +24,7 @@ export default function DailyProgress({ monday, sunday, today }: DailyProgressPr
     );
 
     if (isError) return "Error!";
-    if (!data) return null;
+    if (!data || data?.length === 0) return null;
 
     const completed = data.reduce((count, habit) =>
         count + (habit.logs.some(log => log.date === todayStr && log.status !== "missed") ? 1 : 0),

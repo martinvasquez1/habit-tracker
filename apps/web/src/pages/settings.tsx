@@ -77,11 +77,11 @@ export default function Settings() {
 
             {items.map(item => {
                 return (
-                    <Container className="mb-4">
+                    <Container key={item.sectionTitle} className="mb-4">
                         <h2 className="font-bold text-xl mb-2">{item.sectionTitle}</h2>
                         {item.items.map(item => {
                             return (
-                                <Item variant="default" className="px-0">
+                                <Item key={item.title} variant="default" className="px-0">
                                     <ItemContent>
                                         <ItemTitle>{item.title}</ItemTitle>
                                         <ItemDescription>{item.description}</ItemDescription>

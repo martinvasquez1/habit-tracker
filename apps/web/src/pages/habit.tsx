@@ -16,6 +16,7 @@ import { formatYYYYMMDD } from "@/utils/format-yyyy-mm-dd";
 import { ChartBar } from "@/components/ui/chart-bar";
 import { ChartConfig } from "@/components/ui/chart";
 import { ChartPyramid } from "@/components/ui/chart-pyramid";
+import { RequirementCard } from "@/components/requirement-card";
 
 export default function Habit() {
   const { t } = useTranslation();
@@ -92,7 +93,16 @@ export default function Habit() {
           xKey="month"
           config={chartConfig}
         />
-        <ChartPyramid title="Top streaks" values={topStreaks} config={chartConfig}  />
+        {
+          topStreaks.length <= 5 ?
+            <RequirementCard
+              title="Top Streak Pyramid" 
+              description="Reach 5 streaks to unlock your streak pyramid."
+              badge="Locked"
+              color={habit!.color}
+            /> :
+            <ChartPyramid title="Top streaks" values={topStreaks} config={chartConfig} />
+        }
       </div>
     </div>
   );

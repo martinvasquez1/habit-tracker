@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
+import { useIsMobile } from "@/hooks/use-mobile";
 
 import {
   Dialog,
@@ -16,7 +19,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "./button";
 
 type ResponsiveDialogProps = {
@@ -107,6 +109,7 @@ export function ConfirmationDialog({
   isPending = false,
   triggerButton,
 }: ConfirmationDialogProps) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -127,14 +130,14 @@ export function ConfirmationDialog({
               onClick={() => setIsOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              {t('common.cancel')}
             </Button>
             <Button
               type="submit"
               variant={confirmVariant}
               disabled={isPending}
             >
-              Confirm
+              {t('common.confirm')}
             </Button>
           </div>
         </form>

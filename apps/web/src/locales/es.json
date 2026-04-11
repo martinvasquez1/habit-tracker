@@ -1,6 +1,7 @@
 {
   "common": {
     "habit": "Hábito",
+    "confirm": "Confirmar",
     "cancel": "Cancelar",
     "colors": {
       "red": "Rojo",
@@ -134,12 +135,37 @@
       "button": "Actualizar"
     }
   },
+  "users": {
+    "delete": {
+      "title": "¿Estás seguro de que quieres eliminar tu cuenta?",
+      "body": "Esta acción no se puede revertir. Todos tus datos, hábitos y progreso serán eliminados permanentemente.",
+      "button": "Eliminar cuenta"
+    }
+  },
   "settings": {
     "title": "Configuración",
-    "language": "Idioma",
-    "language_options": {
-      "en": "Inglés",
-      "es": "Español"
+    "preferences": {
+      "title": "Preferencias",
+      "language": {
+        "title": "Idioma",
+        "description": "Elige tu idioma preferido.",
+        "options": {
+          "en": "Inglés",
+          "es": "Español"
+        }
+      }
+    },
+    "account": {
+      "title": "Cuenta",
+      "delete": {
+        "title": "Eliminar cuenta",
+        "description": "Elimina permanentemente tu cuenta y todos los datos asociados. Esta acción no se puede deshacer."
+      },
+      "export": {
+        "title": "Exportar datos",
+        "description": "Descarga una copia de tus datos para respaldo o uso personal.",
+        "button": "Exportar"
+      }
     }
   }
 }

@@ -24,13 +24,13 @@ export default function DeleteUser({ id }: DeleteUserProps) {
 
     return (
         <ConfirmationDialog
-            title={t('.delete.title')}
+            title={t('users.delete.title')}
             description={t('users.delete.body')}
             confirmVariant="destructive"
             onSubmit={onSubmit}
             isDone={isSuccess}
             isPending={isPending}
-            triggerButton={<Button type="button" variant="destructive">Delete user</Button>}
+            triggerButton={<Button type="button" variant="destructive">{t('users.delete.button')}</Button>}
         />
     )
 }

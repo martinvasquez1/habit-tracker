@@ -1,6 +1,7 @@
 {
   "common": {
     "habit": "Habit",
+    "confirm": "Confirm",
     "cancel": "Cancel",
     "colors": {
       "red": "Red",
@@ -134,12 +135,37 @@
       "button": "Update"
     }
   },
+  "users": {
+    "delete": {
+      "title": "Are you sure you want to delete your account?",
+      "body": "This action is irreversible. All your data, habits, and progress will be permanently removed.",
+      "button": "Delete account"
+    }
+  },
   "settings": {
     "title": "Settings",
-    "language": "Language",
-    "language_options": {
-      "en": "English",
-      "es": "Spanish"
+    "preferences": {
+      "title": "Preferences",
+      "language": {
+        "title": "Language",
+        "description": "Choose your preferred language.",
+        "options": {
+          "en": "English",
+          "es": "Spanish"
+        }
+      }
+    },
+    "account": {
+      "title": "Account",
+      "delete": {
+        "title": "Delete Account",
+        "description": "Permanently delete your account and all associated data. This action cannot be undone."
+      },
+      "export": {
+        "title": "Export Data",
+        "description": "Download a copy of your data for backup or personal use.",
+        "button": "Export"
+      }
     }
   }
 }

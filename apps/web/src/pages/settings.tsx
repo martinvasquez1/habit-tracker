@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next"
+import { jwtDecode } from "jwt-decode";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Container } from "@/components/ui/container";
+import DeleteUser from "@/features/users/components/delete-user";
 
 export default function Settings() {
     const { t, i18n } = useTranslation()
+
+    const jwt = localStorage.getItem("jwt");
+    if (!jwt) return "Error";
+
+    const decoded = jwtDecode(jwt) as { id: string };
+    const userId = decoded.id;
 
     const [language, setLanguage] = useState<string>(
         () => localStorage.getItem("language") || i18n.language || "en"
@@ -25,6 +33,7 @@ export default function Settings() {
             </div>
 
             <Container>
+                <h2 className="font-bold text-2xl mb-2">{t('settings.preferences')}</h2>
                 <div className="flex justify-between gap-4">
                     <Label htmlFor="language-select">{t('settings.language')}</Label>
                     <Select
@@ -39,6 +48,14 @@ export default function Settings() {
                             <SelectItem value="es">{t('settings.language_options.es')}</SelectItem>
                         </SelectContent>
                     </Select>
+                </div>
+            </Container>
+
+            <Container className="mt-4">
+                <h2 className="font-bold text-2xl mb-2">{t('settings.account')}</h2>
+                <div className="flex justify-between gap-4">
+                    <Label>{t('settings.delete_account')}</Label>
+                    <DeleteUser id={+userId} />
                 </div>
             </Container>
         </div>

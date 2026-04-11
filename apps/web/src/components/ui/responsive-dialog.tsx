@@ -17,6 +17,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "./button";
 
 type ResponsiveDialogProps = {
   title: string;
@@ -85,4 +86,59 @@ export default function ResponsiveDialog({
       </DrawerContent>
     </Drawer>
   );
+}
+
+type ConfirmationDialogProps = {
+  title: string;
+  description: string;
+  confirmVariant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void | Promise<void>;
+  isDone: boolean;
+  isPending?: boolean;
+  triggerButton: React.ReactElement;
+};
+
+export function ConfirmationDialog({
+  title,
+  description,
+  confirmVariant = "default",
+  onSubmit,
+  isDone,
+  isPending = false,
+  triggerButton,
+}: ConfirmationDialogProps) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <>
+      <div onClick={() => setIsOpen(true)}>{triggerButton}</div>
+      <ResponsiveDialog
+        title={title}
+        description={description}
+        isDone={isDone}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      >
+        <form onSubmit={onSubmit} className="grid gap-4 mb-4 md:mb-0">
+          <div className="flex flex-col gap-2 md:flex-row md:*:flex-1">
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => setIsOpen(false)}
+              disabled={isPending}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant={confirmVariant}
+              disabled={isPending}
+            >
+              Confirm
+            </Button>
+          </div>
+        </form>
+      </ResponsiveDialog>
+    </>
+  )
 }

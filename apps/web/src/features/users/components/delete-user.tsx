@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 import { Button } from "@/components/ui/button";
 import { ConfirmationDialog } from "@/components/ui/responsive-dialog";
@@ -10,7 +11,11 @@ type DeleteUserProps = {
 
 export default function DeleteUser({ id }: DeleteUserProps) {
     const { t } = useTranslation();
-    const { mutate, isSuccess, isPending } = useDeleteUser();
+    const navigate = useNavigate();
+
+    const { mutate, isSuccess, isPending } = useDeleteUser({
+        mutationConfig: { onSuccess: () => { navigate("/") } },
+    });
 
     function onSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -26,6 +31,6 @@ export default function DeleteUser({ id }: DeleteUserProps) {
             isDone={isSuccess}
             isPending={isPending}
             triggerButton={<Button type="button" variant="destructive">Delete user</Button>}
-         />
+        />
     )
 }

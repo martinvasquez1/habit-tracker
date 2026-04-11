@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { Field, FieldLabel } from "@/components/ui/field"
 import { Progress } from "@/components/ui/progress"
 
@@ -11,6 +13,8 @@ interface DailyProgressProps {
 }
 
 export default function DailyProgress({ monday, sunday, today }: DailyProgressProps) {
+    const { t } = useTranslation();
+
     const mondayStr = formatYYYYMMDD(monday);
     const sundayStr = formatYYYYMMDD(sunday);
     const todayStr = formatYYYYMMDD(today);
@@ -35,7 +39,7 @@ export default function DailyProgress({ monday, sunday, today }: DailyProgressPr
     return (
         <Field className="w-full pb-8">
             <FieldLabel>
-                <span>Daily Progress</span>
+                <span>{t('home.daily_progress')}</span>
                 <span className="ml-auto">{currentProgress}%</span>
             </FieldLabel>
             <Progress value={currentProgress} className="h-4" />

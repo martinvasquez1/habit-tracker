@@ -50,7 +50,8 @@
     "empty_state": {
       "title": "No Habits Yet!",
       "body": "Your tracker is waiting for some action!"
-    }
+    },
+    "daily_progress": "Daily Progress"
   },
   "sidebar": {
     "home": "Home",

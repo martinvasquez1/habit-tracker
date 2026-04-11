@@ -50,7 +50,8 @@
     "empty_state": {
       "title": "¡Aún no hay hábitos!",
       "body": "Crea uno para empezar a mejorar día a día."
-    }
+    },
+    "daily_progress": "Progreso Diario"
   },
   "sidebar": {
     "home": "Inicio",

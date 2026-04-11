@@ -12,13 +12,15 @@ import { Spinner } from "@/components/ui/spinner";
 import Error from "@/components/error";
 import { UpdateProfile } from "@/features/users/components/update-profile";
 
-function ProfilePicture({ url }: { url: string | null }) {
+function ProfilePicture({ url, username }: { url: string | null, username: string }) {
+  const firstLetter = username.charAt(0).toUpperCase();
+
     return (
         <div className="absolute left-6 -bottom-10">
             <div className="size-24 rounded-full overflow-hidden">
                 <Avatar className="w-full h-full border-4 border-card">
                     <AvatarImage src={url !== null ? url : undefined} />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarFallback className="text-xl">{firstLetter}</AvatarFallback>
                 </Avatar>
             </div>
         </div>
@@ -28,8 +30,7 @@ function ProfilePicture({ url }: { url: string | null }) {
 function CoverPhoto({ url }: { url?: string | null }) {
   const [failed, setFailed] = useState(false);
 
-  const bgColor = "bg-[#ff99fd] bg-[radial-gradient(at_73%_56%,hsla(269,75%,64%,1)_0px,transparent_50%),radial-gradient(at_71%_44%,hsla(243,77%,73%,1)_0px,transparent_50%),radial-gradient(at_88%_10%,hsla(239,67%,75%,1)_0px,transparent_50%),radial-gradient(at_58%_36%,hsla(229,100%,56%,1)_0px,transparent_50%),radial-gradient(at_81%_69%,hsla(154,97%,77%,1)_0px,transparent_50%),radial-gradient(at_45%_25%,hsla(180,89%,60%,1)_0px,transparent_50%),radial-gradient(at_93%_17%,hsla(177,93%,66%,1)_0px,transparent_50%),radial-gradient(at_20%_44%,hsla(284,78%,67%,1)_0px,transparent_50%),radial-gradient(at_70%_1%,hsla(32,90%,61%,1)_0px,transparent_50%)]";
-  if (!url || failed) return <div className={`h-32 ${bgColor}`} />;
+  if (!url || failed) return <div className="h-32 bg-blue-mesh" />;
 
   return (
     <img
@@ -56,7 +57,7 @@ export default function Profile() {
         <Card className="pt-0">
             <div className="relative">
                 <CoverPhoto url={data.coverPhoto} />
-                <ProfilePicture url={data.profilePicture} />
+                <ProfilePicture url={data.profilePicture} username={data.username} />
             </div>
             <div className="flex flex-row gap-4 pt-7 px-6">
                 <div className="flex-1">

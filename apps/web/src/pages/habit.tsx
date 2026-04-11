@@ -94,7 +94,7 @@ export default function Habit() {
           config={chartConfig}
         />
         {
-          topStreaks.length <= 5 ?
+          topStreaks.length <= 4 ?
             <RequirementCard
               title="Top Streak Pyramid" 
               description="Reach 5 streaks to unlock your streak pyramid."

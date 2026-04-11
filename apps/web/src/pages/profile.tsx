@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import {
     Avatar,
     AvatarFallback,
@@ -42,6 +44,8 @@ function CoverPhoto({ url }: { url?: string | null }) {
 }
 
 export default function Profile() {
+    const { t } = useTranslation();
+
     const jwt = localStorage.getItem("jwt");
     if (!jwt) return "Error";
 
@@ -63,7 +67,10 @@ export default function Profile() {
                 <div className="flex-1">
                     <h1 className="text-2xl font-bold">{data.username}</h1>
                     <div className="max-w-sm line-clamp-3 pt-2">
-                        {data.bio ? data.bio : <div className="text-card-foreground/40">No biography.</div>}
+                        {data.bio ?
+                            data.bio :
+                            <div className="text-card-foreground/40">{t('profile.no_biography')}</div>
+                        }
                     </div>
                 </div>
                 <div><UpdateProfile user={data} /></div>

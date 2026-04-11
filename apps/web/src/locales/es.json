@@ -140,6 +140,17 @@
       "title": "¿Estás seguro de que quieres eliminar tu cuenta?",
       "body": "Esta acción no se puede revertir. Todos tus datos, hábitos y progreso serán eliminados permanentemente.",
       "button": "Eliminar cuenta"
+    },
+    "update": {
+      "title": "Actualizar perfil",
+      "body": "Actualiza tu información personal y los detalles de tu perfil.",
+      "username": "Nombre de usuario",
+      "username_placeholder": "Ingresa tu nombre de usuario",
+      "bio": "Biografía",
+      "bio_placeholder": "Comparte un poco sobre ti...",
+      "profile_picture": "Foto de perfil",
+      "cover_photo": "Foto de portada",
+      "button": "Actualizar perfil"
     }
   },
   "settings": {
@@ -167,5 +178,8 @@
         "button": "Exportar"
       }
     }
+  },
+  "profile": {
+    "no_biography": "Sin biografía."
   }
 }

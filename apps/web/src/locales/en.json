@@ -140,6 +140,17 @@
       "title": "Are you sure you want to delete your account?",
       "body": "This action is irreversible. All your data, habits, and progress will be permanently removed.",
       "button": "Delete account"
+    },
+    "update": {
+      "title": "Update Profile",
+      "body": "Update your personal information and profile details.",
+      "username": "Username",
+      "username_placeholder": "Enter your username",
+      "bio": "Bio",
+      "bio_placeholder": "Share a bit about yourself...",
+      "profile_picture": "Profile picture",
+      "cover_photo": "Cover photo",
+      "button": "Update Profile"
     }
   },
   "settings": {
@@ -167,5 +178,8 @@
         "button": "Export"
       }
     }
+  },
+  "profile": {
+    "no_biography": "No biography."
   }
 }

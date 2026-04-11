@@ -32,8 +32,8 @@ export function UpdateProfile({ user }: UpdateProfileProps) {
 
     return (
         <ResponsiveDialog
-            title="Lorem"
-            description="Lorem"
+            title={t('users.update.title')}
+            description={t('users.update.body')}
             isDone={isSuccess}
             triggerButton={
                 <Button
@@ -52,12 +52,12 @@ export function UpdateProfile({ user }: UpdateProfileProps) {
                         control={form.control}
                         render={({ field, fieldState }) => (
                             <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor="username">{t('users.update.name')}</FieldLabel>
+                                <FieldLabel htmlFor="username">{t('users.update.username')}</FieldLabel>
                                 <Input
                                     {...field}
                                     id="username"
                                     type="text"
-                                    placeholder={t('users.update.name_placeholder')}
+                                    placeholder={t('users.update.username_placeholder')}
                                     autoComplete="off"
                                     aria-invalid={fieldState.invalid}
                                 />
@@ -77,7 +77,7 @@ export function UpdateProfile({ user }: UpdateProfileProps) {
                                 <Textarea
                                     {...field}
                                     id="bio"
-                                    placeholder={t('users.update.bio')}
+                                    placeholder={t('users.update.bio_placeholder')}
                                     autoComplete="off"
                                     aria-invalid={fieldState.invalid}
                                     className="min-h-[90px]"
@@ -92,7 +92,7 @@ export function UpdateProfile({ user }: UpdateProfileProps) {
                         control={form.control}
                         render={({ field, fieldState }) => (
                             <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor="profilePicture">{t('users.update.profilePicture')}</FieldLabel>
+                                <FieldLabel htmlFor="profilePicture">{t('users.update.profile_picture')}</FieldLabel>
                                 <Input
                                     id="profilePicture"
                                     type="file"
@@ -115,7 +115,7 @@ export function UpdateProfile({ user }: UpdateProfileProps) {
                         control={form.control}
                         render={({ field, fieldState }) => (
                             <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor="coverPhoto">{t('users.update.coverPhoto')}</FieldLabel>
+                                <FieldLabel htmlFor="coverPhoto">{t('users.update.cover_photo')}</FieldLabel>
                                 <Input
                                     id="coverPhoto"
                                     type="file"
@@ -140,7 +140,7 @@ export function UpdateProfile({ user }: UpdateProfileProps) {
                     className="w-full md:mb-0 mt-6"
                     disabled={isPending}
                 >
-                    {t('user.update.button')}{isPending && ' ...'}
+                    {t('users.update.button')}{isPending && ' ...'}
                 </Button>
             </form>
 

@@ -112,7 +112,16 @@
   "habit": {
     "current_streak": "Current streak",
     "longest_streak": "Longest streak",
-    "total_logs": "Total logs"
+    "total_logs": "Total logs",
+    "monthly_logs": {
+      "title": "Monthly logs"
+    },
+    "streak_pyramid": {
+      "title": "Top Streak Pyramid",
+      "requirement_card_title": "Top Streak Pyramid",
+      "requirement_card_description": "Reach 5 streaks to unlock your streak pyramid.",
+      "requirement_card_badge": "Locked"
+    }
   },
   "logs": {
     "update": {

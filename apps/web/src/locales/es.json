@@ -112,7 +112,16 @@
   "habit": {
     "current_streak": "Racha actual",
     "longest_streak": "Racha más larga",
-    "total_logs": "Total de registros"
+    "total_logs": "Total de registros",
+    "monthly_logs": {
+      "title": "Registros mensuales"
+    },
+    "streak_pyramid": {
+      "title": "Pirámide de rachas",
+      "requirement_card_title": "Pirámide de rachas",
+      "requirement_card_description": "Alcanza 5 rachas para desbloquear tu pirámide de rachas.",
+      "requirement_card_badge": "Bloqueado"
+    }
   },
   "logs": {
     "update": {

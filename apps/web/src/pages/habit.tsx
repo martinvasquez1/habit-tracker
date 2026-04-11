@@ -87,7 +87,7 @@ export default function Habit() {
       />
       <div className="flex flex-col md:flex-row gap-4 my-6 *:flex-1">
         <ChartBar
-          title="Monthly logs"
+          title={t('habit.monthly_logs.title')}
           data={chartData}
           dataKey="logs"
           xKey="month"
@@ -96,12 +96,16 @@ export default function Habit() {
         {
           topStreaks.length <= 4 ?
             <RequirementCard
-              title="Top Streak Pyramid" 
-              description="Reach 5 streaks to unlock your streak pyramid."
-              badge="Locked"
+              title={t('habit.streak_pyramid.requirement_card_title')}
+              description={t('habit.streak_pyramid.requirement_card_description')}
+              badge={t('habit.streak_pyramid.requirement_card_badge')}
               color={habit!.color}
             /> :
-            <ChartPyramid title="Top streaks" values={topStreaks} config={chartConfig} />
+            <ChartPyramid
+              title={t('habit.streak_pyramid.title')}
+              values={topStreaks}
+              config={chartConfig}
+            />
         }
       </div>
     </div>

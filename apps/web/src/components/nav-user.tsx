@@ -45,7 +45,7 @@ function UserSection({ user }: UserSectionProps) {
 
   const firstLetter = user?.username.charAt(0).toUpperCase();
 
-  const plan = t('sidebar.starter_plan');
+  const plan = t('sidebar.premium_plan');
   const username = user?.username;
   const capitalizedUsername = username
     ? username.charAt(0).toUpperCase() + username.slice(1)
@@ -63,12 +63,12 @@ function UserSection({ user }: UserSectionProps) {
             <span className="truncate font-semibold">
               {capitalizedUsername}
             </span>
-            <span className="truncate text-xs text-green-600">{plan}</span>
+            <span className="truncate text-xs text-fuchsia-600">{plan}</span>
           </>
         ) : (
           <>
             <Skeleton className="h-4 w-28" />
-            <span className="truncate text-xs text-green-600">{plan}</span>
+            <span className="truncate text-xs text-fuchsia-600">{plan}</span>
           </>
         )}
       </div>

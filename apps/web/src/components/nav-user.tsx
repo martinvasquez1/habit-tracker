@@ -1,6 +1,6 @@
 "use client";
 
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 
 import {
@@ -122,9 +122,11 @@ export function NavUser({ }) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem disabled>
-                <UserRound />
-                {t('sidebar.profile')}
+              <DropdownMenuItem asChild>
+                  <Link to={"/profile"}>
+                    <UserRound />
+                    <span>{t('sidebar.profile')}</span>
+                  </Link>
               </DropdownMenuItem>
               <DropdownMenuItem disabled>
                 <Sparkles />

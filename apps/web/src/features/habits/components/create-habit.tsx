@@ -31,8 +31,8 @@ export default function CreateHabit({}) {
 
   return (
     <ResponsiveDialog
-      title="Create Habit"
-      description="Create a new habit."
+      title={t('habits.create.title')}
+      description={t('habits.create.body')}
       isDone={createHabitMutation.isSuccess}
       triggerButton={
         <Button>

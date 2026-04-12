@@ -78,6 +78,10 @@
       "title": "No Habits Yet!",
       "body": "Create habits to improve your routine."
     },
+    "create": {
+      "title": "Create habit",
+      "body": "Create a new habit."
+    },
     "update": {
       "title": "Update Habit",
       "body": "Update habit information.",

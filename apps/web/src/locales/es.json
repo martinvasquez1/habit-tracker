@@ -78,6 +78,10 @@
       "title": "¡Aún no hay hábitos!",
       "body": "Crea hábitos para mejorar tu rutina."
     },
+    "create": {
+      "title": "Crear hábito",
+      "body": "Crear un nuevo hábito."
+    },
     "update": {
       "title": "Actualizar hábito",
       "body": "Actualiza la información del hábito.",

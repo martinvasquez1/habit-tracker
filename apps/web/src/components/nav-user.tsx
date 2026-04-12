@@ -32,8 +32,6 @@ import { Skeleton } from "./ui/skeleton";
 import { User } from "@repo/open-api";
 import { useUser } from "@/features/users/api/get-user";
 import { useTranslation } from "react-i18next";
-import { Button } from "./ui/button";
-import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 import { ThemeToggle } from "./theme-toggle";
 
 interface UserSectionProps {
@@ -53,9 +51,9 @@ function UserSection({ user }: UserSectionProps) {
 
   return (
     <>
-      <Avatar className="h-8 w-8 rounded-lg">
-        <AvatarImage src={""} alt={user?.username} />
-        <AvatarFallback className="rounded-lg">{firstLetter}</AvatarFallback>
+      <Avatar className="h-8 w-8 rounded-full">
+        <AvatarImage src={user?.profilePicture !== null ? user?.profilePicture : undefined} />
+        <AvatarFallback className="rounded-full">{firstLetter}</AvatarFallback>
       </Avatar>
       <div className="grid flex-1 text-left text-sm leading-tight">
         {user ? (
@@ -79,7 +77,7 @@ function UserSection({ user }: UserSectionProps) {
 export function NavUser({ }) {
   const { t } = useTranslation();
 
-  const { isMobile } = useSidebar();
+  const { isMobile, open } = useSidebar();
   const navigate = useNavigate();
 
   const jwt = localStorage.getItem("jwt");
@@ -103,7 +101,9 @@ export function NavUser({ }) {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className={
+                `data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground
+                ${(!open && !isMobile) && "hover:bg-transparent active:bg-transparent data-[state=open]:bg-transparent"}`}
             >
               <UserSection user={user} />
               <ChevronsUpDown className="ml-auto size-4" />
@@ -123,10 +123,10 @@ export function NavUser({ }) {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                  <Link to={"/profile"}>
-                    <UserRound />
-                    <span>{t('sidebar.profile')}</span>
-                  </Link>
+                <Link to={"/profile"}>
+                  <UserRound />
+                  <span>{t('sidebar.profile')}</span>
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem disabled>
                 <Sparkles />

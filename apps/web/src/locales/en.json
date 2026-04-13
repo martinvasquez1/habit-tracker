@@ -39,7 +39,13 @@
       "Oct",
       "Nov",
       "Dec"
-    ]
+    ],
+    "errors": {
+      "root_fallback": {
+        "title": "Something went wrong...",
+        "button": "Try again"
+      }
+    }
   },
   "home": {
     "greeting": {

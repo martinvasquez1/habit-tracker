@@ -39,7 +39,13 @@
       "Oct",
       "Nov",
       "Dic"
-    ]
+    ],
+    "errors": {
+      "root_fallback": {
+        "title": "Algo salió mal...",
+        "button": "Intentar de nuevo"
+      }
+    }
   },
   "home": {
     "greeting": {

@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { rmSync } from "fs";
+import * as fs from 'fs';
 
 const target = './sdk';
 
@@ -9,6 +9,6 @@ if (!target) {
   process.exit(1);
 }
 
-rmSync(target, { recursive: true, force: true });
+fs.rmSync(target, { recursive: true, force: true });
 
 console.log(`Cleaned SDK output directory: ${target}`);

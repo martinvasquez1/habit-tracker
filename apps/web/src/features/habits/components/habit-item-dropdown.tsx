@@ -8,9 +8,10 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LuEllipsisVertical } from "react-icons/lu";
+import { LuArchive, LuEllipsisVertical, LuPencil, LuTrash } from "react-icons/lu";
 
 import UpdateHabit from "./update-habit";
 import ArchiveHabit from "./archive-habit";
@@ -25,7 +26,7 @@ export default function HabitItemDropdown({
   habitId,
   habit,
 }: HabitItemDropdwonProps) {
-  const { t } = useTranslation();  
+  const { t } = useTranslation();
 
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
@@ -39,14 +40,20 @@ export default function HabitItemDropdown({
             <IconWrapper icon={<LuEllipsisVertical />} />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
+        <DropdownMenuContent>
           <DropdownMenuItem onClick={() => setIsUpdateOpen(true)}>
+            <LuPencil />
             {t('habits.item_options.update')}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setIsArchiveOpen(true)}>
+            <LuArchive />
             {habit.isArchived ? t('habits.item_options.unarchive') : t('habits.item_options.archive')}
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setIsDeleteOpen(true)}>
+
+          <DropdownMenuSeparator/>
+
+          <DropdownMenuItem onClick={() => setIsDeleteOpen(true)} variant="destructive">
+            <LuTrash />
             {t('habits.item_options.delete')}
           </DropdownMenuItem>
         </DropdownMenuContent>

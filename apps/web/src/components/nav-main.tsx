@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { type LucideIcon } from "lucide-react";
-import { useTranslation } from "react-i18next";
 
 export function NavMain({
   items,
@@ -29,13 +28,7 @@ export function NavMain({
     }[];
   }[];
 }) {
-  const { i18n } = useTranslation();
   const location = useLocation();
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
-
   const { isMobile, setOpenMobile } = useSidebar();
  
   return (

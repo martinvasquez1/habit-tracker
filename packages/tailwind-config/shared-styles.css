@@ -5,10 +5,6 @@
 
 /* @import "@fontsource-variable/inter"; */
 
-/*
-  ---break---
-*/
-@custom-variant dark (&:is(.dark *));
 
 :root {
   --background: oklch(0.9834 0.0052 247.88);

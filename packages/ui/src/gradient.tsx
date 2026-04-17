@@ -13,7 +13,7 @@ export function Gradient({
         small ? "blur-[32px]" : "blur-[75px]"
       } ${
         conic
-          ? "bg-gradient-to-r bg-red-500 from-10% via-purple-500 via-30% to-blue-500 to-100%"
+          ? "bg-linear-to-r bg-red-500 from-10% via-purple-500 via-30% to-blue-500 to-100%"
           : ""
       } ${className ?? ""}`}
     />

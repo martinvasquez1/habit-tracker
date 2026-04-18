@@ -1,6 +1,6 @@
 export default function Hero() {
     return (
-        <div className="flex flex-col items-center gap-2 text-center py-48 px-8">
+        <div className="flex flex-col items-center gap-2 text-center pt-48 px-8">
             <h1 className="text-4xl md:text-6xl font-bold">
                 <span className="text-primary">Self-Hosted </span> Habit Tracker
             </h1>

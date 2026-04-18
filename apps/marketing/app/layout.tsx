@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en" className={cn("font-sans", inter.variable)}>
       <body className={geist.className}>
         <Navbar />
-        <main>{children}</main>
+        <main className="bg-white">{children}</main>
       </body>
     </html>
   );

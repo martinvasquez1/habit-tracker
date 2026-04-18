@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
+import Navbar from "@/components/navbar";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("font-sans", inter.variable)}>
       <body className={geist.className}>
+        <Navbar />
         <main>{children}</main>
       </body>
     </html>

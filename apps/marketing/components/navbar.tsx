@@ -1,0 +1,99 @@
+"use client"
+
+import Logo from "@repo/ui/logo";
+import { useState } from "react";
+import { Menu, X, Home, BookOpen, Github, LucideIcon } from "lucide-react";
+
+import React from "react";
+
+export type NavItem = {
+    text: string;
+    url: string;
+    icon: LucideIcon;
+};
+
+type MenuProps = {
+    open: boolean;
+    navItems: NavItem[];
+    onClose: () => void;
+};
+
+function MobileMenu({
+    open,
+    navItems,
+    onClose,
+}: MenuProps) {
+    return (
+        <div className={`fixed top-16 left-0 h-full w-[50vw] bg-sidebar border-r border-t transform transition-transform duration-200 ease-out md:hidden ${open ? "translate-x-0" : "-translate-x-full"}`}>
+            <nav className="flex flex-col p-6 gap-6">
+                {navItems.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                        <a
+                            key={item.text}
+                            href={item.url}
+                            onClick={onClose}
+                            className="flex items-center gap-3"
+                        >
+                            <Icon className="w-5 h-5" />
+                            {item.text}
+                        </a>
+                    );
+                })}
+            </nav>
+        </div>
+    );
+}
+
+function DesktopMenu({
+    open,
+    navItems,
+    onClose,
+}: MenuProps) {
+    return (
+        <nav className="hidden md:flex gap-8">
+            {navItems.map((item) => {
+                return <a key={item.text} href={item.url} onClick={onClose}>{item.text}</a>
+            })}
+        </nav>
+    )
+}
+
+export default function Navbar() {
+    const [open, setOpen] = useState(false);
+
+    const navItems = [
+        { text: "Home", url: "#", icon: Home },
+        { text: "Docs", url: "#", icon: BookOpen },
+        { text: "Github", url: "#", icon: Github },
+    ];
+
+    return (
+        <header className="fixed top-0 left-0 w-full border-b z-50">
+            <div className="flex items-center justify-between px-6 py-4">
+                <div className=""><Logo /></div>
+
+                <DesktopMenu
+                    open={open}
+                    navItems={navItems}
+                    onClose={() => setOpen(false)}
+                />
+
+                <button
+                    onClick={() => setOpen((v) => !v)}
+                    className="md:hidden"
+                    aria-label="Toggle menu"
+                >
+                    {open ? <X className="size-6" /> : <Menu className="size-6" />}
+                </button>
+            </div>
+
+            <MobileMenu
+                open={open}
+                navItems={navItems}
+                onClose={() => setOpen(false)}
+            />
+        </header>
+    );
+}

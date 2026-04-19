@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Menu, X, Home, BookOpen, Github, LucideIcon } from "lucide-react";
 
 import React from "react";
+import ThemeToggle from "./theme-toggle";
 
 export type NavItem = {
     text: string;
@@ -56,6 +57,7 @@ function DesktopMenu({
             {navItems.map((item) => {
                 return <a key={item.text} href={item.url} onClick={onClose}>{item.text}</a>
             })}
+            <ThemeToggle />
         </nav>
     )
 }
@@ -80,13 +82,12 @@ export default function Navbar() {
                     onClose={() => setOpen(false)}
                 />
 
-                <button
-                    onClick={() => setOpen((v) => !v)}
-                    className="md:hidden"
-                    aria-label="Toggle menu"
-                >
-                    {open ? <X className="size-6" /> : <Menu className="size-6" />}
-                </button>
+                <div className="flex gap-6 md:hidden">
+                    <ThemeToggle />
+                    <button onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
+                        {open ? <X className="size-6" /> : <Menu className="size-6" />}
+                    </button>
+                </div>
             </div>
 
             <MobileMenu

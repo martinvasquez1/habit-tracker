@@ -10,7 +10,7 @@ export default function ResponsiveMacbook({ children }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
 
-  const BASE_WIDTH = 1300;
+  const BASE_WIDTH = 1200;
 
   useEffect(() => {
     const updateScale = () => {

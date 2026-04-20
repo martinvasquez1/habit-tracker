@@ -1,8 +1,10 @@
 "use client"
 
-import Logo from "@repo/ui/logo";
 import { useState } from "react";
-import { Menu, X, Home, BookOpen, Github, LucideIcon } from "lucide-react";
+import { Menu, X, LucideIcon } from "lucide-react";
+
+import Logo from "@repo/ui/logo";
+import { navItems } from "@/data/nav-items";
 
 import React from "react";
 import ThemeToggle from "./theme-toggle";
@@ -64,12 +66,6 @@ function DesktopMenu({
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
-
-    const navItems = [
-        { text: "Home", url: "#", icon: Home },
-        { text: "Docs", url: "#", icon: BookOpen },
-        { text: "Github", url: "#", icon: Github },
-    ];
 
     return (
         <header className="z-50 fixed top-0 left-0 w-full border-b-2 border-slate-200 dark:border-zinc-900 bg-white dark:bg-black">

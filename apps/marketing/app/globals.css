@@ -3,3 +3,11 @@
 @import "./devices.min.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+body {
+    background-color: white;
+}
+
+html.dark body{
+    background-color: black;
+}

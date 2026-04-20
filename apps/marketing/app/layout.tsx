@@ -1,9 +1,12 @@
 import "@repo/ui/styles.css";
 import "./globals.css";
+
 import type { Metadata } from "next";
 import { Geist, Inter } from "next/font/google";
+
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -21,9 +24,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={cn("font-sans", inter.variable)}>
-      <body className={geist.className + "bg-white dark:bg-black text-foreground"}>
+      <body className={geist.className + "text-foreground"}>
         <Navbar />
-        <main className="bg-white dark:bg-black">{children}</main>
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

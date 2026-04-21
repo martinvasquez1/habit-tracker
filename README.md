@@ -3,7 +3,7 @@
 
 
 
-docker build -f apps/web/Dockerfile .
+docker build -f apps/web/Dockerfile -t ant-web .
 
 
 

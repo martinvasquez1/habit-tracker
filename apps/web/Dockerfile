@@ -18,7 +18,7 @@ COPY --from=prepare /app/out/json/ .
 RUN npm install
 
 COPY --from=prepare /app/out/full/ .
-RUN npm run build
+RUN npm -w web run build
 
 # ---
 
@@ -26,8 +26,8 @@ FROM base AS runner
 WORKDIR /app
 
 RUN npm install -g serve
-COPY --from=build /app/build ./build
+COPY --from=builder /app/apps/web/dist ./dist
 
 EXPOSE 12345
 
-CMD ["serve", "-s", "build", "-l", "12345"]
+CMD ["serve", "-s", "dist", "-l", "12345"]

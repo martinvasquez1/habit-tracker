@@ -7,9 +7,6 @@ on:
 jobs:
   build-web:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/web
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -17,7 +14,8 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npm run build --workspace=@repo/open-api
+      - run: npm run build --workspace=apps/web
 
   build-api:
     runs-on: ubuntu-latest

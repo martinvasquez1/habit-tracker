@@ -1,6 +1,6 @@
 import { StartedTestContainer } from 'testcontainers';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
+import request from 'supertest';
 
 import { createPostgresContainer } from './util/create-postgres-container';
 import { createApp } from './util/create-app';

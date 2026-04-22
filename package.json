@@ -1,11 +1,15 @@
 {
   "name": "habit-tracker",
   "private": true,
+  "version": "0.0.0",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "copy-openapi": "cp apps/api/open-api.json packages/open-api/open-api.json",
-    "generate:sdk": "npm run generate:openapi -w=api && npm run copy-openapi && npm run sdk:generate --w=@repo/open-api && npm run build --w=@repo/open-api"
+    "generate:sdk": "npm run generate:openapi -w=api && npm run copy-openapi && npm run sdk:generate --w=@repo/open-api && npm run build --w=@repo/open-api",
+    "patch": "npm version patch --workspaces --include-workspace-root",
+    "minor": "npm version minor --workspaces --include-workspace-root",
+    "major": "npm version major --workspaces --include-workspace-root"
   },
   "devDependencies": {
     "turbo": "^2.8.16"

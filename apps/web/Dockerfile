@@ -15,7 +15,7 @@ RUN turbo prune web --docker
 FROM base AS builder
 
 COPY --from=prepare /app/out/json/ .
-RUN npm install
+RUN npm ci
 
 COPY --from=prepare /app/out/full/ .
 RUN npm -w web run build

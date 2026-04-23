@@ -18,7 +18,7 @@ COPY --from=prepare /app/out/json/ .
 RUN npm ci
 
 COPY --from=prepare /app/out/full/ .
-RUN npm -w web run build
+RUN npx turbo run build --filter=web...
 
 # ---
 

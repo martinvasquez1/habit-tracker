@@ -15,10 +15,10 @@ RUN turbo prune api --docker
 FROM base AS builder
 
 COPY --from=prepare /app/out/json/ .
-RUN npm install
+RUN npm ci
 
 COPY --from=prepare /app/out/full/ .
-RUN npm -w api run build
+RUN npx turbo run build --filter=api...
 
 # ---
 

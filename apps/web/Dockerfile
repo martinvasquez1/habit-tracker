@@ -15,7 +15,7 @@ RUN turbo prune web --docker
 FROM base AS builder
 
 COPY --from=prepare /app/out/json/ .
-RUN npm ci
+RUN npm install
 
 COPY --from=prepare /app/out/full/ .
 RUN npx turbo run build --filter=web...

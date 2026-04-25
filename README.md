@@ -8,7 +8,10 @@ docker build -f apps/api/Dockerfile -t ant-api .
 
 docker run --env-file apps/api/.env -p 3000:3000 ant-api
 
+---
+
 docker compose up --build
+docker compose -f docker-compose.dev.yml up --build
 
 
 

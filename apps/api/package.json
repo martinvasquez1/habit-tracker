@@ -12,7 +12,7 @@
     "dev": "nest start --watch",
     "start": "nest start",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "npx typeorm -d ./src/database/data-source.ts -- migration:run && node dist/main",
+    "start:prod": "node dist/main",
     "typeorm": "npm run build && npx typeorm -d ./src/database/data-source.ts",
     "migration:generate": "npm run typeorm -- migration:generate",
     "migration:run": "npm run typeorm -- migration:run",

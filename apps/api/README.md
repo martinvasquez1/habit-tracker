@@ -14,7 +14,9 @@ CREATE_ADMIN_PASSWORD=123
 APP_URL=http://localhost:3000
 ```
 
-Testcontainers
+## Database
+
+npm run migration:generate src/database/migrations/first
 
 ## Testcontainers bug
 

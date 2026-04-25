@@ -35,4 +35,5 @@ COPY --from=builder /app/apps/api/dist ./dist
 
 EXPOSE 3000 
 
-CMD ["node", "dist/main.js"]
+#CMD ["npm", "dist/main.js"]
+CMD ["npm", "run", "start:prod"]

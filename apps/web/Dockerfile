@@ -26,8 +26,13 @@ FROM base AS runner
 WORKDIR /app
 
 RUN npm install -g serve
+RUN apt-get update && apt-get install -y gettext
+
 COPY --from=builder /app/apps/web/dist ./dist
+
+# Copy runtime env template for docker compose
+COPY apps/web/public/env.js.template ./dist/env.js.template
 
 EXPOSE 3000
 
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["sh", "-c", "envsubst < dist/env.js.template > dist/env.js && echo '// cache-bust $(date)' >> dist/env.js && exec serve -s dist -l 3000"]

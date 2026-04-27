@@ -65,7 +65,7 @@ const config: Config = {
       title: 'Ant',
       logo: {
         alt: 'Ant Logo',
-        src: 'img/logo.svg',
+        src: 'img/ant-logo.svg',
       },
       items: [
         {

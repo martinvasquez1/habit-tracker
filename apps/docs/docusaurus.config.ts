@@ -124,6 +124,13 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    announcementBar: {
+      id: 'docs_in_dev',
+      content: 'Documentation is in active development.',
+      backgroundColor: '#c11313',
+      textColor: '#fff',
+      isCloseable: false,
+    }
   } satisfies Preset.ThemeConfig,
 };
 

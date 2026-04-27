@@ -66,7 +66,7 @@ const config: Config = {
       },
       items: [
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/martinvasquez1/habit-tracker',
           label: 'GitHub',
           position: 'right',
         },

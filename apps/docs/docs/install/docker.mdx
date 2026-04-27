@@ -1,0 +1,39 @@
+---
+sidebar_position: 2
+---
+
+# Docker
+
+Docker Compose is the recommended way to run Ant.
+
+## Step 1 — Download files
+
+Create a folder to hold the compose file and environment variables, then change into it.
+
+```bash title="Move to the directory"
+mkdir ./ant-app
+cd ./ant-app
+```
+
+Download the docker-compose file and the example environment file into the folder.
+
+```bash title="Download files"
+wget -O docker-compose.yml TODO 
+wget -O .env TODO 
+```
+
+## Step 2 - Populate the .env 
+
+Open .env and set values for:
+
+```bash title="Default content"
+TODO
+```
+
+## Step 3 - Start
+
+Execute the compose command to launch Ant in detached mode.
+
+```bash title="Start the app"
+docker compose up -d
+```

@@ -18,16 +18,30 @@ cd ./ant-app
 Download the docker-compose file and the example environment file into the folder.
 
 ```bash title="Download files"
-wget -O docker-compose.yml TODO 
-wget -O .env TODO 
+wget -O docker-compose.yml https://github.com/martinvasquez1/habit-tracker/releases/latest/download/docker-compose.yml
+wget -O .env https://github.com/martinvasquez1/habit-tracker/releases/latest/download/default.env.example 
 ```
 
 ## Step 2 - Populate the .env 
 
-Open .env and set values for:
+Edit .env to set values:
 
 ```bash title="Default content"
-TODO
+VERSION=0.1.0
+
+# Web
+
+VITE_API_URL="http://localhost:3001"
+
+# Api
+
+PORT=3001
+DB_URL=postgres://postgres:postgres@db:5432/ant-db
+ORIGIN="http://localhost:3000"
+APP_URL=http://localhost:3001
+JWT_SECRET="123"
+CREATE_ADMIN_PASSWORD=123
+UPLOAD_DIR=./uploads
 ```
 
 ## Step 3 - Start

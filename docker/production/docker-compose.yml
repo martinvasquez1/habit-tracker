@@ -1,7 +1,7 @@
 services:
   web:
     container_name: web
-    image: ghcr.io/martinvasquez1/ant-web:latest
+    image: ghcr.io/martinvasquez1/ant-web:${VERSION:-latest}
     restart: always
     ports:
       - 2001:3000
@@ -14,7 +14,7 @@ services:
 
   api:
     container_name: api
-    image: ghcr.io/martinvasquez1/ant-api:latest
+    image: ghcr.io/martinvasquez1/ant-api:${VERSION:-latest}
     restart: always
     ports:
       - 2002:3001

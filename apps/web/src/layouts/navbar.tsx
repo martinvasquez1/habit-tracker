@@ -10,7 +10,6 @@ import { LuMenu } from "react-icons/lu";
 import { LuX } from "react-icons/lu";
 
 const links = [
-  { name: "Home", path: "/" },
   { name: "Sign in", path: "/sign-in" },
   { name: "Sign up", path: "/sign-up" },
 ];

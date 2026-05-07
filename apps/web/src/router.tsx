@@ -1,11 +1,10 @@
 "use client";
 
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip"
 
 import LandingLayout from "./layouts/landing-layout.js";
-import Landing from "./pages/landing.js";
 import About from "./pages/about.js";
 import SignUp from "./pages/sign-up.js";
 import SignIn from "./pages/sign-in.js";
@@ -28,7 +27,7 @@ export default function Router() {
         <TooltipProvider>
           <Routes>
             <Route path="/" element={<LandingLayout />}>
-              <Route index element={<Landing />} />
+              <Route index element={<Navigate to="/sign-in" replace />} />
               <Route path="about" element={<About />} />
               <Route path="sign-up" element={<SignUp />} />
               <Route path="sign-in" element={<SignIn />} />

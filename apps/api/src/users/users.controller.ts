@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import {
   Body,
   ClassSerializerInterceptor,
@@ -61,7 +63,7 @@ export class UsersController {
       ],
       {
         storage: diskStorage({
-          destination: './uploads/users',
+          destination: process.env.UPLOAD_DIR + "/users",
           filename: (req, file, cb) => {
             const unique = Date.now();
             const name = `${file.fieldname}-${unique}${extname(file.originalname)}`

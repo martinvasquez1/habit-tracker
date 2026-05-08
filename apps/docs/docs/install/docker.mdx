@@ -6,7 +6,9 @@ sidebar_position: 2
 
 Docker Compose is the recommended way to run Ant.
 
-## Step 1 - Download files
+## Set up
+
+### Step 1 - Download files
 
 Create a folder to hold the compose file and environment variables, then change into it.
 
@@ -22,7 +24,7 @@ wget -O docker-compose.yml https://github.com/martinvasquez1/habit-tracker/relea
 wget -O .env https://github.com/martinvasquez1/habit-tracker/releases/latest/download/default.env.example 
 ```
 
-## Step 2 - Populate the .env 
+### Step 2 - Populate the .env 
 
 Edit .env to set values:
 
@@ -44,10 +46,16 @@ CREATE_ADMIN_PASSWORD=123
 UPLOAD_DIR=./uploads
 ```
 
-## Step 3 - Start
+### Step 3 - Start
 
 Execute the compose command to launch Ant.
 
 ```bash title="Start the app"
 docker compose up -d
 ```
+
+---
+
+## Try
+
+The web application will be available at http://YOUR_SERVER_IP:2001 once the setup is complete. Open this address in your browser to access and start using the application.

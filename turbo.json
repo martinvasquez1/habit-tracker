@@ -18,7 +18,18 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": [
+        "NODE_ENV",
+        "VITE_API_URL",
+        "PORT",
+        "DB_URL",
+        "ORIGIN",
+        "APP_URL",
+        "JWT_SECRET",
+        "CREATE_ADMIN_PASSWORD",
+        "UPLOAD_DIR"
+      ]
     }
   }
 }

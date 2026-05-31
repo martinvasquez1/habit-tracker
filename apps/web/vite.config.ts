@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     test: {
       globals: true,
       environment: "jsdom",
-      setupFiles: './tests/setup.js',
+      setupFiles: "./tests/setup.js",
     },
 
     resolve: {
@@ -22,10 +22,12 @@ export default defineConfig(({ mode }) => {
 
     server: {
       port: Number(env.VITE_DEV_PORT) || 5173,
+      host: "0.0.0.0",
     },
 
     preview: {
       port: Number(env.VITE_PREVIEW_PORT) || 4173,
+      host: "0.0.0.0",
     },
   };
 });

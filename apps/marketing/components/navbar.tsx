@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Menu, X, LucideIcon } from "lucide-react";
 
-import Logo from "@repo/ui/logo";
 import { navItems } from "@/data/nav-items";
 
 import React from "react";
@@ -70,7 +69,7 @@ export default function Navbar() {
     return (
         <header className="z-50 fixed top-0 left-0 w-full border-b-2 border-slate-200 dark:border-zinc-900 bg-white dark:bg-black">
             <div className="flex items-center justify-between px-6 py-4">
-                <div className=""><Logo /></div>
+                <div className="">Logo</div>
 
                 <DesktopMenu
                     open={open}

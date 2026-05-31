@@ -26,10 +26,11 @@
   "postCreateCommand": "npm ci && npm run build",
   "remoteUser": "node",
 
-  "forwardPorts": [3000, 3001, 3010, 4000],
+  "forwardPorts": [3000, 3001, 3002, 3010, 4000],
   "portsAttributes": {
     "3000": { "label": "Web" },
     "3001": { "label": "Marketing" },
+    "3002": { "label": "Web preview" },
     "3010": { "label": "Docs" },
     "4000": { "label": "API" }
   }

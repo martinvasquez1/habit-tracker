@@ -25,7 +25,6 @@
   },
 
   "postCreateCommand": "npm ci && npm run build",
-  "remoteUser": "node",
 
   "forwardPorts": [3000, 3001, 3002, 3010, 4000],
   "portsAttributes": {

@@ -1,6 +1,6 @@
 services:
   workspace:
-    image: node:22-slim
+    image: mcr.microsoft.com/devcontainers/base:ubuntu-24.04
     volumes:
       - ../..:/workspace:cached
     working_dir: /workspace

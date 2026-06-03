@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { ConflictException, NotFoundException } from '@nestjs/common';
 
-import bcrypt from 'bcryptjs';
+import bcryptjs from 'bcryptjs';
 import { DeleteResult } from 'typeorm';
 
 import { UsersService } from 'src/users/users.service';
@@ -15,7 +15,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 import paginate from 'src/common/paginate/paginate';
 
-jest.mock('bcrypt', () => ({
+jest.mock('bcryptjs', () => ({
   hash: jest.fn(),
 }));
 
@@ -36,7 +36,7 @@ describe('UsersService', () => {
   let service: UsersService;
   let usersRepository: jest.Mocked<UsersRepository>;
 
-  const mockedBcryptHash = bcrypt.hash as jest.MockedFunction<
+  const mockedBcryptHash = bcryptjs.hash as jest.MockedFunction<
     (data: string, saltOrRounds: number) => Promise<string>
   >;
   const mockedPaginate = paginate as jest.MockedFunction<typeof paginate>;

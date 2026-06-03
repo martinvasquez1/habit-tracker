@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import bcrypt from 'bcryptjs';
+import bcryptjs from 'bcryptjs';
 
 import { AuthService } from './auth.service';
 import { UsersService } from 'src/users/users.service';
@@ -16,7 +16,7 @@ const mockUser = {
   role: UserRole.BASIC,
 } as User;
 
-jest.mock('bcrypt', () => ({
+jest.mock('bcryptjs', () => ({
   compare: jest.fn(),
 }));
 
@@ -96,7 +96,7 @@ describe('AuthService', () => {
 
     it('should return token and userId for valid credentials', async () => {
       mockUsersService.findByEmail.mockResolvedValue(mockUser);
-      (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+      (bcryptjs.compare as jest.Mock).mockResolvedValue(true);
       jest.spyOn(service, 'generateToken').mockResolvedValue('mocked-token');
 
       const result = await service.signIn(signInDto);
@@ -109,7 +109,7 @@ describe('AuthService', () => {
 
     it('should throw 401 if password is wrong', async () => {
       mockUsersService.findByEmail.mockResolvedValue(mockUser);
-      (bcrypt.compare as jest.Mock).mockResolvedValue(false);
+      (bcryptjs.compare as jest.Mock).mockResolvedValue(false);
 
       await expect(service.signIn(signInDto)).rejects.toThrow(
         UnauthorizedException,

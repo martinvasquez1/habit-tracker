@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { ConflictException, NotFoundException } from '@nestjs/common';
 
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { DeleteResult } from 'typeorm';
 
 import { UsersService } from 'src/users/users.service';

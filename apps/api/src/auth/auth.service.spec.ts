@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 import { AuthService } from './auth.service';
 import { UsersService } from 'src/users/users.service';

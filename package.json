@@ -2,6 +2,7 @@
   "name": "habit-tracker",
   "private": true,
   "version": "0.1.0",
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -9,9 +10,13 @@
     "generate:sdk": "npm run generate:openapi -w=api && npm run copy-openapi && npm run sdk:generate --w=@repo/open-api && npm run build --w=@repo/open-api",
     "patch": "npm version patch --workspaces --include-workspace-root",
     "minor": "npm version minor --workspaces --include-workspace-root",
-    "major": "npm version major --workspaces --include-workspace-root"
+    "major": "npm version major --workspaces --include-workspace-root",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
+    "husky": "^9.1.7",
     "turbo": "^2.8.16"
   },
   "engines": {

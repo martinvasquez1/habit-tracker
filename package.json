@@ -6,6 +6,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "copy-openapi": "cp apps/api/open-api.json packages/open-api/open-api.json",
     "generate:sdk": "npm run generate:openapi -w=api && npm run copy-openapi && npm run sdk:generate --w=@repo/open-api && npm run build --w=@repo/open-api",
     "patch": "npm version patch --workspaces --include-workspace-root",
@@ -17,6 +19,7 @@
     "@commitlint/cli": "^21.0.2",
     "@commitlint/config-conventional": "^21.0.2",
     "husky": "^9.1.7",
+    "prettier": "^3.8.3",
     "turbo": "^2.8.16"
   },
   "engines": {

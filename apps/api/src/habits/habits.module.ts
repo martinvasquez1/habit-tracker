@@ -15,7 +15,12 @@ import { DeleteHabitPolicy } from './policies/delete-habit-policy';
 import { HabitsRepository } from './habits.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Habit]), UsersModule, StatsModule, CaslModule],
+  imports: [
+    TypeOrmModule.forFeature([Habit]),
+    UsersModule,
+    StatsModule,
+    CaslModule,
+  ],
   controllers: [HabitsController],
   providers: [
     HabitsService,

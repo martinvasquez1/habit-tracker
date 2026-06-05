@@ -1,17 +1,16 @@
 # Log
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**id** | **number** |  | [default to undefined]
-**date** | **string** |  | [default to undefined]
-**createdDate** | **string** |  | [default to undefined]
-**status** | **string** |  | [default to undefined]
-**note** | **string** |  | [default to undefined]
-**habitId** | **number** |  | [default to undefined]
-**habit** | [**Habit**](Habit.md) |  | [default to undefined]
+| Name            | Type                  | Description | Notes                  |
+| --------------- | --------------------- | ----------- | ---------------------- |
+| **id**          | **number**            |             | [default to undefined] |
+| **date**        | **string**            |             | [default to undefined] |
+| **createdDate** | **string**            |             | [default to undefined] |
+| **status**      | **string**            |             | [default to undefined] |
+| **note**        | **string**            |             | [default to undefined] |
+| **habitId**     | **number**            |             | [default to undefined] |
+| **habit**       | [**Habit**](Habit.md) |             | [default to undefined] |
 
 ## Example
 
@@ -19,13 +18,13 @@ Name | Type | Description | Notes
 import { Log } from './api';
 
 const instance: Log = {
-    id,
-    date,
-    createdDate,
-    status,
-    note,
-    habitId,
-    habit,
+  id,
+  date,
+  createdDate,
+  status,
+  note,
+  habitId,
+  habit,
 };
 ```
 

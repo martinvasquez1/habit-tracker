@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   children: React.ReactNode;
@@ -31,11 +31,11 @@ export default function ResponsiveMacbook({ children }: Props) {
   }, []);
 
   return (
-  <div ref={wrapperRef} className="flex justify-center pt-32">
+    <div ref={wrapperRef} className="flex justify-center pt-32">
       <div
         style={{
           transform: `scale(${scale})`,
-          transformOrigin: "top center",
+          transformOrigin: 'top center',
         }}
       >
         <div className="marvel-device macbook">
@@ -47,4 +47,4 @@ export default function ResponsiveMacbook({ children }: Props) {
       </div>
     </div>
   );
-};
+}

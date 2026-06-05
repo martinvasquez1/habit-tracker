@@ -27,9 +27,7 @@
             }
           }
         },
-        "tags": [
-          "App"
-        ]
+        "tags": ["App"]
       }
     },
     "/users/{id}": {
@@ -68,9 +66,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Users"
-        ]
+        "tags": ["Users"]
       },
       "patch": {
         "operationId": "updateUser",
@@ -117,9 +113,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Users"
-        ]
+        "tags": ["Users"]
       },
       "delete": {
         "operationId": "deleteUser",
@@ -156,9 +150,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Users"
-        ]
+        "tags": ["Users"]
       }
     },
     "/auth/sign-up": {
@@ -208,9 +200,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Auth"
-        ]
+        "tags": ["Auth"]
       }
     },
     "/auth/sign-up/admin": {
@@ -250,9 +240,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Auth"
-        ]
+        "tags": ["Auth"]
       }
     },
     "/auth/sign-in": {
@@ -292,9 +280,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Auth"
-        ]
+        "tags": ["Auth"]
       }
     },
     "/habits": {
@@ -334,9 +320,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Habits"
-        ]
+        "tags": ["Habits"]
       },
       "get": {
         "operationId": "getHabits",
@@ -367,9 +351,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Habits"
-        ]
+        "tags": ["Habits"]
       }
     },
     "/habits/logs": {
@@ -431,9 +413,7 @@
           }
         },
         "summary": "Retrieves all habits along with their logs and current streak for a specific date range.",
-        "tags": [
-          "Habits"
-        ]
+        "tags": ["Habits"]
       }
     },
     "/habits/{id}/stats": {
@@ -482,9 +462,7 @@
           }
         },
         "summary": "Retrieves statistics for a specific habit.",
-        "tags": [
-          "Habits"
-        ]
+        "tags": ["Habits"]
       }
     },
     "/habits/{id}": {
@@ -523,9 +501,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Habits"
-        ]
+        "tags": ["Habits"]
       },
       "patch": {
         "operationId": "updateHabit",
@@ -572,9 +548,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Habits"
-        ]
+        "tags": ["Habits"]
       },
       "delete": {
         "operationId": "deleteHabit",
@@ -611,9 +585,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Habits"
-        ]
+        "tags": ["Habits"]
       }
     },
     "/habits/{habitId}/logs": {
@@ -662,9 +634,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Logs"
-        ]
+        "tags": ["Logs"]
       },
       "get": {
         "description": "Optionally filters logs using a date range.\nThe `startDate` and `endDate` query parameters must be **strings representing\nthe user's local date** in `YYYY-MM-DD` format.",
@@ -725,9 +695,7 @@
           }
         },
         "summary": "Retrieves logs for a specific habit.",
-        "tags": [
-          "Logs"
-        ]
+        "tags": ["Logs"]
       }
     },
     "/habits/{habitId}/logs/{logId}": {
@@ -774,9 +742,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Logs"
-        ]
+        "tags": ["Logs"]
       },
       "patch": {
         "operationId": "updateLog",
@@ -831,9 +797,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Logs"
-        ]
+        "tags": ["Logs"]
       },
       "delete": {
         "operationId": "deleteLog",
@@ -878,9 +842,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Logs"
-        ]
+        "tags": ["Logs"]
       }
     }
   },
@@ -902,9 +864,7 @@
             "description": "Error message"
           }
         },
-        "required": [
-          "message"
-        ]
+        "required": ["message"]
       },
       "User": {
         "type": "object",
@@ -933,10 +893,7 @@
             "type": "string"
           },
           "role": {
-            "enum": [
-              "admin",
-              "basic"
-            ],
+            "enum": ["admin", "basic"],
             "type": "string"
           },
           "habits": {
@@ -972,11 +929,7 @@
             "type": "string"
           },
           "status": {
-            "enum": [
-              "completed",
-              "skipped",
-              "missed"
-            ],
+            "enum": ["completed", "skipped", "missed"],
             "type": "string"
           },
           "note": {
@@ -1106,9 +1059,7 @@
             "example": "Validation failed: email must be a valid email"
           }
         },
-        "required": [
-          "message"
-        ]
+        "required": ["message"]
       },
       "SignUpDto": {
         "type": "object",
@@ -1124,11 +1075,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "username",
-          "email",
-          "password"
-        ]
+        "required": ["username", "email", "password"]
       },
       "SignUpResponseDto": {
         "type": "object",
@@ -1137,9 +1084,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "accessToken"
-        ]
+        "required": ["accessToken"]
       },
       "SignInDto": {
         "type": "object",
@@ -1152,10 +1097,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "email",
-          "password"
-        ]
+        "required": ["email", "password"]
       },
       "SignInResponseDto": {
         "type": "object",
@@ -1164,9 +1106,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "accessToken"
-        ]
+        "required": ["accessToken"]
       },
       "CreateHabitDto": {
         "type": "object",
@@ -1195,10 +1135,7 @@
             ]
           }
         },
-        "required": [
-          "name",
-          "color"
-        ]
+        "required": ["name", "color"]
       },
       "HabitWithStreak": {
         "type": "object",
@@ -1296,12 +1233,7 @@
             }
           }
         },
-        "required": [
-          "currentStreak",
-          "streaks",
-          "amountOfLogs",
-          "logsPerMonth"
-        ]
+        "required": ["currentStreak", "streaks", "amountOfLogs", "logsPerMonth"]
       },
       "UpdateHabitDto": {
         "type": "object",
@@ -1341,11 +1273,7 @@
             "type": "string",
             "description": "Status of the log entry.",
             "example": "LogStatus.COMPLETED",
-            "enum": [
-              "completed",
-              "skipped",
-              "missed"
-            ]
+            "enum": ["completed", "skipped", "missed"]
           },
           "date": {
             "type": "string",
@@ -1359,10 +1287,7 @@
             "example": "Completed morning workout"
           }
         },
-        "required": [
-          "status",
-          "date"
-        ]
+        "required": ["status", "date"]
       },
       "UpdateLogDto": {
         "type": "object",
@@ -1376,11 +1301,7 @@
             "type": "string",
             "description": "Status of the log entry.",
             "example": "LogStatus.COMPLETED",
-            "enum": [
-              "completed",
-              "skipped",
-              "missed"
-            ]
+            "enum": ["completed", "skipped", "missed"]
           }
         }
       }

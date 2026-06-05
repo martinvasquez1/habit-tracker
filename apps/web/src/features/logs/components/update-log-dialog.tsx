@@ -1,16 +1,12 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import ResponsiveDialog from "@/components/ui/responsive-dialog";
-import { UpdateLogForm } from "@/features/logs/components/update-log-form";
+import ResponsiveDialog from '@/components/ui/responsive-dialog';
+import { UpdateLogForm } from '@/features/logs/components/update-log-form';
 
-import { Log, LogStatusEnum } from "@repo/open-api";
-import { useDeleteLog } from "../api/delete-log";
-import {
-  UpdateLogInput,
-  useUpdateLog,
-  useUpdateLogForm,
-} from "../api/update-log";
-import { useCreateLog } from "../api/create-log";
+import { Log, LogStatusEnum } from '@repo/open-api';
+import { useDeleteLog } from '../api/delete-log';
+import { UpdateLogInput, useUpdateLog, useUpdateLogForm } from '../api/update-log';
+import { useCreateLog } from '../api/create-log';
 
 type UpdateLogDialogProps = {
   habitId: number;
@@ -55,13 +51,9 @@ export default function UpdateLogDialog({
   }
 
   const isDone =
-    updateLogMutation.isSuccess ||
-    deleteLogMutation.isSuccess ||
-    createLogMutation.isSuccess;
+    updateLogMutation.isSuccess || deleteLogMutation.isSuccess || createLogMutation.isSuccess;
   const isPending =
-    updateLogMutation.isPending ||
-    deleteLogMutation.isPending ||
-    createLogMutation.isPending;
+    updateLogMutation.isPending || deleteLogMutation.isPending || createLogMutation.isPending;
 
   return (
     <ResponsiveDialog

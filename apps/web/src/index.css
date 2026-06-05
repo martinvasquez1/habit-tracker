@@ -1,8 +1,8 @@
-@import "tailwindcss";
-@import "@repo/tailwind-config";
+@import 'tailwindcss';
+@import '@repo/tailwind-config';
 
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/inter';
 
 /* ---break---*/
 @custom-variant dark (&:is(.dark *));

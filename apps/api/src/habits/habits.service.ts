@@ -75,13 +75,11 @@ export class HabitsService {
   }
 
   async getStats(habitId: number, currentDate: Date) {
-    const habit = await this.habitsRepository.findOneWithLogs(
-      habitId,
-      'ASC',
-    );
-    if (!habit) throw new NotFoundException(`Habit with ID ${habitId} not found`);
+    const habit = await this.habitsRepository.findOneWithLogs(habitId, 'ASC');
+    if (!habit)
+      throw new NotFoundException(`Habit with ID ${habitId} not found`);
 
-    const logs = habit.logs
+    const logs = habit.logs;
 
     const currentStreak = this.statsService.calculateStreak(logs, currentDate);
     const streaks = this.statsService.calculateStreaks(logs);

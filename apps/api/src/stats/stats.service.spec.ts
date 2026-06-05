@@ -93,7 +93,7 @@ describe('StatsService', () => {
 
   describe('countLogsPerMonth', () => {
     it('should return all zeros when no logs', () => {
-      const logs: Log[] = []
+      const logs: Log[] = [];
 
       const result = service.countLogsPerMonth(logs);
       const expected = Array(12).fill(0);
@@ -147,22 +147,16 @@ describe('StatsService', () => {
     });
 
     it('should correctly count edge dates like January 1st regardless of year', () => {
-      const logs = [
-        { date: '2020-01-01' },
-        { date: '2030-01-01' },
-      ] as Log[];
+      const logs = [{ date: '2020-01-01' }, { date: '2030-01-01' }] as Log[];
 
       const result = service.countLogsPerMonth(logs);
-      const january = result[0]
+      const january = result[0];
 
       expect(january).toBe(2);
     });
 
     it('should correctly count edge dates like December 31st regardless of year', () => {
-      const logs = [
-        { date: '2020-12-31' },
-        { date: '2030-12-31' },
-      ] as Log[];
+      const logs = [{ date: '2020-12-31' }, { date: '2030-12-31' }] as Log[];
 
       const result = service.countLogsPerMonth(logs);
       const december = result[11];

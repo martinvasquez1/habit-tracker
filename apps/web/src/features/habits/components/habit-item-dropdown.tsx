@@ -1,31 +1,28 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Habit } from "@repo/open-api";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Habit } from '@repo/open-api';
 
-import IconWrapper from "@/components/icon-wrapper";
-import { Button } from "@/components/ui/button";
+import IconWrapper from '@/components/icon-wrapper';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { LuArchive, LuEllipsisVertical, LuPencil, LuTrash } from "react-icons/lu";
+} from '@/components/ui/dropdown-menu';
+import { LuArchive, LuEllipsisVertical, LuPencil, LuTrash } from 'react-icons/lu';
 
-import UpdateHabit from "./update-habit";
-import ArchiveHabit from "./archive-habit";
-import DeleteHabit from "./delete-habit";
+import UpdateHabit from './update-habit';
+import ArchiveHabit from './archive-habit';
+import DeleteHabit from './delete-habit';
 
 type HabitItemDropdwonProps = {
   habitId: number;
   habit: Habit;
 };
 
-export default function HabitItemDropdown({
-  habitId,
-  habit,
-}: HabitItemDropdwonProps) {
+export default function HabitItemDropdown({ habitId, habit }: HabitItemDropdwonProps) {
   const { t } = useTranslation();
 
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
@@ -47,10 +44,12 @@ export default function HabitItemDropdown({
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setIsArchiveOpen(true)}>
             <LuArchive />
-            {habit.isArchived ? t('habits.item_options.unarchive') : t('habits.item_options.archive')}
+            {habit.isArchived
+              ? t('habits.item_options.unarchive')
+              : t('habits.item_options.archive')}
           </DropdownMenuItem>
 
-          <DropdownMenuSeparator/>
+          <DropdownMenuSeparator />
 
           <DropdownMenuItem onClick={() => setIsDeleteOpen(true)} variant="destructive">
             <LuTrash />
@@ -70,11 +69,7 @@ export default function HabitItemDropdown({
         isOpen={isArchiveOpen}
         setIsOpen={setIsArchiveOpen}
       />
-      <DeleteHabit
-        habitId={habitId}
-        isOpen={isDeleteOpen}
-        setIsOpen={setIsDeleteOpen}
-      />
+      <DeleteHabit habitId={habitId} isOpen={isDeleteOpen} setIsOpen={setIsDeleteOpen} />
     </>
   );
 }

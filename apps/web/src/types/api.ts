@@ -1,8 +1,8 @@
-import { colors } from "@/styles/main";
+import { colors } from '@/styles/main';
 
 export enum UserRole {
-  ADMIN = "admin",
-  BASIC = "basic",
+  ADMIN = 'admin',
+  BASIC = 'basic',
 }
 
 export type User = {
@@ -14,9 +14,9 @@ export type User = {
 };
 
 export enum LogStatus {
-  COMPLETED = "completed",
-  SKIPPED = "skipped",
-  MISSED = "missed",
+  COMPLETED = 'completed',
+  SKIPPED = 'skipped',
+  MISSED = 'missed',
 }
 
 export type Log = {

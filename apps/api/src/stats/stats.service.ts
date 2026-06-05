@@ -3,7 +3,7 @@ import { Log } from 'src/logs/entities/log.entity';
 
 @Injectable()
 export class StatsService {
-  constructor() { }
+  constructor() {}
 
   /**
    * Calculates consecutive-day streaks from a list of logs.

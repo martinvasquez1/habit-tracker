@@ -1,17 +1,11 @@
-"use client";
+'use client';
 
-import { Link, useNavigate } from "react-router";
-import { jwtDecode } from "jwt-decode";
+import { Link, useNavigate } from 'react-router';
+import { jwtDecode } from 'jwt-decode';
 
-import {
-  Bell,
-  ChevronsUpDown,
-  LogOut,
-  Sparkles,
-  UserRound,
-} from "lucide-react";
+import { Bell, ChevronsUpDown, LogOut, Sparkles, UserRound } from 'lucide-react';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,19 +14,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar";
-import { Skeleton } from "./ui/skeleton";
+} from '@/components/ui/sidebar';
+import { Skeleton } from './ui/skeleton';
 
-import { User } from "@repo/open-api";
-import { useUser } from "@/features/users/api/get-user";
-import { useTranslation } from "react-i18next";
-import { ThemeToggle } from "./theme-toggle";
+import { User } from '@repo/open-api';
+import { useUser } from '@/features/users/api/get-user';
+import { useTranslation } from 'react-i18next';
+import { ThemeToggle } from './theme-toggle';
 
 interface UserSectionProps {
   user?: User;
@@ -45,9 +39,7 @@ function UserSection({ user }: UserSectionProps) {
 
   const plan = t('sidebar.premium_plan');
   const username = user?.username;
-  const capitalizedUsername = username
-    ? username.charAt(0).toUpperCase() + username.slice(1)
-    : "";
+  const capitalizedUsername = username ? username.charAt(0).toUpperCase() + username.slice(1) : '';
 
   return (
     <>
@@ -58,9 +50,7 @@ function UserSection({ user }: UserSectionProps) {
       <div className="grid flex-1 text-left text-sm leading-tight">
         {user ? (
           <>
-            <span className="truncate font-semibold">
-              {capitalizedUsername}
-            </span>
+            <span className="truncate font-semibold">{capitalizedUsername}</span>
             <span className="truncate text-xs text-fuchsia-600">{plan}</span>
           </>
         ) : (
@@ -74,24 +64,24 @@ function UserSection({ user }: UserSectionProps) {
   );
 }
 
-export function NavUser({ }) {
+export function NavUser({}) {
   const { t } = useTranslation();
 
   const { isMobile, open } = useSidebar();
   const navigate = useNavigate();
 
-  const jwt = localStorage.getItem("jwt");
-  if (!jwt) return "Error";
+  const jwt = localStorage.getItem('jwt');
+  if (!jwt) return 'Error';
 
   const decoded = jwtDecode(jwt) as { id: string };
   const userId = decoded.id;
   let { data: user, isError } = useUser(userId);
 
-  if (isError) return "Error";
+  if (isError) return 'Error';
 
   function handleLogout() {
-    localStorage.removeItem("jwt");
-    navigate("/sign-in");
+    localStorage.removeItem('jwt');
+    navigate('/sign-in');
   }
 
   return (
@@ -101,9 +91,8 @@ export function NavUser({ }) {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className={
-                `data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground
-                ${(!open && !isMobile) && "hover:bg-transparent active:bg-transparent data-[state=open]:bg-transparent"}`}
+              className={`data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground
+                ${!open && !isMobile && 'hover:bg-transparent active:bg-transparent data-[state=open]:bg-transparent'}`}
             >
               <UserSection user={user} />
               <ChevronsUpDown className="ml-auto size-4" />
@@ -111,7 +100,7 @@ export function NavUser({ }) {
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg transition-none"
-            side={isMobile ? "bottom" : "right"}
+            side={isMobile ? 'bottom' : 'right'}
             align="end"
             sideOffset={4}
           >
@@ -123,7 +112,7 @@ export function NavUser({ }) {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link to={"/profile"}>
+                <Link to={'/profile'}>
                   <UserRound />
                   <span>{t('sidebar.profile')}</span>
                 </Link>

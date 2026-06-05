@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 import {
   Dialog,
@@ -10,7 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Drawer,
   DrawerContent,
@@ -18,8 +18,8 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
-import { Button } from "./button";
+} from '@/components/ui/drawer';
+import { Button } from './button';
 
 type ResponsiveDialogProps = {
   title: string;
@@ -62,9 +62,7 @@ export default function ResponsiveDialog({
   if (isDesktop) {
     return (
       <Dialog open={currentIsOpen} onOpenChange={setCurrentIsOpen}>
-        {triggerButton && (
-          <DialogTrigger asChild>{triggerButton}</DialogTrigger>
-        )}
+        {triggerButton && <DialogTrigger asChild>{triggerButton}</DialogTrigger>}
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
@@ -93,7 +91,7 @@ export default function ResponsiveDialog({
 type ConfirmationDialogProps = {
   title: string;
   description: string;
-  confirmVariant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  confirmVariant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void | Promise<void>;
   isDone: boolean;
   isPending?: boolean;
@@ -103,14 +101,14 @@ type ConfirmationDialogProps = {
 export function ConfirmationDialog({
   title,
   description,
-  confirmVariant = "default",
+  confirmVariant = 'default',
   onSubmit,
   isDone,
   isPending = false,
   triggerButton,
 }: ConfirmationDialogProps) {
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -132,16 +130,12 @@ export function ConfirmationDialog({
             >
               {t('common.cancel')}
             </Button>
-            <Button
-              type="submit"
-              variant={confirmVariant}
-              disabled={isPending}
-            >
+            <Button type="submit" variant={confirmVariant} disabled={isPending}>
               {t('common.confirm')}
             </Button>
           </div>
         </form>
       </ResponsiveDialog>
     </>
-  )
+  );
 }

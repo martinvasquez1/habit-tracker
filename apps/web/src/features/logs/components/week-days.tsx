@@ -1,8 +1,8 @@
-import { TableCell } from "@/components/ui/table";
-import CalendarDay from "./calendar-day";
+import { TableCell } from '@/components/ui/table';
+import CalendarDay from './calendar-day';
 
-import { fillMissingLogs } from "@/utils/fill-missing-logs";
-import { Habit } from "@repo/open-api";
+import { fillMissingLogs } from '@/utils/fill-missing-logs';
+import { Habit } from '@repo/open-api';
 
 type WeekDaysProps = {
   habit: Habit;
@@ -11,12 +11,7 @@ type WeekDaysProps = {
   insideTable?: boolean;
 };
 
-export default function WeekDays({
-  habit,
-  startDate,
-  endDate,
-  insideTable = true,
-}: WeekDaysProps) {
+export default function WeekDays({ habit, startDate, endDate, insideTable = true }: WeekDaysProps) {
   const { logs, color, id: habitId } = habit;
   const filledLogs = fillMissingLogs(logs, habitId, startDate, endDate);
 
@@ -33,15 +28,7 @@ export default function WeekDays({
           );
         }
 
-        return (
-          <CalendarDay
-            key={log.id}
-            data={log}
-            habitId={habitId}
-            color={color}
-            size="grow"
-          />
-        );
+        return <CalendarDay key={log.id} data={log} habitId={habitId} color={color} size="grow" />;
       })}
     </>
   );

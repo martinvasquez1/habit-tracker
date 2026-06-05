@@ -1,34 +1,29 @@
-import { IconContext } from "react-icons";
-import { cva } from "class-variance-authority";
-import { ReactNode } from "react";
+import { IconContext } from 'react-icons';
+import { cva } from 'class-variance-authority';
+import { ReactNode } from 'react';
 
-const iconStyles = cva([""], {
+const iconStyles = cva([''], {
   variants: {
     size: {
-      xs: ["1.0em"],
-      sm: ["1.5em"],
-      md: ["2.0em"],
-      lg: ["3.0em"],
+      xs: ['1.0em'],
+      sm: ['1.5em'],
+      md: ['2.0em'],
+      lg: ['3.0em'],
     },
   },
   defaultVariants: {
-    size: "md",
+    size: 'md',
   },
 });
 
 interface IconWrapperProps {
   icon: ReactNode;
   color?: string;
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   className?: string;
 }
 
-export default function IconWrapper({
-  icon,
-  color,
-  size,
-  className,
-}: IconWrapperProps) {
+export default function IconWrapper({ icon, color, size, className }: IconWrapperProps) {
   return (
     <IconContext.Provider
       value={{

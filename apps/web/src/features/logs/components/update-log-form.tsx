@@ -1,22 +1,16 @@
-import { Controller, UseFormReturn } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { Controller, UseFormReturn } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
-import {
-  Field,
-  FieldContent,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field"
+import { Field, FieldContent, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 
 interface UpdateLogFormProps {
   form: UseFormReturn<any>;
@@ -64,16 +58,9 @@ export const UpdateLogForm: React.FC<UpdateLogFormProps> = ({
                 <FieldLabel htmlFor="status">{t('logs.update.status')}</FieldLabel>
                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </FieldContent>
-              <Select
-                name={field.name}
-                value={field.value}
-                onValueChange={field.onChange}
-              >
-                <SelectTrigger
-                  id="status"
-                  aria-invalid={fieldState.invalid}
-                >
-                  <SelectValue placeholder={field.value.status}/>
+              <Select name={field.name} value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger id="status" aria-invalid={fieldState.invalid}>
+                  <SelectValue placeholder={field.value.status} />
                 </SelectTrigger>
                 <SelectContent position="item-aligned">
                   <SelectItem value="completed">Completed</SelectItem>
@@ -90,7 +77,8 @@ export const UpdateLogForm: React.FC<UpdateLogFormProps> = ({
         className="w-full md:mb-0 mt-6"
         disabled={isPending}
       >
-        {submitText}{isPending && ' ...'}
+        {submitText}
+        {isPending && ' ...'}
       </Button>
     </form>
   );

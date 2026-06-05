@@ -1,7 +1,7 @@
-import { Link } from "react-router";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
+import { Link } from 'react-router';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
 
 import {
   Card,
@@ -10,34 +10,27 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field"
+} from '@/components/ui/card';
+import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
-import { useSignIn } from "../api/sign-in";
+import { useSignIn } from '../api/sign-in';
 
 const formSchema = z.object({
-  email: z.string().email({ message: "Invalid email address" }),
-  password: z
-    .string()
-    .min(3, { message: "Password must be at least 3 characters long" }),
+  email: z.string().email({ message: 'Invalid email address' }),
+  password: z.string().min(3, { message: 'Password must be at least 3 characters long' }),
 });
 
-export function SignInForm({ }: React.ComponentPropsWithoutRef<"div">) {
+export function SignInForm({}: React.ComponentPropsWithoutRef<'div'>) {
   const signInMutation = useSignIn();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -56,7 +49,7 @@ export function SignInForm({ }: React.ComponentPropsWithoutRef<"div">) {
         </CardHeader>
         <CardContent>
           <form onSubmit={form.handleSubmit(onSubmit)} id="form-sign-in">
-            <FieldGroup >
+            <FieldGroup>
               <Controller
                 name="email"
                 control={form.control}
@@ -71,9 +64,7 @@ export function SignInForm({ }: React.ComponentPropsWithoutRef<"div">) {
                       placeholder="email@something.com"
                       autoComplete="off"
                     />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                   </Field>
                 )}
               />
@@ -91,9 +82,7 @@ export function SignInForm({ }: React.ComponentPropsWithoutRef<"div">) {
                       placeholder="******"
                       autoComplete="off"
                     />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                   </Field>
                 )}
               />
@@ -104,8 +93,7 @@ export function SignInForm({ }: React.ComponentPropsWithoutRef<"div">) {
           <div className="flex flex-col gap-0 w-full">
             {signInMutation.isError && (
               <div className="text-[0.8rem] font-medium text-destructive pb-3">
-                {(signInMutation.error as any)?.response?.data?.message ||
-                  "An error occurred"}
+                {(signInMutation.error as any)?.response?.data?.message || 'An error occurred'}
               </div>
             )}
             <Button
@@ -114,10 +102,10 @@ export function SignInForm({ }: React.ComponentPropsWithoutRef<"div">) {
               className="w-full"
               disabled={signInMutation.isPending}
             >
-              {signInMutation.isPending ? "Signing in..." : "Sign in"}
+              {signInMutation.isPending ? 'Signing in...' : 'Sign in'}
             </Button>
             <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
+              Don&apos;t have an account?{' '}
               <Link to="/sign-up" className="underline">
                 Sign up
               </Link>

@@ -1,35 +1,33 @@
-import { useState } from "react";
-import { cva } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { useState } from 'react';
+import { cva } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
 
-import { Button } from "@/components/ui/button";
-import UpdateLogDialog from "./update-log-dialog";
+import { Button } from '@/components/ui/button';
+import UpdateLogDialog from './update-log-dialog';
 
-import { Log, LogStatusEnum } from "@repo/open-api";
-import { colorMissedDay, colors } from "@/styles/main";
-import { colorsWithHover } from "@/styles/main";
+import { Log, LogStatusEnum } from '@repo/open-api';
+import { colorMissedDay, colors } from '@/styles/main';
+import { colorsWithHover } from '@/styles/main';
 
-import { useCreateLog } from "../api/create-log";
-import { useDeleteLog } from "../api/delete-log";
+import { useCreateLog } from '../api/create-log';
+import { useDeleteLog } from '../api/delete-log';
 
-const calendarDayStyles = cva("aspect-square shadow-none", {
+const calendarDayStyles = cva('aspect-square shadow-none', {
   variants: {
     status: {
-      [LogStatusEnum.COMPLETED]: "",
-      [LogStatusEnum.MISSED]: "bg-secondary border-1 border-border hover:bg-secondary/50",
-      [LogStatusEnum.SKIPPED]: "",
+      [LogStatusEnum.COMPLETED]: '',
+      [LogStatusEnum.MISSED]: 'bg-secondary border-1 border-border hover:bg-secondary/50',
+      [LogStatusEnum.SKIPPED]: '',
     },
     color: colorsWithHover,
-    disabled: { true: "bg-secondary" },
+    disabled: { true: 'bg-secondary' },
     size: {
-      default: "",
-      grow: "w-full h-full p-0 m-0 md:border",
+      default: '',
+      grow: 'w-full h-full p-0 m-0 md:border',
     },
   },
   compoundVariants: [
-    ...(Object.keys(colorMissedDay) as Array<
-      keyof typeof colorMissedDay
-    >).map((c) => ({
+    ...(Object.keys(colorMissedDay) as Array<keyof typeof colorMissedDay>).map((c) => ({
       status: LogStatusEnum.SKIPPED,
       color: c,
       className: `border-3 ${colorMissedDay[c]} bg-secondary hover:bg-secondary/50`,
@@ -37,8 +35,8 @@ const calendarDayStyles = cva("aspect-square shadow-none", {
   ],
   defaultVariants: {
     status: LogStatusEnum.MISSED,
-    color: "null",
-    size: "default",
+    color: 'null',
+    size: 'default',
     disabled: false,
   },
 });
@@ -47,7 +45,7 @@ type CalendarDayProps = {
   data: Log;
   habitId: number;
   color: keyof typeof colors;
-  size?: "default" | "grow";
+  size?: 'default' | 'grow';
   className?: string;
 };
 
@@ -55,7 +53,7 @@ export default function CalendarDay({
   data,
   habitId,
   color,
-  size = "default",
+  size = 'default',
   className,
 }: CalendarDayProps) {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -72,7 +70,7 @@ export default function CalendarDay({
       deleteLogMutation.mutate({ habitId, logId: data.id });
     } else {
       const status = LogStatusEnum.COMPLETED;
-      const createLogDto = { status, date }
+      const createLogDto = { status, date };
       createLogMutation.mutate({ habitId, createLogDto });
     }
   }
@@ -83,10 +81,10 @@ export default function CalendarDay({
   }
 
   const today = new Date();
-  const logDate = new Date(date + "T00:00:00");
+  const logDate = new Date(date + 'T00:00:00');
   const isDisabled = logDate > today;
 
-  if (status == LogStatusEnum.MISSED) color = "null";
+  if (status == LogStatusEnum.MISSED) color = 'null';
 
   return (
     <>
@@ -94,10 +92,7 @@ export default function CalendarDay({
         onClick={handleClick}
         onContextMenu={handleContextMenu}
         disabled={isDisabled}
-        className={cn(
-          calendarDayStyles({ status, color, size, disabled: isDisabled }),
-          className
-        )}
+        className={cn(calendarDayStyles({ status, color, size, disabled: isDisabled }), className)}
       />
       <UpdateLogDialog
         habitId={habitId}

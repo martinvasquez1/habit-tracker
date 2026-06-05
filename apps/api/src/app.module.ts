@@ -23,7 +23,7 @@ import { StatsModule } from './stats/stats.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
@@ -47,4 +47,4 @@ import { StatsModule } from './stats/stats.module';
     },
   ],
 })
-export class AppModule { }
+export class AppModule {}

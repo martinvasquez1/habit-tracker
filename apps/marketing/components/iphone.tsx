@@ -1,13 +1,13 @@
-"use client"
+'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 type IphoneXProps = {
   children?: React.ReactNode;
   className?: string;
 };
 
-export default function IPhoneX({ children, className = "" }: IphoneXProps) {
+export default function IPhoneX({ children, className = '' }: IphoneXProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
 
@@ -32,40 +32,37 @@ export default function IPhoneX({ children, className = "" }: IphoneXProps) {
   }, []);
 
   return (
-    <div
-      ref={wrapperRef}
-      className="w-full flex justify-center items-center overflow-hidden"
-    >
+    <div ref={wrapperRef} className="w-full flex justify-center items-center overflow-hidden">
       <div
         className="w-fit"
         style={{
           transform: `scale(${scale})`,
-          transformOrigin: "top center",
+          transformOrigin: 'top center',
         }}
       >
         <div className="marvel-device iphone-x">
-        <div className="notch">
-          <div className="camera" />
-          <div className="speaker" />
-        </div>
+          <div className="notch">
+            <div className="camera" />
+            <div className="speaker" />
+          </div>
 
-        <div className="top-bar" />
-        <div className="sleep" />
-        <div className="bottom-bar" />
-        <div className="volume" />
+          <div className="top-bar" />
+          <div className="sleep" />
+          <div className="bottom-bar" />
+          <div className="volume" />
 
-        <div className="overflow">
-          <div className="shadow shadow--tr" />
-          <div className="shadow shadow--tl" />
-          <div className="shadow shadow--br" />
-          <div className="shadow shadow--bl" />
-        </div>
+          <div className="overflow">
+            <div className="shadow shadow--tr" />
+            <div className="shadow shadow--tl" />
+            <div className="shadow shadow--br" />
+            <div className="shadow shadow--bl" />
+          </div>
 
-        <div className="inner-shadow" />
+          <div className="inner-shadow" />
 
-        <div className="screen">{children}</div>
+          <div className="screen">{children}</div>
         </div>
       </div>
     </div>
   );
-};
+}

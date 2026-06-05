@@ -42,7 +42,7 @@ import { UserResponseDto } from './dto/user-response.dto';
 @UseInterceptors(ClassSerializerInterceptor)
 @SerializeOptions({ type: UserResponseDto })
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
   @Get(':id')
   @UseGuards(PolicyGuard)
@@ -63,10 +63,10 @@ export class UsersController {
       ],
       {
         storage: diskStorage({
-          destination: process.env.UPLOAD_DIR + "/users",
+          destination: process.env.UPLOAD_DIR + '/users',
           filename: (req, file, cb) => {
             const unique = Date.now();
-            const name = `${file.fieldname}-${unique}${extname(file.originalname)}`
+            const name = `${file.fieldname}-${unique}${extname(file.originalname)}`;
             cb(null, name);
           },
         }),
@@ -78,17 +78,22 @@ export class UsersController {
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateUserDto: UpdateUserDto,
-    @UploadedFiles(new MultiFileValidationPipe([
-      new FileTypeValidator({ fileType: /^image\/(png|jpeg)$/ }),
-      new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
-    ]))
-    files?: { profilePicture?: Express.Multer.File[], coverPhoto?: Express.Multer.File[] }
+    @UploadedFiles(
+      new MultiFileValidationPipe([
+        new FileTypeValidator({ fileType: /^image\/(png|jpeg)$/ }),
+        new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
+      ]),
+    )
+    files?: {
+      profilePicture?: Express.Multer.File[];
+      coverPhoto?: Express.Multer.File[];
+    },
   ): Promise<UpdateUserResponse> {
     const dto: UpdateUserDtoWithPaths = {
       ...updateUserDto,
       profilePicture: files?.profilePicture?.[0].path ?? null,
       coverPhoto: files?.coverPhoto?.[0].path ?? null,
-    }
+    };
 
     return this.usersService.update(+id, dto);
   }

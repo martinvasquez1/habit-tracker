@@ -1,10 +1,10 @@
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { api } from "@/lib/new-api-client";
-import { LogStatusEnum, ApiUpdateLogRequest, Log } from "@repo/open-api";
+import { api } from '@/lib/new-api-client';
+import { LogStatusEnum, ApiUpdateLogRequest, Log } from '@repo/open-api';
 
 const updateLogSchema = z.object({
   note: z.string().max(300),
@@ -15,7 +15,7 @@ export const useUpdateLogForm = (defaultValues: Log | null) => {
   return useForm<z.infer<typeof updateLogSchema>>({
     resolver: zodResolver(updateLogSchema),
     defaultValues: {
-      note: defaultValues?.note ?? "",
+      note: defaultValues?.note ?? '',
       status: defaultValues?.status ?? LogStatusEnum.COMPLETED,
     },
   });
@@ -36,10 +36,7 @@ export function useUpdateLog(habitId: number) {
     onSuccess: () => {
       queryClient.invalidateQueries({
         predicate: (query) =>
-          query.queryKey.every(
-            (_key) => ["habits", "logs"],
-            ["habits", habitId, "logs"]
-          ),
+          query.queryKey.every((_key) => ['habits', 'logs'], ['habits', habitId, 'logs']),
       });
     },
   });

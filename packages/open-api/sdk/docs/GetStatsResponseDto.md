@@ -1,14 +1,13 @@
 # GetStatsResponseDto
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**currentStreak** | **number** |  | [default to undefined]
-**streaks** | **Array&lt;number&gt;** |  | [default to undefined]
-**amountOfLogs** | **number** |  | [default to undefined]
-**logsPerMonth** | **Array&lt;number&gt;** |  | [default to undefined]
+| Name              | Type                    | Description | Notes                  |
+| ----------------- | ----------------------- | ----------- | ---------------------- |
+| **currentStreak** | **number**              |             | [default to undefined] |
+| **streaks**       | **Array&lt;number&gt;** |             | [default to undefined] |
+| **amountOfLogs**  | **number**              |             | [default to undefined] |
+| **logsPerMonth**  | **Array&lt;number&gt;** |             | [default to undefined] |
 
 ## Example
 
@@ -16,10 +15,10 @@ Name | Type | Description | Notes
 import { GetStatsResponseDto } from './api';
 
 const instance: GetStatsResponseDto = {
-    currentStreak,
-    streaks,
-    amountOfLogs,
-    logsPerMonth,
+  currentStreak,
+  streaks,
+  amountOfLogs,
+  logsPerMonth,
 };
 ```
 

@@ -60,11 +60,14 @@ export class HabitsRepository {
     return await this.ORM.findOneBy({ id });
   }
 
-  async findOneWithLogs(id: number, order: 'ASC' | 'DESC' = 'DESC'): Promise<Habit | null> {
+  async findOneWithLogs(
+    id: number,
+    order: 'ASC' | 'DESC' = 'DESC',
+  ): Promise<Habit | null> {
     return await this.ORM.findOne({
       where: { id },
       relations: ['logs'],
-      order: { logs: { date: order } }
+      order: { logs: { date: order } },
     });
   }
 

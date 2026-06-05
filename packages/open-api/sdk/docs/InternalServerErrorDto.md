@@ -1,11 +1,10 @@
 # InternalServerErrorDto
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**message** | **string** | Error message | [default to undefined]
+| Name        | Type       | Description   | Notes                  |
+| ----------- | ---------- | ------------- | ---------------------- |
+| **message** | **string** | Error message | [default to undefined] |
 
 ## Example
 
@@ -13,7 +12,7 @@ Name | Type | Description | Notes
 import { InternalServerErrorDto } from './api';
 
 const instance: InternalServerErrorDto = {
-    message,
+  message,
 };
 ```
 

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { WeeklyCalendar } from "@/components/weekly-calendar";
-import WelcomeMessage from "@/features/users/components/welcome-message";
-import DailyProgress from "@/features/habits/components/daily-progress";
+import { WeeklyCalendar } from '@/components/weekly-calendar';
+import WelcomeMessage from '@/features/users/components/welcome-message';
+import DailyProgress from '@/features/habits/components/daily-progress';
 
 function getWeekMonday(date: Date): Date {
   const dayOfWeek = date.getDay();

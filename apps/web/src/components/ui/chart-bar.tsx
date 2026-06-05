@@ -1,38 +1,25 @@
-"use client"
+'use client';
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/ui/chart"
+} from '@/components/ui/chart';
 
 interface ChartBarProps {
-  title: string
-  description?: string
-  data: { [key: string]: string | number }[]
-  dataKey: string
-  xKey: string
-  config: ChartConfig
+  title: string;
+  description?: string;
+  data: { [key: string]: string | number }[];
+  dataKey: string;
+  xKey: string;
+  config: ChartConfig;
 }
 
-export function ChartBar({
-  title,
-  description,
-  data,
-  dataKey,
-  xKey,
-  config,
-}: ChartBarProps) {
+export function ChartBar({ title, description, data, dataKey, xKey, config }: ChartBarProps) {
   return (
     <Card>
       <CardHeader>
@@ -51,23 +38,16 @@ export function ChartBar({
               tickMargin={10}
               axisLine={false}
               tickFormatter={(value: string) =>
-                typeof value === "string" ? value.slice(0, 3) : value
+                typeof value === 'string' ? value.slice(0, 3) : value
               }
             />
 
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
 
-            <Bar
-              dataKey={dataKey}
-              fill={`var(--color-desktop)`}
-              radius={8}
-            />
+            <Bar dataKey={dataKey} fill={`var(--color-desktop)`} radius={8} />
           </BarChart>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

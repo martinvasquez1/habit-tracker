@@ -1,4 +1,4 @@
-import { useEffect, useRef  } from "react";
+import { useEffect, useRef } from 'react';
 
 import {
   Table,
@@ -7,18 +7,18 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import IconWrapper from "@/components/icon-wrapper";
-import WeekDays from "@/features/logs/components/week-days";
-import DayNames from "./day-names";
-import { Spinner } from "./ui/spinner";
-import { TbFlameFilled } from "react-icons/tb";
-import confetti from "canvas-confetti"
+} from '@/components/ui/table';
+import IconWrapper from '@/components/icon-wrapper';
+import WeekDays from '@/features/logs/components/week-days';
+import DayNames from './day-names';
+import { Spinner } from './ui/spinner';
+import { TbFlameFilled } from 'react-icons/tb';
+import confetti from 'canvas-confetti';
 
-import { useHabitsWithLogs } from "../features/habits/api/get-habits-with-logs";
-import InfoCard from "./info-card";
-import { formatYYYYMMDD } from "@/utils/format-yyyy-mm-dd";
-import { useTranslation } from "react-i18next";
+import { useHabitsWithLogs } from '../features/habits/api/get-habits-with-logs';
+import InfoCard from './info-card';
+import { formatYYYYMMDD } from '@/utils/format-yyyy-mm-dd';
+import { useTranslation } from 'react-i18next';
 
 function PaddingRow({ cellCount }: { cellCount: number }) {
   return (
@@ -31,33 +31,32 @@ function PaddingRow({ cellCount }: { cellCount: number }) {
 }
 
 function ConfettiFireworks({ shouldFire }: { shouldFire: boolean }) {
-  const hasFiredRef = useRef(false)
+  const hasFiredRef = useRef(false);
 
   useEffect(() => {
-    if (!shouldFire || hasFiredRef.current) return
+    if (!shouldFire || hasFiredRef.current) return;
 
-    hasFiredRef.current = true
+    hasFiredRef.current = true;
 
-    const duration = 4 * 1000
-    const animationEnd = Date.now() + duration
+    const duration = 4 * 1000;
+    const animationEnd = Date.now() + duration;
     const defaults = {
       startVelocity: 30,
       spread: 360,
       ticks: 60,
       zIndex: 0,
-    }
+    };
 
-    const randomInRange = (min: number, max: number) =>
-      Math.random() * (max - min) + min
+    const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
     const interval = window.setInterval(() => {
-      const timeLeft = animationEnd - Date.now()
+      const timeLeft = animationEnd - Date.now();
 
       if (timeLeft <= 0) {
-        return clearInterval(interval)
+        return clearInterval(interval);
       }
 
-      const particleCount = 50 * (timeLeft / duration)
+      const particleCount = 50 * (timeLeft / duration);
 
       confetti({
         ...defaults,
@@ -66,7 +65,7 @@ function ConfettiFireworks({ shouldFire }: { shouldFire: boolean }) {
           x: randomInRange(0.1, 0.3),
           y: Math.random() - 0.2,
         },
-      })
+      });
 
       confetti({
         ...defaults,
@@ -75,19 +74,19 @@ function ConfettiFireworks({ shouldFire }: { shouldFire: boolean }) {
           x: randomInRange(0.7, 0.9),
           y: Math.random() - 0.2,
         },
-      })
-    }, 250)
+      });
+    }, 250);
 
-    return () => clearInterval(interval)
-  }, [shouldFire])
+    return () => clearInterval(interval);
+  }, [shouldFire]);
 
-  return null
+  return null;
 }
 
 interface WeeklyCalendarProps {
-  monday: Date,
-  sunday: Date,
-  today: Date 
+  monday: Date;
+  sunday: Date;
+  today: Date;
 }
 
 export function WeeklyCalendar({ monday, sunday, today }: WeeklyCalendarProps) {
@@ -98,28 +97,19 @@ export function WeeklyCalendar({ monday, sunday, today }: WeeklyCalendarProps) {
   const todayStr = formatYYYYMMDD(today);
 
   const page = 1;
-  const { data, isLoading, isError } = useHabitsWithLogs(
-    page,
-    mondayStr,
-    sundayStr,
-    todayStr
-  );
+  const { data, isLoading, isError } = useHabitsWithLogs(page, mondayStr, sundayStr, todayStr);
 
   if (isLoading) return <Spinner />;
-  if (isError) return "Error!";
+  if (isError) return 'Error!';
 
   const noHabits = data?.length === 0 || !data;
   if (noHabits) {
-    return (
-      <InfoCard
-        title={t('home.empty_state.title')}
-        body={t('home.empty_state.body')}
-      />
-    );
+    return <InfoCard title={t('home.empty_state.title')} body={t('home.empty_state.body')} />;
   }
 
-  const allCompletedToday = data.filter((h) => !h.isArchived)
-    .every((habit) => habit.logs.some((log) => log.date == todayStr && log.status === "completed"))
+  const allCompletedToday = data
+    .filter((h) => !h.isArchived)
+    .every((habit) => habit.logs.some((log) => log.date == todayStr && log.status === 'completed'));
 
   return (
     <div>
@@ -144,7 +134,7 @@ export function WeeklyCalendar({ monday, sunday, today }: WeeklyCalendarProps) {
                     <IconWrapper
                       size="sm"
                       icon={<TbFlameFilled />}
-                      className={habit.streak > 0 ? "text-orange-500" : "text-gray-300"}
+                      className={habit.streak > 0 ? 'text-orange-500' : 'text-gray-300'}
                     />
                     <span>{habit.streak}</span>
                   </div>
@@ -161,21 +151,12 @@ export function WeeklyCalendar({ monday, sunday, today }: WeeklyCalendarProps) {
             <div className="flex justify-between">
               <h2 className="font-medium">{habit.name}</h2>
               <div className="flex gap-2 items-end">
-                <IconWrapper
-                  size="sm"
-                  icon={<TbFlameFilled />}
-                  className="text-gray-300"
-                />
+                <IconWrapper size="sm" icon={<TbFlameFilled />} className="text-gray-300" />
                 <span>{habit.streak}</span>
               </div>
             </div>
             <div className="flex w-full justify-between gap-2 *:flex-1">
-              <WeekDays
-                habit={habit}
-                startDate={monday}
-                endDate={sunday}
-                insideTable={false}
-              />
+              <WeekDays habit={habit} startDate={monday} endDate={sunday} insideTable={false} />
             </div>
           </div>
         ))}

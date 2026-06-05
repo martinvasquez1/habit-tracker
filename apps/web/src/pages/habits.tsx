@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import IconWrapper from "@/components/icon-wrapper";
-import InfoCard from "@/components/info-card";
-import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
+import IconWrapper from '@/components/icon-wrapper';
+import InfoCard from '@/components/info-card';
+import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
 
-import { LuArchive } from "react-icons/lu";
-import { LuStar } from "react-icons/lu";
+import { LuArchive } from 'react-icons/lu';
+import { LuStar } from 'react-icons/lu';
 
-import { useHabits } from "@/features/habits/api/get-habits";
-import CreateHabit from "@/features/habits/components/create-habit";
-import HabitListItem from "@/features/habits/components/habit-list-item";
+import { useHabits } from '@/features/habits/api/get-habits';
+import CreateHabit from '@/features/habits/components/create-habit';
+import HabitListItem from '@/features/habits/components/habit-list-item';
 
 export default function Habits() {
-  const { t } = useTranslation();  
+  const { t } = useTranslation();
 
   const page = 1;
   const [showUnarchived, setShowUnarchived] = useState(true);
@@ -24,7 +24,7 @@ export default function Habits() {
     ? data?.filter((habit) => !habit.isArchived)
     : data?.filter((habit) => habit.isArchived);
 
-  if (isError) return "Error!";
+  if (isError) return 'Error!';
 
   const noHabits = data?.length === 0;
 
@@ -49,10 +49,7 @@ export default function Habits() {
       {isLoading && <Spinner />}
 
       {!isLoading && showUnarchived && noHabits && (
-        <InfoCard
-          title={t('habits.empty_state.title')}
-          body={t('habits.empty_state.body')}
-        />
+        <InfoCard title={t('habits.empty_state.title')} body={t('habits.empty_state.body')} />
       )}
 
       {!isLoading && !showUnarchived && noHabits && (

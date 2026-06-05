@@ -1,14 +1,13 @@
 # UpdateHabitDto
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**isArchived** | **boolean** |  | [optional] [default to undefined]
-**name** | **string** |  | [optional] [default to undefined]
-**description** | **string** |  | [optional] [default to undefined]
-**color** | **string** |  | [optional] [default to undefined]
+| Name            | Type        | Description | Notes                             |
+| --------------- | ----------- | ----------- | --------------------------------- |
+| **isArchived**  | **boolean** |             | [optional] [default to undefined] |
+| **name**        | **string**  |             | [optional] [default to undefined] |
+| **description** | **string**  |             | [optional] [default to undefined] |
+| **color**       | **string**  |             | [optional] [default to undefined] |
 
 ## Example
 
@@ -16,10 +15,10 @@ Name | Type | Description | Notes
 import { UpdateHabitDto } from './api';
 
 const instance: UpdateHabitDto = {
-    isArchived,
-    name,
-    description,
-    color,
+  isArchived,
+  name,
+  description,
+  color,
 };
 ```
 

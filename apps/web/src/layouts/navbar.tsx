@@ -1,17 +1,17 @@
-import { Link } from "react-router";
-import { useState } from "react";
+import { Link } from 'react-router';
+import { useState } from 'react';
 
-import { Logo } from "@/components/logo";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import IconWrapper from "@/components/icon-wrapper";
+import { Logo } from '@/components/logo';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import IconWrapper from '@/components/icon-wrapper';
 
-import { LuMenu } from "react-icons/lu";
-import { LuX } from "react-icons/lu";
+import { LuMenu } from 'react-icons/lu';
+import { LuX } from 'react-icons/lu';
 
 const links = [
-  { name: "Sign in", path: "/sign-in" },
-  { name: "Sign up", path: "/sign-up" },
+  { name: 'Sign in', path: '/sign-in' },
+  { name: 'Sign up', path: '/sign-up' },
 ];
 
 export default function Navbar() {
@@ -39,15 +39,12 @@ export default function Navbar() {
         <div className="hidden w-full md:block md:w-auto">
           <ul className="font-medium flex items-center p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             {links.map((link, index) => {
-              if (link.path === "/sign-up") {
+              if (link.path === '/sign-up') {
                 return (
                   <li key={index}>
                     <Link
                       to={link.path}
-                      className={cn(
-                        buttonVariants({ variant: "default" }),
-                        "font-bold"
-                      )}
+                      className={cn(buttonVariants({ variant: 'default' }), 'font-bold')}
                     >
                       {link.name}
                     </Link>
@@ -84,25 +81,20 @@ function MobileMenu({
     <>
       <button
         className={`fixed inset-0  z-10000 bg-black bg-opacity-50 transition-opacity duration-300 
-         ${isMenuOpen ? "opacity-100" : "opacity-0 hidden"} 
+         ${isMenuOpen ? 'opacity-100' : 'opacity-0 hidden'} 
          md:hidden`}
         type="button"
         onClick={() => setIsMenuOpen(false)}
       ></button>
       <div
         className={`fixed inset-0 z-50 flex justify-start transition-transform duration-300 ease-in-out transform ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          isMenuOpen ? 'translate-x-0' : '-translate-x-full'
         } md:hidden`}
       >
         <div className="w-64 bg-white dark:bg-gray-800 shadow-lg h-full">
           <div className="flex justify-between items-center p-4">
             <Logo />
-            <Button
-              variant="ghost"
-              size="icon"
-              type="button"
-              onClick={() => setIsMenuOpen(false)}
-            >
+            <Button variant="ghost" size="icon" type="button" onClick={() => setIsMenuOpen(false)}>
               <IconWrapper icon={<LuX />} size="lg" />
             </Button>
           </div>
@@ -112,7 +104,7 @@ function MobileMenu({
                 <Link
                   to={link.path}
                   className={
-                    "block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
+                    'block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white'
                   }
                   onClick={() => setIsMenuOpen(false)}
                 >

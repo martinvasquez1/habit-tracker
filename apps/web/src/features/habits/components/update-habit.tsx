@@ -1,14 +1,10 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import ResponsiveDialog from "@/components/ui/responsive-dialog";
-import { HabitForm } from "./habit-form";
+import ResponsiveDialog from '@/components/ui/responsive-dialog';
+import { HabitForm } from './habit-form';
 
-import {
-  UpdateHabitInput,
-  useUpdateHabit,
-  useUpdateHabitForm,
-} from "../api/update-habit";
-import { Habit } from "@repo/open-api";
+import { UpdateHabitInput, useUpdateHabit, useUpdateHabitForm } from '../api/update-habit';
+import { Habit } from '@repo/open-api';
 
 type UpdateItemProps = {
   habitId: number;
@@ -17,12 +13,7 @@ type UpdateItemProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function UpdateHabit({
-  habitId,
-  habit,
-  isOpen,
-  setIsOpen,
-}: UpdateItemProps) {
+export default function UpdateHabit({ habitId, habit, isOpen, setIsOpen }: UpdateItemProps) {
   const { t } = useTranslation();
   const form = useUpdateHabitForm(habit);
   const updateHabitMutation = useUpdateHabit();

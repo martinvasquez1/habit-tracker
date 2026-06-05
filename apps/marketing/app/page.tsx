@@ -1,6 +1,6 @@
-import Showcase from "@/components/showcase";
-import Hero from "@/components/hero";
-import Features from "@/components/features";
+import Showcase from '@/components/showcase';
+import Hero from '@/components/hero';
+import Features from '@/components/features';
 
 export default function Page() {
   return (

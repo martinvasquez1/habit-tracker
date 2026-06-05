@@ -1,30 +1,37 @@
-import { useTranslation } from "react-i18next";
-import { Habit, Log } from "@repo/open-api";
+import { useTranslation } from 'react-i18next';
+import { Habit, Log } from '@repo/open-api';
 
-import IconWrapper from "@/components/icon-wrapper";
-import { Button } from "@/components/ui/button";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import IconWrapper from '@/components/icon-wrapper';
+import { Button } from '@/components/ui/button';
+import { LuChevronLeft, LuChevronRight } from 'react-icons/lu';
 
-import CalendarDay from "@/features/logs/components/calendar-day";
-import { fillMissingLogs } from "@/utils/fill-missing-logs";
+import CalendarDay from '@/features/logs/components/calendar-day';
+import { fillMissingLogs } from '@/utils/fill-missing-logs';
 
 interface YearlyCalendarProps {
   habit: Habit;
   logs: Log[];
   year: number;
   setYearShift: (updater: (prev: number) => number) => void;
-  firstDay: Date,
-  lastDay: Date,
+  firstDay: Date;
+  lastDay: Date;
 }
 
-export default function YearlyCalendar({ habit, logs, year, setYearShift, firstDay, lastDay }: YearlyCalendarProps) {
+export default function YearlyCalendar({
+  habit,
+  logs,
+  year,
+  setYearShift,
+  firstDay,
+  lastDay,
+}: YearlyCalendarProps) {
   const { t } = useTranslation();
   const months = t('common.months', { returnObjects: true }) as string[];
 
   const { color, id: habitId } = habit;
   const filledLogs = fillMissingLogs(logs, habitId, firstDay, lastDay);
 
-  let firstDayIndex = firstDay.getDay(); 
+  let firstDayIndex = firstDay.getDay();
 
   return (
     <div className="bg-card px-4 py-4 border border-border rounded-lg">
@@ -42,7 +49,7 @@ export default function YearlyCalendar({ habit, logs, year, setYearShift, firstD
             variant="outline"
             className="w-6 h-6 p-0"
             onClick={() => setYearShift((prev) => prev + 1)}
-            disabled={year + 1  > new Date().getFullYear()}
+            disabled={year + 1 > new Date().getFullYear()}
           >
             <IconWrapper icon={<LuChevronRight />} />
           </Button>
@@ -69,7 +76,7 @@ export default function YearlyCalendar({ habit, logs, year, setYearShift, firstD
                 habitId={habitId}
                 color={color}
                 size="grow"
-                className={"rounded-sm"}
+                className={'rounded-sm'}
               />
             </div>
           );

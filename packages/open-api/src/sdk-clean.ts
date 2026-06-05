@@ -1,11 +1,11 @@
-import "dotenv/config";
+import 'dotenv/config';
 
 import * as fs from 'fs';
 
 const target = './sdk';
 
 if (!target) {
-  console.error("No target for SDK clean");
+  console.error('No target for SDK clean');
   process.exit(1);
 }
 

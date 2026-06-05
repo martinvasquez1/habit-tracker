@@ -111,7 +111,7 @@ describe('Logs (e2e)', () => {
         status: LogStatus.SKIPPED,
         date: '2000-01-20',
         note: '...',
-      }
+      };
 
       const { body } = await request(app.getHttpServer())
         .post(`/habits/${userHabit.id}/logs`)

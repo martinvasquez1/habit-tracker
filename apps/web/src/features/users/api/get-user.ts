@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
 
-import { api } from "@/lib/new-api-client";
-import { ApiGetUserRequest } from "@repo/open-api";
+import { api } from '@/lib/new-api-client';
+import { ApiGetUserRequest } from '@repo/open-api';
 
 async function getUser(parameters: ApiGetUserRequest) {
   const res = await api.getUser(parameters);
@@ -10,7 +10,7 @@ async function getUser(parameters: ApiGetUserRequest) {
 
 export function useUser(userId: string) {
   return useQuery({
-    queryKey: ["users", userId],
+    queryKey: ['users', userId],
     queryFn: () => getUser({ id: userId }),
   });
 }

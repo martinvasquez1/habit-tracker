@@ -77,7 +77,7 @@ describe('UsersController', () => {
 
   describe('update', () => {
     const updateDto: UpdateUserDto = { username: 'newname' } as any;
-    const files = {}
+    const files = {};
 
     it('should update user by id', async () => {
       const expectedPayload = {

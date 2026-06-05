@@ -17,7 +17,7 @@ import paginate from 'src/common/paginate/paginate';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly usersRepository: UsersRepository) { }
+  constructor(private readonly usersRepository: UsersRepository) {}
 
   async create(createUserDto: CreateUserDto, role?: UserRole): Promise<User> {
     const { username, email } = createUserDto;
@@ -51,7 +51,10 @@ export class UsersService {
     return user;
   }
 
-  async update(id: number, updateUserDto: UpdateUserDtoWithPaths): Promise<User> {
+  async update(
+    id: number,
+    updateUserDto: UpdateUserDtoWithPaths,
+  ): Promise<User> {
     const user = await this.usersRepository.findOne(id);
     if (!user) throw new NotFoundException(`User with ID ${id} not found`);
 

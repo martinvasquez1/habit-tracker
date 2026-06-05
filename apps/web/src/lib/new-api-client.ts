@@ -1,5 +1,5 @@
-import { Api, Configuration } from "@repo/open-api";
-import apiWithInterceptors from "@/lib/api-client";
+import { Api, Configuration } from '@repo/open-api';
+import apiWithInterceptors from '@/lib/api-client';
 
 const config = new Configuration();
 

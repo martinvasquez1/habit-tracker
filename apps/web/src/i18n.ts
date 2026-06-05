@@ -5,7 +5,7 @@ import en from './locales/en.json';
 import es from './locales/es.json';
 
 function normalizeLanguage(lang: string): string {
-  const fallback = 'en'
+  const fallback = 'en';
 
   if (!lang) return fallback;
 
@@ -20,19 +20,17 @@ function getInitialLanguage(): string {
   const browserLanguage = normalizeLanguage(navigator.language);
   const initialLanguage = savedLanguage || browserLanguage;
 
-  return initialLanguage
+  return initialLanguage;
 }
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: en },
-      es: { translation: es }
-    },
-    lng: getInitialLanguage(),
-    fallbackLng: 'en',
-    interpolation: { escapeValue: false }
-  });
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+    es: { translation: es },
+  },
+  lng: getInitialLanguage(),
+  fallbackLng: 'en',
+  interpolation: { escapeValue: false },
+});
 
 export default i18n;

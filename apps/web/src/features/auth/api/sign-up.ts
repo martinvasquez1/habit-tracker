@@ -1,10 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
 
-import { SignUpDto } from "@repo/open-api";
-import { api } from "@/lib/new-api-client"
+import { SignUpDto } from '@repo/open-api';
+import { api } from '@/lib/new-api-client';
 
-async function signUp(data:SignUpDto) {
+async function signUp(data: SignUpDto) {
   const res = await api.signUp({ signUpDto: data });
   return res.data;
 }
@@ -15,8 +15,8 @@ export function useSignUp() {
   const mutation = useMutation({
     mutationFn: signUp,
     onSuccess: (data) => {
-      localStorage.setItem("jwt", data.accessToken);
-      navigate("/home");
+      localStorage.setItem('jwt', data.accessToken);
+      navigate('/home');
     },
   });
 

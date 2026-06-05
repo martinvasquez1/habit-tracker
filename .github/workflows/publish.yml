@@ -3,11 +3,11 @@ name: Publish GHCR Images
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
   workflow_dispatch:
     inputs:
       tag:
-        description: "Image tag (e.g. v2.1.7)"
+        description: 'Image tag (e.g. v2.1.7)'
         required: true
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-        
+
       - name: Set tag
         run: echo "TAG=${{ github.event.inputs.tag || github.ref_name }}" >> $GITHUB_ENV
 

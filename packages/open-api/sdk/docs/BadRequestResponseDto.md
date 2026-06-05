@@ -1,11 +1,10 @@
 # BadRequestResponseDto
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**message** | **string** | Error message | [default to undefined]
+| Name        | Type       | Description   | Notes                  |
+| ----------- | ---------- | ------------- | ---------------------- |
+| **message** | **string** | Error message | [default to undefined] |
 
 ## Example
 
@@ -13,7 +12,7 @@ Name | Type | Description | Notes
 import { BadRequestResponseDto } from './api';
 
 const instance: BadRequestResponseDto = {
-    message,
+  message,
 };
 ```
 

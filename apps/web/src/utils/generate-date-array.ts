@@ -1,4 +1,4 @@
-import { formatYYYYMMDD } from "./format-yyyy-mm-dd";
+import { formatYYYYMMDD } from './format-yyyy-mm-dd';
 
 export function generateDateArray(startDate: Date, endDate: Date): string[] {
   const dateArray = [];

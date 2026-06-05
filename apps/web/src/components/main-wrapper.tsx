@@ -1,8 +1,8 @@
-import { Outlet } from "react-router";
+import { Outlet } from 'react-router';
 
-import { Separator } from "./ui/separator";
-import { SidebarTrigger, SidebarInset } from "./ui/sidebar";
-import { Logo } from "./logo";
+import { Separator } from './ui/separator';
+import { SidebarTrigger, SidebarInset } from './ui/sidebar';
+import { Logo } from './logo';
 
 export default function MainWrapper({}) {
   return (
@@ -16,10 +16,7 @@ export default function MainWrapper({}) {
           </span>
           <SidebarTrigger />
         </div>
-        <Separator
-          data-sidebar="separator"
-          className="w-auto bg-sidebar-border"
-        />
+        <Separator data-sidebar="separator" className="w-auto bg-sidebar-border" />
       </header>
       <main className="py-6 px-4 bg-background">
         <Outlet />

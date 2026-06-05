@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { useParams } from "react-router";
-import { useTranslation } from "react-i18next";
+import { useState } from 'react';
+import { useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
-import { Spinner } from "@/components/ui/spinner";
-import Error from "@/components/error";
+import { Spinner } from '@/components/ui/spinner';
+import Error from '@/components/error';
 
-import YearlyCalendar from "@/features/logs/components/yearly-calendar";
-import StatsCards from "@/features/logs/components/stats";
-import { useHabit } from "@/features/habits/api/get-habit";
-import { useLogs } from "@/features/logs/api/get-logs";
-import { useStats } from "@/features/habits/api/get-stats";
+import YearlyCalendar from '@/features/logs/components/yearly-calendar';
+import StatsCards from '@/features/logs/components/stats';
+import { useHabit } from '@/features/habits/api/get-habit';
+import { useLogs } from '@/features/logs/api/get-logs';
+import { useStats } from '@/features/habits/api/get-stats';
 
-import { formatYYYYMMDD } from "@/utils/format-yyyy-mm-dd";
+import { formatYYYYMMDD } from '@/utils/format-yyyy-mm-dd';
 
-import { ChartBar } from "@/components/ui/chart-bar";
-import { ChartConfig } from "@/components/ui/chart";
-import { ChartPyramid } from "@/components/ui/chart-pyramid";
-import { RequirementCard } from "@/components/requirement-card";
+import { ChartBar } from '@/components/ui/chart-bar';
+import { ChartConfig } from '@/components/ui/chart';
+import { ChartPyramid } from '@/components/ui/chart-pyramid';
+import { RequirementCard } from '@/components/requirement-card';
 
 export default function Habit() {
   const { t } = useTranslation();
@@ -62,10 +62,10 @@ export default function Habit() {
 
   const chartConfig = {
     desktop: {
-      label: "Desktop",
-      color: `var(--habit-${habit!.color})`
+      label: 'Desktop',
+      color: `var(--habit-${habit!.color})`,
     },
-  } satisfies ChartConfig
+  } satisfies ChartConfig;
 
   const amount = 5;
   const topStreaks = stats!.streaks
@@ -93,21 +93,21 @@ export default function Habit() {
           xKey="month"
           config={chartConfig}
         />
-        {
-          topStreaks.length <= 4 ?
-            <RequirementCard
-              title={t('habit.streak_pyramid.requirement_card_title')}
-              description={t('habit.streak_pyramid.requirement_card_description')}
-              badge={t('habit.streak_pyramid.requirement_card_badge')}
-              color={habit!.color}
-            /> :
-            <ChartPyramid
-              title={t('habit.streak_pyramid.title')}
-              values={topStreaks}
-              config={chartConfig}
-            />
-        }
+        {topStreaks.length <= 4 ? (
+          <RequirementCard
+            title={t('habit.streak_pyramid.requirement_card_title')}
+            description={t('habit.streak_pyramid.requirement_card_description')}
+            badge={t('habit.streak_pyramid.requirement_card_badge')}
+            color={habit!.color}
+          />
+        ) : (
+          <ChartPyramid
+            title={t('habit.streak_pyramid.title')}
+            values={topStreaks}
+            config={chartConfig}
+          />
+        )}
       </div>
     </div>
   );
-};
+}

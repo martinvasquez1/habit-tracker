@@ -1,12 +1,12 @@
-import { Link } from "react-router";
-import { cva } from "class-variance-authority";
+import { Link } from 'react-router';
+import { cva } from 'class-variance-authority';
 
-import { colors } from "@/styles/main";
-import { Habit } from "@repo/open-api";
+import { colors } from '@/styles/main';
+import { Habit } from '@repo/open-api';
 
-import HabitItemDropdown from "./habit-item-dropdown";
+import HabitItemDropdown from './habit-item-dropdown';
 
-const bulletStyles = cva("aspect-square w-4 rounded-full", {
+const bulletStyles = cva('aspect-square w-4 rounded-full', {
   variants: {
     color: colors,
   },
@@ -28,10 +28,7 @@ export default function HabitListItem({ data }: HabitListItemProps) {
         <div className="flex justify-center items-center w-3">
           <div className={bulletStyles({ color })}></div>
         </div>
-        <Link
-          to={`/habits/${data.id}`}
-          className="font-semibold hover:underline"
-        >
+        <Link to={`/habits/${data.id}`} className="font-semibold hover:underline">
           {data.name}
         </Link>
       </div>

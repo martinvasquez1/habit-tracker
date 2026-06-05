@@ -63,8 +63,8 @@ describe('HabitsService', () => {
         },
         {
           provide: StatsService,
-          useValue: mockStatsService
-        }
+          useValue: mockStatsService,
+        },
       ],
     }).compile();
 
@@ -136,7 +136,9 @@ describe('HabitsService', () => {
 
       usersService.findOne.mockResolvedValue(user);
       habitsRepository.findAllWithRangedLogs.mockResolvedValue(mockHabits);
-      jest.spyOn(statsService, 'calculateStreak').mockImplementation(() => streak);
+      jest
+        .spyOn(statsService, 'calculateStreak')
+        .mockImplementation(() => streak);
 
       const startDate = new Date('2001-01-01');
       const endDate = new Date('2001-01-30');
@@ -245,17 +247,19 @@ describe('HabitsService', () => {
       habitsRepository.findOneWithLogs.mockResolvedValue(null);
 
       await expect(service.getStats(habitId, currentDate)).rejects.toThrow(
-        new NotFoundException(`Habit with ID ${habitId} not found`)
+        new NotFoundException(`Habit with ID ${habitId} not found`),
       );
     });
 
     it('should return StatsService values and return amount of logs', async () => {
       const mockHabitsWithCompleteLogs = { ...mockHabit, logs: [{} as Log] };
-      const mockStreak = 0
-      const mockStreaks: number[] = []
-      const mockLogsPerMonth: number[] = []
+      const mockStreak = 0;
+      const mockStreaks: number[] = [];
+      const mockLogsPerMonth: number[] = [];
 
-      habitsRepository.findOneWithLogs.mockResolvedValue(mockHabitsWithCompleteLogs);
+      habitsRepository.findOneWithLogs.mockResolvedValue(
+        mockHabitsWithCompleteLogs,
+      );
       statsService.calculateStreak.mockReturnValue(mockStreak);
       statsService.calculateStreaks.mockReturnValue(mockStreaks);
       statsService.countLogsPerMonth.mockReturnValue(mockLogsPerMonth);

@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
+import { NavMain } from '@/components/nav-main';
+import { NavUser } from '@/components/nav-user';
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 
-import { SidebarLogo } from "@/components/logo";
-import { Home, Settings, Apple, Users, ChartColumn, User } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { SidebarLogo } from '@/components/logo';
+import { Home, Settings, Apple, Users, ChartColumn, User } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { t } = useTranslation();
@@ -22,35 +22,35 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const itemsMain = [
     {
       title: t('sidebar.home'),
-      url: "/home",
+      url: '/home',
       icon: Home,
     },
     {
       title: t('sidebar.habits'),
-      url: "/habits",
+      url: '/habits',
       icon: Apple,
     },
     {
       title: t('sidebar.groups'),
-      url: "#",
+      url: '#',
       icon: Users,
       isDisabled: true,
     },
     {
       title: t('sidebar.insights'),
-      url: "#",
+      url: '#',
       icon: ChartColumn,
       isDisabled: true,
     },
     {
       title: t('sidebar.profile'),
-      url: "/profile",
+      url: '/profile',
       icon: User,
     },
     {
       title: t('sidebar.settings'),
-      url: "/settings",
-      icon: Settings
+      url: '/settings',
+      icon: Settings,
     },
   ];
 

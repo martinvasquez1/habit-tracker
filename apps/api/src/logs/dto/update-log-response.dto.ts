@@ -1,4 +1,3 @@
-import { Log } from "../entities/log.entity";
+import { Log } from '../entities/log.entity';
 
 export type UpdateLogResponseDto = Log;
-

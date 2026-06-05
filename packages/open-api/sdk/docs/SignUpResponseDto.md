@@ -1,11 +1,10 @@
 # SignUpResponseDto
 
-
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**accessToken** | **string** |  | [default to undefined]
+| Name            | Type       | Description | Notes                  |
+| --------------- | ---------- | ----------- | ---------------------- |
+| **accessToken** | **string** |             | [default to undefined] |
 
 ## Example
 
@@ -13,7 +12,7 @@ Name | Type | Description | Notes
 import { SignUpResponseDto } from './api';
 
 const instance: SignUpResponseDto = {
-    accessToken,
+  accessToken,
 };
 ```
 

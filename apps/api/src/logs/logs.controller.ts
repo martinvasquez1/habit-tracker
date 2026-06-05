@@ -30,7 +30,6 @@ import { UpdateLogResponseDto } from './dto/update-log-response.dto';
 import { DeleteLogResponseDto } from './dto/delete-log-response.dto';
 import { ApiOperation } from '@nestjs/swagger';
 
-
 @Controller('habits/:habitId/logs')
 export class LogsController {
   constructor(private readonly logsService: LogsService) {}
@@ -47,13 +46,13 @@ export class LogsController {
   }
 
   /**
-  * Retrieves logs for a specific habit.
-  *
-  * @remarks
-  * Optionally filters logs using a date range.  
-  * The `startDate` and `endDate` query parameters must be **strings representing
-  * the user's local date** in `YYYY-MM-DD` format.
-  */
+   * Retrieves logs for a specific habit.
+   *
+   * @remarks
+   * Optionally filters logs using a date range.
+   * The `startDate` and `endDate` query parameters must be **strings representing
+   * the user's local date** in `YYYY-MM-DD` format.
+   */
   @Get()
   @UseGuards(PolicyGuard)
   @CheckPolicies(ReadLogPolicy)
@@ -91,7 +90,7 @@ export class LogsController {
     @Param('habitId', ParseIntPipe) habitId: number,
     @Param('logId', ParseIntPipe) logId: number,
     @Body() updateLogDto: UpdateLogDto,
-  ): Promise<UpdateLogResponseDto>{
+  ): Promise<UpdateLogResponseDto> {
     return this.logsService.update(habitId, logId, updateLogDto);
   }
 
@@ -102,7 +101,7 @@ export class LogsController {
   async remove(
     @Param('habitId', ParseIntPipe) habitId: number,
     @Param('logId', ParseIntPipe) logId: number,
-  ): Promise<DeleteLogResponseDto>{
+  ): Promise<DeleteLogResponseDto> {
     return this.logsService.remove(habitId, logId);
   }
 }

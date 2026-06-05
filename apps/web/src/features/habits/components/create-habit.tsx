@@ -1,20 +1,16 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import {
-  useCreateHabit,
-  useCreateHabitForm,
-  CreateHabitInput,
-} from "../api/create-habit";
+import { useCreateHabit, useCreateHabitForm, CreateHabitInput } from '../api/create-habit';
 
-import { Button } from "@/components/ui/button";
-import IconWrapper from "@/components/icon-wrapper";
-import ResponsiveDialog from "@/components/ui/responsive-dialog";
-import { HabitForm } from "./habit-form";
+import { Button } from '@/components/ui/button';
+import IconWrapper from '@/components/icon-wrapper';
+import ResponsiveDialog from '@/components/ui/responsive-dialog';
+import { HabitForm } from './habit-form';
 
-import { LuPlus } from "react-icons/lu";
+import { LuPlus } from 'react-icons/lu';
 
 export default function CreateHabit({}) {
-  const { t } = useTranslation();  
+  const { t } = useTranslation();
 
   const form = useCreateHabitForm();
   const createHabitMutation = useCreateHabit({
@@ -45,7 +41,7 @@ export default function CreateHabit({}) {
         form={form}
         onSubmit={onSubmit}
         mutation={createHabitMutation}
-        submitText={"Create"}
+        submitText={'Create'}
       />
     </ResponsiveDialog>
   );

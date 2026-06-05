@@ -1,7 +1,7 @@
-import { Link } from "react-router";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
+import { Link } from 'react-router';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
 
 import {
   Card,
@@ -10,33 +10,26 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/card';
+import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
-import { useSignUp } from "../api/sign-up";
+import { useSignUp } from '../api/sign-up';
 
 const formSchema = z
   .object({
-    username: z
-      .string()
-      .min(2, { message: "Username must be at least 2 characters long" }),
-    email: z.string().email({ message: "Invalid email address" }),
+    username: z.string().min(2, { message: 'Username must be at least 2 characters long' }),
+    email: z.string().email({ message: 'Invalid email address' }),
     password: z
       .string()
-      .min(3, { message: "Password must be at least 3 characters long" })
-      .regex(/[a-zA-Z0-9]/, { message: "Password must be alphanumeric" }),
+      .min(3, { message: 'Password must be at least 3 characters long' })
+      .regex(/[a-zA-Z0-9]/, { message: 'Password must be alphanumeric' }),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Passwords do not match",
+    path: ['confirmPassword'],
+    message: 'Passwords do not match',
   });
 
 export default function SignUpForm() {
@@ -45,10 +38,10 @@ export default function SignUpForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
   });
 
@@ -61,13 +54,11 @@ export default function SignUpForm() {
       <Card className="mx-auto max-w-sm shadow-none">
         <CardHeader>
           <CardTitle className="text-2xl">Sign up</CardTitle>
-          <CardDescription>
-            Create a new account by filling out the form below.
-          </CardDescription>
+          <CardDescription>Create a new account by filling out the form below.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={form.handleSubmit(onSubmit)} id="form-sign-up">
-            <FieldGroup >
+            <FieldGroup>
               <Controller
                 name="username"
                 control={form.control}
@@ -82,9 +73,7 @@ export default function SignUpForm() {
                       autoComplete="off"
                       aria-invalid={fieldState.invalid}
                     />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                   </Field>
                 )}
               />
@@ -103,9 +92,7 @@ export default function SignUpForm() {
                       autoComplete="off"
                       aria-invalid={fieldState.invalid}
                     />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                   </Field>
                 )}
               />
@@ -124,9 +111,7 @@ export default function SignUpForm() {
                       autoComplete="off"
                       aria-invalid={fieldState.invalid}
                     />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                   </Field>
                 )}
               />
@@ -145,9 +130,7 @@ export default function SignUpForm() {
                       autoComplete="off"
                       aria-invalid={fieldState.invalid}
                     />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                   </Field>
                 )}
               />
@@ -161,10 +144,10 @@ export default function SignUpForm() {
             className="w-full"
             disabled={signUpMutation.isPending}
           >
-            {signUpMutation.isPending ? "Signing up..." : "Sign up"}
+            {signUpMutation.isPending ? 'Signing up...' : 'Sign up'}
           </Button>
           <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
+            Already have an account?{' '}
             <Link to="/sign-in" className="underline">
               Sign in
             </Link>

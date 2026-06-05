@@ -53,7 +53,10 @@ describe('/habits', () => {
     const { container, dbURL } = await createPostgresContainer();
     startedContainer = container;
 
-    app = await createApp([HabitsModule, StatsModule, LogsModule, AuthModule], dbURL);
+    app = await createApp(
+      [HabitsModule, StatsModule, LogsModule, AuthModule],
+      dbURL,
+    );
     dataSource = app.get(DataSource);
 
     await app.init();
@@ -222,7 +225,7 @@ describe('/habits', () => {
         currentStreak: 0,
         streaks: [],
         amountOfLogs: 0,
-        logsPerMonth: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        logsPerMonth: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       };
       expect(body).toEqual(stats);
     });
@@ -252,7 +255,7 @@ describe('/habits', () => {
         currentStreak: 1,
         streaks: [1],
         amountOfLogs: 1,
-        logsPerMonth: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        logsPerMonth: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       };
       expect(body).toEqual(stats);
     });
@@ -294,7 +297,7 @@ describe('/habits', () => {
         currentStreak: 2,
         streaks: [2],
         amountOfLogs: 2,
-        logsPerMonth: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        logsPerMonth: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       };
       expect(body).toEqual(stats);
     });
@@ -336,7 +339,7 @@ describe('/habits', () => {
         currentStreak: 1,
         streaks: [1, 1],
         amountOfLogs: 2,
-        logsPerMonth: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        logsPerMonth: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       };
       expect(body).toEqual(stats);
     });
@@ -366,7 +369,7 @@ describe('/habits', () => {
         currentStreak: 1,
         streaks: [1],
         amountOfLogs: 1,
-        logsPerMonth: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        logsPerMonth: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       };
       expect(body).toEqual(stats);
     });
@@ -409,7 +412,7 @@ describe('/habits', () => {
         currentStreak: 0,
         streaks: [1, 1, 1, 1, 1, 1, 1, 1],
         amountOfLogs: 8,
-        logsPerMonth: [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1]
+        logsPerMonth: [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1],
       };
       expect(body).toEqual(expectedStats);
     });
@@ -417,12 +420,7 @@ describe('/habits', () => {
     it('should get stats for habit with logs on different months across different years', async () => {
       const currentDate = '2000-12-31';
 
-      const logDates = [
-        '1997-01-01',
-        '1998-03-03',
-        '1999-07-07',
-        '2000-12-12',
-      ];
+      const logDates = ['1997-01-01', '1998-03-03', '1999-07-07', '2000-12-12'];
 
       for (const date of logDates) {
         const logDto = {

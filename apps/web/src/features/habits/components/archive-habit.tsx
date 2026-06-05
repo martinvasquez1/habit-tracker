@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
-import { Habit } from "@repo/open-api";
+import { useTranslation } from 'react-i18next';
+import { Habit } from '@repo/open-api';
 
-import { Button } from "@/components/ui/button";
-import ResponsiveDialog from "@/components/ui/responsive-dialog";
-import { useUpdateHabit } from "../api/update-habit";
+import { Button } from '@/components/ui/button';
+import ResponsiveDialog from '@/components/ui/responsive-dialog';
+import { useUpdateHabit } from '../api/update-habit';
 
 type ArchiveItemProps = {
   habitId: number;
@@ -12,12 +12,7 @@ type ArchiveItemProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function ArchiveHabit({
-  habitId,
-  habit,
-  isOpen,
-  setIsOpen,
-}: ArchiveItemProps) {
+export default function ArchiveHabit({ habitId, habit, isOpen, setIsOpen }: ArchiveItemProps) {
   const { t } = useTranslation();
   const updateHabitMutation = useUpdateHabit();
 
@@ -49,10 +44,7 @@ export default function ArchiveHabit({
           >
             {t('common.cancel')}
           </Button>
-          <Button
-            type="submit"
-            disabled={updateHabitMutation.isPending}
-          >
+          <Button type="submit" disabled={updateHabitMutation.isPending}>
             {t(`habits.${archiveKey}.button`)}
           </Button>
         </div>

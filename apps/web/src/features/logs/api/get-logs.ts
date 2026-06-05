@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
 
-import { api } from "@/lib/new-api-client";
-import { ApiGetLogsRequest } from "@repo/open-api";
+import { api } from '@/lib/new-api-client';
+import { ApiGetLogsRequest } from '@repo/open-api';
 
 export async function getLogs(data: ApiGetLogsRequest) {
   const res = await api.getLogs(data);
@@ -10,7 +10,7 @@ export async function getLogs(data: ApiGetLogsRequest) {
 
 export function useLogs(habitId: number, startDate: string, endDate: string) {
   return useQuery({
-    queryKey: ["habits", habitId, "logs", startDate, endDate],
+    queryKey: ['habits', habitId, 'logs', startDate, endDate],
     queryFn: () => getLogs({ habitId, startDate, endDate }),
     placeholderData: (previousData) => previousData,
   });

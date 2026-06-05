@@ -8,10 +8,18 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsString()
   bio?: string;
 
-  @ApiPropertyOptional({ type: 'string', format: 'binary', description: 'Profile picture file' })
+  @ApiPropertyOptional({
+    type: 'string',
+    format: 'binary',
+    description: 'Profile picture file',
+  })
   profilePicture?: any;
 
-  @ApiPropertyOptional({ type: 'string', format: 'binary', description: 'Cover photo file' })
+  @ApiPropertyOptional({
+    type: 'string',
+    format: 'binary',
+    description: 'Cover photo file',
+  })
   coverPhoto?: any;
 }
 

@@ -1,10 +1,9 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 /* import "shadcn/tailwind.css"; */
 
 /* @import "@fontsource-variable/inter"; */
-
 
 :root {
   --background: oklch(0.9834 0.0052 247.88);
@@ -137,7 +136,6 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-
   *,
   ::after,
   ::before,
@@ -241,7 +239,9 @@
   --color-habit-gray: var(--habit-gray);
 }
 
-#pyramid-chart g.recharts-layer.recharts-bar:nth-of-type(2) g.recharts-layer.recharts-bar-rectangle {
+#pyramid-chart
+  g.recharts-layer.recharts-bar:nth-of-type(2)
+  g.recharts-layer.recharts-bar-rectangle {
   transform: translateX(1px);
 }
 
@@ -294,7 +294,6 @@
 }
 
 .bg-mint-mesh {
-
   background-color: #99fff5;
   background-image:
     radial-gradient(at 79% 60%, hsla(200, 89%, 66%, 1) 0px, transparent 50%),

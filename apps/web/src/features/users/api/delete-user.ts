@@ -1,7 +1,7 @@
-import { MutationConfig } from "@/lib/react-query";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { api } from "@/lib/new-api-client";
-import { ApiDeleteUserRequest } from "@repo/open-api";
+import { MutationConfig } from '@/lib/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { api } from '@/lib/new-api-client';
+import { ApiDeleteUserRequest } from '@repo/open-api';
 
 async function deleteUser(data: ApiDeleteUserRequest) {
   const res = await api.deleteUser(data);
@@ -20,7 +20,7 @@ export function useDeleteUser({ mutationConfig }: UseDeleteUserOptions) {
   const mutation = useMutation({
     mutationFn: deleteUser,
     onSuccess: (data, variables, onMutateResult, context) => {
-      queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ['users'] });
       onSuccess?.(data, variables, onMutateResult, context);
     },
     ...restConfig,

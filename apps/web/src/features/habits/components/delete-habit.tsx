@@ -1,8 +1,8 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import { Button } from "@/components/ui/button";
-import ResponsiveDialog from "@/components/ui/responsive-dialog";
-import { useDeleteHabit } from "../api/delete-habit";
+import { Button } from '@/components/ui/button';
+import ResponsiveDialog from '@/components/ui/responsive-dialog';
+import { useDeleteHabit } from '../api/delete-habit';
 
 type DeleteItemProps = {
   habitId: number;
@@ -10,17 +10,13 @@ type DeleteItemProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function DeleteHabit({
-  habitId,
-  isOpen,
-  setIsOpen,
-}: DeleteItemProps) {
+export default function DeleteHabit({ habitId, isOpen, setIsOpen }: DeleteItemProps) {
   const { t } = useTranslation();
   const deleteHabitMutation = useDeleteHabit();
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    deleteHabitMutation.mutate({id: String(habitId)});
+    deleteHabitMutation.mutate({ id: String(habitId) });
   }
 
   return (
@@ -41,11 +37,7 @@ export default function DeleteHabit({
           >
             {t('common.cancel')}
           </Button>
-          <Button
-            type="submit"
-            variant="destructive"
-            disabled={deleteHabitMutation.isPending}
-          >
+          <Button type="submit" variant="destructive" disabled={deleteHabitMutation.isPending}>
             {t('habits.delete.button')}
           </Button>
         </div>

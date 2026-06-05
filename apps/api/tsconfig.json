@@ -20,6 +20,6 @@
 
     "types": ["node", "jest"],
     "moduleResolution": "node",
-    "esModuleInterop": true,
+    "esModuleInterop": true
   }
 }

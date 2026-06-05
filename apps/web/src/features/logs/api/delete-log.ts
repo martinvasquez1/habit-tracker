@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { api } from "@/lib/new-api-client";
-import { ApiDeleteLogRequest } from "@repo/open-api";
+import { api } from '@/lib/new-api-client';
+import { ApiDeleteLogRequest } from '@repo/open-api';
 
 export async function deleteLog(data: ApiDeleteLogRequest) {
   const res = await api.deleteLog(data);
@@ -16,10 +16,7 @@ export function useDeleteLog(habitId: number) {
     onSuccess: () => {
       queryClient.invalidateQueries({
         predicate: (query) =>
-          query.queryKey.every(
-            (_key) => ["habits", "logs"],
-            ["habits", habitId, "logs"]
-          ),
+          query.queryKey.every((_key) => ['habits', 'logs'], ['habits', habitId, 'logs']),
       });
     },
   });

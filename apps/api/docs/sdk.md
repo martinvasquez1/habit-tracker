@@ -24,7 +24,7 @@ usersControllerFindAll
 
 This causes the generated SDK methods to have unnecessarily long names.
 
-To improve SDK method naming, the  `operationId` field is used to define the method name.
+To improve SDK method naming, the `operationId` field is used to define the method name.
 
 Example:
 

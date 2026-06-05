@@ -1,12 +1,12 @@
-import IconWrapper from "@/components/icon-wrapper";
-import { Stats } from "@/types/api";
+import IconWrapper from '@/components/icon-wrapper';
+import { Stats } from '@/types/api';
 
-import { TbFlame } from "react-icons/tb";
-import { LuAward } from "react-icons/lu";
-import { LuHistory } from "react-icons/lu";
-import { useTranslation } from "react-i18next";
-import { HabitColorEnum } from "@repo/open-api";
-import { colorsIconWrapper } from "@/styles/main";
+import { TbFlame } from 'react-icons/tb';
+import { LuAward } from 'react-icons/lu';
+import { LuHistory } from 'react-icons/lu';
+import { useTranslation } from 'react-i18next';
+import { HabitColorEnum } from '@repo/open-api';
+import { colorsIconWrapper } from '@/styles/main';
 
 interface StatsCardsProps {
   data: Stats;
@@ -14,7 +14,7 @@ interface StatsCardsProps {
 }
 
 export default function StatsCards({ data, color }: StatsCardsProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const iconWrapperStyles = colorsIconWrapper[color];
 
@@ -30,12 +30,12 @@ export default function StatsCards({ data, color }: StatsCardsProps) {
     {
       name: t('habit.longest_streak'),
       value: longestStreak,
-      icon: <LuAward />
+      icon: <LuAward />,
     },
     {
       name: t('habit.total_logs'),
       value: data.amountOfLogs || 0,
-      icon: <LuHistory />
+      icon: <LuHistory />,
     },
   ];
 
@@ -43,10 +43,7 @@ export default function StatsCards({ data, color }: StatsCardsProps) {
     <div className="flex flex-col md:flex-row gap-4 mb-4 md:mb-6">
       {cards.map((c) => {
         return (
-          <div
-            key={c.name}
-            className="flex-1 border border-border rounded-md p-4 bg-card"
-          >
+          <div key={c.name} className="flex-1 border border-border rounded-md p-4 bg-card">
             <div className="flex justify-between items-baseline gap-4">
               <div className="font-semibold text-lg pb-2">{c.name}</div>
               <div className={`${iconWrapperStyles} p-2 rounded-lg`}>

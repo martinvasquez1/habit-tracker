@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
 
-import { api } from "@/lib/new-api-client";
-import { ApiGetHabitRequest } from "@repo/open-api";
+import { api } from '@/lib/new-api-client';
+import { ApiGetHabitRequest } from '@repo/open-api';
 
 async function getHabit(parameters: ApiGetHabitRequest) {
   const res = await api.getHabit(parameters);
@@ -10,7 +10,7 @@ async function getHabit(parameters: ApiGetHabitRequest) {
 
 export function useHabit(habitId: string) {
   return useQuery({
-    queryKey: ["habits", habitId],
+    queryKey: ['habits', habitId],
     queryFn: () => getHabit({ id: habitId }),
   });
 }
